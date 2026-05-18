@@ -67,6 +67,14 @@ ALLOWED_HOSTS = env_list(
     default=_coolify_hosts() or ["*"],
 )
 
+# Always permit loopback so the container's internal healthcheck
+# (Docker HEALTHCHECK / Coolify probe hitting http://127.0.0.1:$PORT/healthz)
+# is accepted regardless of which public host is configured.
+if "*" not in ALLOWED_HOSTS:
+    for _loopback in ("localhost", "127.0.0.1"):
+        if _loopback not in ALLOWED_HOSTS:
+            ALLOWED_HOSTS.append(_loopback)
+
 # CSRF needs explicit trusted origins for POSTs over HTTPS (admin, our quiz
 # answer endpoint, etc.). Auto-derive from Coolify's COOLIFY_URL when present,
 # and additionally from any non-wildcard ALLOWED_HOSTS as a fallback.
