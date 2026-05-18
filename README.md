@@ -53,17 +53,24 @@ A health-check endpoint is available at `/healthz`.
 4. Set the **port** to `8000` (the `Dockerfile` exposes 8000 and `start.sh`
    honours `$PORT`).
 5. Set the **health-check path** to `/healthz`.
-6. Configure these environment variables in the Coolify UI:
+6. Configure environment variables in the Coolify UI:
+
+   **Required:**
 
    | Variable | Example | Notes |
    | --- | --- | --- |
-   | `DJANGO_SECRET_KEY` | *long random string* | Required. Generate with `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"` |
+   | `DJANGO_SECRET_KEY` | *long random string* | Generate with `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"` |
    | `DJANGO_DEBUG` | `false` | Must be `false` in production |
-   | `DJANGO_ALLOWED_HOSTS` | `kartuli.example.com` | Comma-separated; include every hostname Coolify routes to the app |
-   | `DJANGO_CSRF_TRUSTED_ORIGINS` | `https://kartuli.example.com` | Comma-separated full origins (scheme + host) |
-   | `DATABASE_URL` | `postgres://user:pass@host:5432/kartuli` | Optional. Omit to keep SQLite; recommended to add a Postgres service in Coolify |
-   | `DJANGO_SECURE_SSL_REDIRECT` | `true` | Optional hardening once HTTPS works |
-   | `DJANGO_SECURE_HSTS_SECONDS` | `3600` | Optional hardening |
+
+   **Optional (sensible defaults are used if you skip them):**
+
+   | Variable | Default | When to set |
+   | --- | --- | --- |
+   | `DJANGO_ALLOWED_HOSTS` | `*` | Tighten to your domain(s) for defence in depth |
+   | `DJANGO_CSRF_TRUSTED_ORIGINS` | derived as `https://<host>` for each `DJANGO_ALLOWED_HOSTS` entry | Set manually if you use a non-https origin or a custom port |
+   | `DATABASE_URL` | local SQLite | Set to a Postgres URL once you add a Postgres service |
+   | `DJANGO_SECURE_SSL_REDIRECT` | `false` | `true` once HTTPS is wired up |
+   | `DJANGO_SECURE_HSTS_SECONDS` | `0` | e.g. `3600` to enable HSTS |
 
 7. Add a persistent volume for the SQLite file (`/app/db.sqlite3`) **only if**
    you stick with SQLite. For real workloads use the Postgres service and set

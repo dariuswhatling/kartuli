@@ -42,15 +42,22 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env_bool("DJANGO_DEBUG", default=False)
 
-ALLOWED_HOSTS = env_list(
-    "DJANGO_ALLOWED_HOSTS",
-    default=["localhost", "127.0.0.1"] if DEBUG else [],
-)
+# Default to accepting any Host header. Coolify's reverse proxy is the only
+# thing that can reach the container, so this is effectively scoped to the
+# domains you've routed to the app. Override with DJANGO_ALLOWED_HOSTS
+# (comma-separated) if you want to tighten it.
+ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", default=["*"])
 
-# Coolify (and most reverse proxies) terminate TLS upstream, so we need to
-# trust the forwarded host headers and define the public origins explicitly
-# for CSRF protection.
-CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS", default=[])
+# Trust the HTTPS origin of every allowed host by default so admin POSTs work
+# behind Coolify's TLS-terminating proxy without extra config.
+CSRF_TRUSTED_ORIGINS = env_list(
+    "DJANGO_CSRF_TRUSTED_ORIGINS",
+    default=[
+        f"https://{host}"
+        for host in ALLOWED_HOSTS
+        if host not in {"*", "localhost", "127.0.0.1"}
+    ],
+)
 
 
 # Application definition
