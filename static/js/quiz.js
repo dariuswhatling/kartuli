@@ -5,7 +5,6 @@
         card: document.getElementById("card"),
         direction: document.getElementById("card-direction"),
         prompt: document.getElementById("card-prompt"),
-        hint: document.getElementById("card-hint"),
         options: document.getElementById("options"),
         feedback: document.getElementById("feedback"),
         streak: document.getElementById("stat-streak"),
@@ -74,7 +73,6 @@
         els.prompt.classList.toggle("is-georgian", isGeorgianPrompt);
         els.prompt.textContent = card.prompt;
         els.direction.textContent = DIRECTION_LABELS[card.direction] || "";
-        els.hint.textContent = card.notes || "Pick the matching translation.";
         els.card.classList.remove("is-correct", "is-wrong");
         els.feedback.textContent = "";
         els.feedback.classList.remove("is-correct", "is-wrong");
@@ -100,10 +98,11 @@
         } catch (err) {
             els.direction.textContent = "";
             els.prompt.textContent = "—";
-            els.hint.textContent =
+            els.feedback.textContent =
                 err.status === 404
                     ? "No cards yet. Add some in the Dictionary."
                     : "Couldn't load a card. Try refreshing.";
+            els.feedback.classList.add("is-wrong");
         }
     }
 

@@ -27,7 +27,6 @@ def _card_to_dict(card: Card, include_stats: bool = False) -> dict:
         "id": card.id,
         "georgian": card.georgian,
         "english": card.english,
-        "notes": card.notes,
     }
     if include_stats:
         data["stats"] = card.stats()
@@ -71,7 +70,6 @@ def api_next(request: HttpRequest) -> JsonResponse:
             "direction": direction,
             "prompt": prompt,
             "options": options,
-            "notes": card.notes,
         }
     )
 
@@ -125,7 +123,6 @@ def api_cards(request: HttpRequest) -> JsonResponse:
 
     georgian = (payload.get("georgian") or "").strip()
     english = (payload.get("english") or "").strip()
-    notes = (payload.get("notes") or "").strip()
 
     if not georgian or not english:
         return JsonResponse(
@@ -133,7 +130,7 @@ def api_cards(request: HttpRequest) -> JsonResponse:
             status=400,
         )
 
-    card = Card.objects.create(georgian=georgian, english=english, notes=notes)
+    card = Card.objects.create(georgian=georgian, english=english)
     return JsonResponse(_card_to_dict(card, include_stats=True), status=201)
 
 
@@ -169,8 +166,6 @@ def api_card_detail(request: HttpRequest, card_id: int) -> JsonResponse:
                 status=400,
             )
         card.english = english
-    if "notes" in payload:
-        card.notes = (payload["notes"] or "").strip()
 
     card.save()
     return JsonResponse(_card_to_dict(card, include_stats=True))

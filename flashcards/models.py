@@ -6,7 +6,6 @@ class Card(models.Model):
 
     georgian = models.CharField(max_length=255)
     english = models.CharField(max_length=255)
-    notes = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

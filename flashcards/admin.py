@@ -5,8 +5,8 @@ from .models import Attempt, Card
 
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):
-    list_display = ("id", "georgian", "english", "notes", "updated_at")
-    search_fields = ("georgian", "english", "notes")
+    list_display = ("id", "georgian", "english", "updated_at")
+    search_fields = ("georgian", "english")
 
 
 @admin.register(Attempt)

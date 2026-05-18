@@ -366,12 +366,6 @@ a:hover { text-decoration: underline; }
     font-family: var(--font-ge);
 }
 
-.card-hint {
-    color: var(--fg-muted);
-    font-size: 0.9rem;
-    min-height: 1.25rem;
-}
-
 .options {
     display: grid;
     gap: 0.6rem;
