@@ -13,7 +13,7 @@
 
     const state = {
         current: null,
-        lastCardId: null,
+        lastPrompt: null,
         locked: false,
         streak: 0,
         correct: 0,
@@ -21,17 +21,8 @@
         keys: {}, // georgian char -> button element
     };
 
-    function getCsrfToken() {
-        const match = document.cookie.match(/(?:^|;\s*)csrftoken=([^;]+)/);
-        return match ? decodeURIComponent(match[1]) : "";
-    }
-
-    async function api(url, options = {}) {
-        const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
-        if (options.method && options.method !== "GET") {
-            headers["X-CSRFToken"] = getCsrfToken();
-        }
-        const res = await fetch(url, { ...options, headers });
+    async function api(url) {
+        const res = await fetch(url);
         const data = await res.json().catch(() => ({}));
         if (!res.ok) {
             const err = new Error(data.message || data.error || `HTTP ${res.status}`);
@@ -86,7 +77,7 @@
 
         try {
             const params = new URLSearchParams();
-            if (state.lastCardId != null) params.set("last_id", state.lastCardId);
+            if (state.lastPrompt) params.set("last", state.lastPrompt);
             const card = await api(
                 `/api/quiz/keyboard-next/?${params.toString()}`
             );
@@ -104,57 +95,40 @@
         }
     }
 
-    async function onTap(letter) {
+    function onTap(letter) {
         if (state.locked || !state.current) return;
         state.locked = true;
         setKeysEnabled(false);
 
         const tappedBtn = state.keys[letter];
+        const answer = state.current.answer;
+        const correct = letter === answer;
 
-        try {
-            const result = await api("/api/quiz/answer/", {
-                method: "POST",
-                body: JSON.stringify({
-                    card_id: state.current.card_id,
-                    direction: state.current.direction,
-                    chosen: letter,
-                }),
-            });
+        state.total += 1;
+        els.total.textContent = state.total;
 
-            state.total += 1;
-            els.total.textContent = state.total;
-
-            if (result.correct) {
-                state.correct += 1;
-                state.streak += 1;
-                tappedBtn.classList.add("is-correct");
-                els.card.classList.add("is-correct");
-                els.feedback.textContent = "Correct";
-                els.feedback.classList.add("is-correct");
-            } else {
-                state.streak = 0;
-                tappedBtn.classList.add("is-wrong");
-                els.card.classList.add("is-wrong");
-                const correctBtn = state.keys[result.answer];
-                if (correctBtn) correctBtn.classList.add("is-correct");
-                els.feedback.textContent = `Answer: ${result.answer}`;
-                els.feedback.classList.add("is-wrong");
-            }
-            els.correct.textContent = state.correct;
-            els.streak.textContent = state.streak;
-            state.lastCardId = state.current.card_id;
-
-            const delay = result.correct ? 650 : 1500;
-            setTimeout(loadNext, delay);
-        } catch (err) {
-            state.locked = false;
-            setKeysEnabled(true);
-            els.feedback.textContent =
-                err.status === 403
-                    ? "Couldn't save (403). The page may need a refresh."
-                    : `Couldn't save (${err.status || "network"}). Try again.`;
+        if (correct) {
+            state.correct += 1;
+            state.streak += 1;
+            tappedBtn.classList.add("is-correct");
+            els.card.classList.add("is-correct");
+            els.feedback.textContent = "Correct";
+            els.feedback.classList.add("is-correct");
+        } else {
+            state.streak = 0;
+            tappedBtn.classList.add("is-wrong");
+            els.card.classList.add("is-wrong");
+            const correctBtn = state.keys[answer];
+            if (correctBtn) correctBtn.classList.add("is-correct");
+            els.feedback.textContent = `Answer: ${answer}`;
             els.feedback.classList.add("is-wrong");
         }
+        els.correct.textContent = state.correct;
+        els.streak.textContent = state.streak;
+        state.lastPrompt = state.current.prompt;
+
+        const delay = correct ? 650 : 1500;
+        setTimeout(loadNext, delay);
     }
 
     (async () => {

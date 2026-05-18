@@ -106,7 +106,7 @@
         }
     }
 
-    async function onAnswer(btn, chosen) {
+    function onAnswer(btn, chosen) {
         if (state.locked || !state.current) return;
         state.locked = true;
 
@@ -115,56 +115,38 @@
             if (b !== btn) b.classList.add("is-dimmed");
         });
 
-        try {
-            const result = await api("/api/quiz/answer/", {
-                method: "POST",
-                body: JSON.stringify({
-                    card_id: state.current.card_id,
-                    direction: state.current.direction,
-                    chosen,
-                }),
-            });
+        const answer = state.current.answer;
+        const correct = chosen === answer;
 
-            state.total += 1;
-            els.total.textContent = state.total;
-            if (result.correct) {
-                state.correct += 1;
-                state.streak += 1;
-                btn.classList.add("is-correct");
-                els.card.classList.add("is-correct");
-                els.feedback.textContent = "Correct";
-                els.feedback.classList.add("is-correct");
-            } else {
-                state.streak = 0;
-                btn.classList.add("is-wrong");
-                els.card.classList.add("is-wrong");
-                els.feedback.textContent = `Answer: ${result.answer}`;
-                els.feedback.classList.add("is-wrong");
-                els.options.querySelectorAll("button").forEach((b) => {
-                    if (b.dataset.value === result.answer) {
-                        b.classList.remove("is-dimmed");
-                        b.classList.add("is-correct");
-                    }
-                });
-            }
-            els.correct.textContent = state.correct;
-            els.streak.textContent = state.streak;
-            state.lastCardId = state.current.card_id;
+        state.total += 1;
+        els.total.textContent = state.total;
 
-            const delay = result.correct ? 700 : 1500;
-            setTimeout(loadNext, delay);
-        } catch (err) {
-            state.locked = false;
-            els.feedback.textContent =
-                err.status === 403
-                    ? "Couldn't save (403). The page may need a refresh."
-                    : `Couldn't save (${err.status || "network"}). Try again.`;
+        if (correct) {
+            state.correct += 1;
+            state.streak += 1;
+            btn.classList.add("is-correct");
+            els.card.classList.add("is-correct");
+            els.feedback.textContent = "Correct";
+            els.feedback.classList.add("is-correct");
+        } else {
+            state.streak = 0;
+            btn.classList.add("is-wrong");
+            els.card.classList.add("is-wrong");
+            els.feedback.textContent = `Answer: ${answer}`;
             els.feedback.classList.add("is-wrong");
             els.options.querySelectorAll("button").forEach((b) => {
-                b.disabled = false;
-                b.classList.remove("is-dimmed");
+                if (b.dataset.value === answer) {
+                    b.classList.remove("is-dimmed");
+                    b.classList.add("is-correct");
+                }
             });
         }
+        els.correct.textContent = state.correct;
+        els.streak.textContent = state.streak;
+        state.lastCardId = state.current.card_id;
+
+        const delay = correct ? 700 : 1500;
+        setTimeout(loadNext, delay);
     }
 
     document.addEventListener("keydown", (e) => {

@@ -36,12 +36,6 @@
         return data;
     }
 
-    function fmtAccuracy(stats) {
-        if (!stats || stats.accuracy == null) return "untouched";
-        const pct = Math.round(stats.accuracy * 100);
-        return `${stats.correct}/${stats.total} · ${pct}%`;
-    }
-
     function renderRow(card) {
         const row = document.createElement("div");
         row.className = "dict-row";
@@ -80,18 +74,7 @@
         delBtn.dataset.action = "delete";
         actions.append(saveBtn, delBtn);
 
-        const meta = document.createElement("div");
-        meta.className = "meta";
-        const stats = document.createElement("span");
-        stats.className = "dict-stats";
-        stats.textContent = fmtAccuracy(card.stats);
-        if (card.stats && card.stats.recent_wrong > 0) {
-            stats.style.color = "var(--warn)";
-            stats.title = `${card.stats.recent_wrong} of the last ${5} attempts were wrong`;
-        }
-        meta.append(stats);
-
-        row.append(geoField, engField, actions, meta);
+        row.append(geoField, engField, actions);
 
         const markDirty = () => {
             row.classList.add("is-dirty");

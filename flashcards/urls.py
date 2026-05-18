@@ -7,7 +7,6 @@ urlpatterns = [
     path("keyboard/", views.keyboard_page, name="keyboard"),
     path("dictionary/", views.dictionary_page, name="dictionary"),
     path("api/quiz/next/", views.api_next, name="api_quiz_next"),
-    path("api/quiz/answer/", views.api_answer, name="api_quiz_answer"),
     path("api/quiz/keyboard-next/", views.api_keyboard_next, name="api_keyboard_next"),
     path(
         "api/quiz/keyboard-layout/",
