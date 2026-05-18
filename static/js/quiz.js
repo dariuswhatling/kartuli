@@ -156,7 +156,11 @@
             setTimeout(loadNext, delay);
         } catch (err) {
             state.locked = false;
-            els.feedback.textContent = "Network hiccup — try that again.";
+            els.feedback.textContent =
+                err.status === 403
+                    ? "Couldn't save (403). The page may need a refresh."
+                    : `Couldn't save (${err.status || "network"}). Try again.`;
+            els.feedback.classList.add("is-wrong");
             els.options.querySelectorAll("button").forEach((b) => {
                 b.disabled = false;
                 b.classList.remove("is-dimmed");

@@ -7,6 +7,7 @@ local development.
 """
 
 from pathlib import Path
+from urllib.parse import urlparse
 
 import dj_database_url
 from dotenv import load_dotenv
@@ -42,21 +43,45 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env_bool("DJANGO_DEBUG", default=False)
 
+
+def _coolify_urls() -> list[str]:
+    """Read Coolify's auto-injected URL env vars (comma-separated)."""
+    raw = os.environ.get("COOLIFY_URL", "")
+    return [u.strip().rstrip("/") for u in raw.split(",") if u.strip()]
+
+
+def _coolify_hosts() -> list[str]:
+    """Hostnames derived from COOLIFY_URL plus COOLIFY_FQDN (already host-only)."""
+    hosts = [urlparse(u).hostname for u in _coolify_urls()]
+    fqdn_raw = os.environ.get("COOLIFY_FQDN", "")
+    hosts += [h.strip() for h in fqdn_raw.split(",") if h.strip()]
+    return [h for h in hosts if h]
+
+
 # Default to accepting any Host header. Coolify's reverse proxy is the only
 # thing that can reach the container, so this is effectively scoped to the
 # domains you've routed to the app. Override with DJANGO_ALLOWED_HOSTS
 # (comma-separated) if you want to tighten it.
-ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", default=["*"])
+ALLOWED_HOSTS = env_list(
+    "DJANGO_ALLOWED_HOSTS",
+    default=_coolify_hosts() or ["*"],
+)
 
-# Trust the HTTPS origin of every allowed host by default so admin POSTs work
-# behind Coolify's TLS-terminating proxy without extra config.
+# CSRF needs explicit trusted origins for POSTs over HTTPS (admin, our quiz
+# answer endpoint, etc.). Auto-derive from Coolify's COOLIFY_URL when present,
+# and additionally from any non-wildcard ALLOWED_HOSTS as a fallback.
 CSRF_TRUSTED_ORIGINS = env_list(
     "DJANGO_CSRF_TRUSTED_ORIGINS",
-    default=[
-        f"https://{host}"
-        for host in ALLOWED_HOSTS
-        if host not in {"*", "localhost", "127.0.0.1"}
-    ],
+    default=list(
+        dict.fromkeys(  # de-duplicate while preserving order
+            _coolify_urls()
+            + [
+                f"https://{host}"
+                for host in ALLOWED_HOSTS
+                if host not in {"*", "localhost", "127.0.0.1"}
+            ]
+        )
+    ),
 )
 
 
