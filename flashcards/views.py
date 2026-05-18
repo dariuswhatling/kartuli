@@ -18,6 +18,11 @@ def quiz_page(request: HttpRequest) -> HttpResponse:
 
 
 @ensure_csrf_cookie
+def keyboard_page(request: HttpRequest) -> HttpResponse:
+    return render(request, "keyboard.html")
+
+
+@ensure_csrf_cookie
 def dictionary_page(request: HttpRequest) -> HttpResponse:
     return render(request, "dictionary.html")
 
@@ -70,6 +75,42 @@ def api_next(request: HttpRequest) -> JsonResponse:
             "direction": direction,
             "prompt": prompt,
             "options": options,
+        }
+    )
+
+
+@require_GET
+def api_keyboard_layout(request: HttpRequest) -> JsonResponse:
+    """All distinct single-character Georgian letters in the dictionary."""
+    seen: set[str] = set()
+    letters: list[str] = []
+    for georgian in Card.objects.order_by("id").values_list("georgian", flat=True):
+        if len(georgian) == 1 and georgian not in seen:
+            seen.add(georgian)
+            letters.append(georgian)
+    return JsonResponse({"letters": letters})
+
+
+@require_GET
+def api_keyboard_next(request: HttpRequest) -> JsonResponse:
+    last_id = request.GET.get("last_id")
+    exclude_ids: list[int] = []
+    if last_id and last_id.isdigit():
+        exclude_ids.append(int(last_id))
+
+    card = pick_card(exclude_ids=exclude_ids, single_char_only=True)
+    if card is None:
+        return JsonResponse(
+            {"error": "no_cards", "message": "Add at least one single-letter card."},
+            status=404,
+        )
+
+    return JsonResponse(
+        {
+            "card_id": card.id,
+            "direction": Attempt.DIRECTION_EN_TO_GEO,
+            "prompt": card.english,
+            "answer_length": len(card.georgian),
         }
     )
 

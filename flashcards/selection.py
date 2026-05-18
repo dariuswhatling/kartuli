@@ -70,9 +70,18 @@ def _gather_weights(cards: list[Card]) -> list[CardWithStats]:
     return results
 
 
-def pick_card(exclude_ids: Iterable[int] | None = None) -> Card | None:
-    """Return a card to quiz on, biased toward cards the user is struggling with."""
+def pick_card(
+    exclude_ids: Iterable[int] | None = None,
+    single_char_only: bool = False,
+) -> Card | None:
+    """Return a card to quiz on, biased toward cards the user is struggling with.
+
+    When ``single_char_only`` is True, only cards whose Georgian value is a
+    single character are considered (used by the alphabet-keyboard mode).
+    """
     cards = list(Card.objects.exclude(id__in=list(exclude_ids or [])))
+    if single_char_only:
+        cards = [c for c in cards if len(c.georgian) == 1]
     weighted = _gather_weights(cards)
     if not weighted:
         return None

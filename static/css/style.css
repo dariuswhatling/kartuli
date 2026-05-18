@@ -441,6 +441,79 @@ a:hover { text-decoration: underline; }
 .feedback.is-correct { color: var(--success); }
 .feedback.is-wrong   { color: var(--danger); }
 
+/* ---- Keyboard mode ---- */
+.kb {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.kb-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.4rem;
+}
+
+.kb-key {
+    appearance: none;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+    min-height: 48px;
+    padding: 0;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    color: var(--fg);
+    font-family: var(--font-ge);
+    font-size: clamp(1.4rem, 5vw, 1.85rem);
+    font-weight: 600;
+    line-height: 1;
+    transition: background 0.12s ease, border-color 0.12s ease,
+        transform 0.08s ease, color 0.12s ease;
+}
+
+.kb-key:not(:disabled):hover {
+    border-color: var(--border-strong);
+    background: var(--bg-soft);
+}
+
+.kb-key:not(:disabled):active {
+    transform: scale(0.96);
+}
+
+.kb-key:disabled {
+    cursor: default;
+}
+
+.kb-key.is-correct {
+    background: rgba(74, 222, 128, 0.2);
+    border-color: rgba(74, 222, 128, 0.55);
+    color: #d1fae5;
+}
+
+.kb-key.is-wrong {
+    background: rgba(248, 113, 113, 0.18);
+    border-color: rgba(248, 113, 113, 0.5);
+    color: #fee2e2;
+}
+
+.kb-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--fg-dim);
+    padding: 1rem 0;
+}
+
+@media (max-width: 420px) {
+    .kb-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.35rem; }
+    .kb-key { min-height: 44px; }
+}
+
+@media (min-width: 700px) {
+    .kb-grid { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+}
+
 /* ---- Dictionary ---- */
 .dict-header h1 {
     margin: 0 0 0.4rem;
