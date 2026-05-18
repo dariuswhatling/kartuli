@@ -32,7 +32,7 @@
 
     const state = {
         pairs: [],
-        direction: "en_to_geo",
+        direction: "geo_to_en",
         current: null,
         lastPrompt: null,
         locked: false,
