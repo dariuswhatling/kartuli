@@ -477,7 +477,6 @@ a:hover { text-decoration: underline; }
     gap: 0.3rem;
 }
 
-.dict-add .field:nth-child(3),
 .dict-add button {
     grid-column: 1 / -1;
 }
@@ -559,25 +558,10 @@ input.is-georgian {
     grid-column: 1 / -1;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 0.5rem;
-    padding-top: 0.25rem;
+    padding-top: 0.4rem;
     border-top: 1px dashed var(--border);
-}
-
-.dict-row .meta input {
-    flex: 1;
-    background: transparent;
-    border-color: transparent;
-    padding: 0.4rem 0;
-    font-size: 0.85rem;
-    color: var(--fg-muted);
-}
-
-.dict-row .meta input:focus {
-    border-color: var(--border);
-    background: var(--bg-soft);
-    padding: 0.4rem 0.6rem;
 }
 
 .dict-stats {

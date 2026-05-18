@@ -5,7 +5,6 @@
         addForm: document.getElementById("dict-add"),
         addGeorgian: document.getElementById("add-georgian"),
         addEnglish: document.getElementById("add-english"),
-        addNotes: document.getElementById("add-notes"),
         list: document.getElementById("dict-list"),
         search: document.getElementById("dict-search"),
         count: document.getElementById("dict-count"),
@@ -83,11 +82,6 @@
 
         const meta = document.createElement("div");
         meta.className = "meta";
-        const notesInput = document.createElement("input");
-        notesInput.type = "text";
-        notesInput.placeholder = "notes";
-        notesInput.value = card.notes || "";
-        notesInput.dataset.field = "notes";
         const stats = document.createElement("span");
         stats.className = "dict-stats";
         stats.textContent = fmtAccuracy(card.stats);
@@ -95,7 +89,7 @@
             stats.style.color = "var(--warn)";
             stats.title = `${card.stats.recent_wrong} of the last ${5} attempts were wrong`;
         }
-        meta.append(notesInput, stats);
+        meta.append(stats);
 
         row.append(geoField, engField, actions, meta);
 
@@ -104,7 +98,7 @@
             row.classList.remove("is-saved");
             saveBtn.disabled = false;
         };
-        [geoInput, engInput, notesInput].forEach((input) => {
+        [geoInput, engInput].forEach((input) => {
             input.addEventListener("input", markDirty);
             input.addEventListener("keydown", (e) => {
                 if (e.key === "Enter" && !saveBtn.disabled) {
@@ -123,7 +117,6 @@
     async function saveRow(row, card) {
         const georgian = row.querySelector('[data-field="georgian"]').value.trim();
         const english = row.querySelector('[data-field="english"]').value.trim();
-        const notes = row.querySelector('[data-field="notes"]').value.trim();
         if (!georgian || !english) {
             row.classList.remove("is-saved");
             return;
@@ -131,7 +124,7 @@
         try {
             const updated = await api(`/api/cards/${card.id}/`, {
                 method: "PUT",
-                body: JSON.stringify({ georgian, english, notes }),
+                body: JSON.stringify({ georgian, english }),
             });
             Object.assign(card, updated);
             row.classList.remove("is-dirty");
@@ -160,8 +153,7 @@
             if (!q) return true;
             return (
                 c.georgian.toLowerCase().includes(q) ||
-                c.english.toLowerCase().includes(q) ||
-                (c.notes || "").toLowerCase().includes(q)
+                c.english.toLowerCase().includes(q)
             );
         });
         els.count.textContent = `${filtered.length} of ${state.cards.length} cards`;
@@ -192,12 +184,11 @@
         e.preventDefault();
         const georgian = els.addGeorgian.value.trim();
         const english = els.addEnglish.value.trim();
-        const notes = els.addNotes.value.trim();
         if (!georgian || !english) return;
         try {
             const card = await api("/api/cards/", {
                 method: "POST",
-                body: JSON.stringify({ georgian, english, notes }),
+                body: JSON.stringify({ georgian, english }),
             });
             state.cards.push(card);
             els.addForm.reset();
