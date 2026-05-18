@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dictionary – Kartuli{% endblock %}
+{% block nav_dict %}is-active{% endblock %}
+
+{% block content %}
+<section class="dict">
+    <header class="dict-header">
+        <h1>Dictionary</h1>
+        <p>Add, edit, and remove flashcards. Quiz performance is tracked per card.</p>
+    </header>
+
+    <form class="dict-add" id="dict-add" autocomplete="off">
+        <div class="field">
+            <label for="add-georgian">Georgian</label>
+            <input id="add-georgian" name="georgian" type="text" placeholder="ა" required spellcheck="false" />
+        </div>
+        <div class="field">
+            <label for="add-english">English / sound</label>
+            <input id="add-english" name="english" type="text" placeholder="a" required spellcheck="false" />
+        </div>
+        <div class="field">
+            <label for="add-notes">Notes (optional)</label>
+            <input id="add-notes" name="notes" type="text" placeholder="ani" spellcheck="false" />
+        </div>
+        <button type="submit" class="btn btn-primary">Add card</button>
+    </form>
+
+    <div class="dict-toolbar">
+        <input id="dict-search" type="search" placeholder="Search…" autocomplete="off" spellcheck="false" />
+        <span class="dict-count" id="dict-count">0 cards</span>
+    </div>
+
+    <div class="dict-list" id="dict-list" aria-live="polite">
+        <p class="dict-empty">Loading…</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/dictionary.js' %}" defer></script>
+{% endblock %}
