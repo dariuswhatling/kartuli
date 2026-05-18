@@ -21,12 +21,29 @@
         </div>
     </div>
 
+    <div class="mode-toggle" role="tablist" aria-label="Quiz direction">
+        <button
+            type="button"
+            class="mode-toggle-option is-active"
+            data-direction="en_to_geo"
+            role="tab"
+            aria-selected="true"
+        >Sound&nbsp;→&nbsp;Letter</button>
+        <button
+            type="button"
+            class="mode-toggle-option"
+            data-direction="geo_to_en"
+            role="tab"
+            aria-selected="false"
+        >Letter&nbsp;→&nbsp;Sound</button>
+    </div>
+
     <div class="card" id="card">
-        <div class="card-direction">Tap the matching letter</div>
+        <div class="card-direction" id="card-direction">Tap the matching letter</div>
         <div class="card-prompt" id="card-prompt">…</div>
     </div>
 
-    <div class="kb-grid" id="kb-grid" aria-label="Georgian alphabet keyboard">
+    <div class="kb-grid" id="kb-grid" aria-label="On-screen keyboard">
         <p class="kb-empty">Loading…</p>
     </div>
 

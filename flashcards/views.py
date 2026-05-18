@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_GET, require_http_methods
 
-from .alphabet import ALPHABET, LETTERS
+from .alphabet import ALPHABET
 from .models import Card
 
 
@@ -104,22 +104,11 @@ def api_next(request: HttpRequest) -> JsonResponse:
 
 
 @require_GET
-def api_keyboard_layout(request: HttpRequest) -> JsonResponse:
-    return JsonResponse({"letters": list(LETTERS)})
-
-
-@require_GET
-def api_keyboard_next(request: HttpRequest) -> JsonResponse:
-    last = request.GET.get("last", "")
-    eligible = [(g, s) for g, s in ALPHABET if s != last]
-    if not eligible:
-        eligible = list(ALPHABET)
-    georgian, sound = random.choice(eligible)
+def api_alphabet(request: HttpRequest) -> JsonResponse:
+    """Return the full static alphabet so the client can drive the keyboard."""
     return JsonResponse(
         {
-            "prompt": sound,
-            "answer": georgian,
-            "direction": DIRECTION_EN_TO_GEO,
+            "pairs": [{"georgian": g, "sound": s} for g, s in ALPHABET],
         }
     )
 
