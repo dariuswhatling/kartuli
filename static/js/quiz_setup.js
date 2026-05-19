@@ -5,6 +5,7 @@
     const STORAGE_FIELDS = "kartuli.selectedFields";
     const PLAY_URL = "/quiz/play/";
     const VALID_FIELDS = ["romanised", "english", "georgian"];
+    const DEFAULT_FIELDS = ["romanised", "english"];
 
     const els = {
         list: document.getElementById("chapter-list"),
@@ -18,7 +19,7 @@
     const state = {
         chapters: [],
         selected: new Set(),
-        fields: new Set(VALID_FIELDS),
+        fields: new Set(DEFAULT_FIELDS),
     };
 
     // ---- Storage helpers ----------------------------------------------------
@@ -226,9 +227,9 @@
             state.fields = new Set(
                 [...storedFields].filter((f) => VALID_FIELDS.includes(f))
             );
-            if (state.fields.size < 2) state.fields = new Set(VALID_FIELDS);
+            if (state.fields.size < 2) state.fields = new Set(DEFAULT_FIELDS);
         } else {
-            state.fields = new Set(VALID_FIELDS);
+            state.fields = new Set(DEFAULT_FIELDS);
         }
 
         renderChapters();
