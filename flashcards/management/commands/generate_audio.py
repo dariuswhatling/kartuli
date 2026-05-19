@@ -98,38 +98,28 @@ class Command(BaseCommand):
         self.stdout.write(f"Checking {len(cards)} card(s) for missing audio…")
 
         for card in cards:
-            for language, field_attr, text_attr in (
-                ("ka", "audio_georgian", "georgian"),
-                ("en", "audio_english", "english"),
-            ):
-                text = (getattr(card, text_attr) or "").strip()
-                audio_field = getattr(card, field_attr)
-                if not text:
-                    stats["card_skipped"] += 1
-                    continue
-                if audio_field and audio_field.name:
-                    # File reference exists; trust it (the field is wiped
-                    # automatically when the underlying text changes).
-                    stats["card_skipped"] += 1
-                    continue
+            text = (card.georgian or "").strip()
+            if not text:
+                stats["card_skipped"] += 1
+                continue
+            if card.audio_georgian and card.audio_georgian.name:
+                stats["card_skipped"] += 1
+                continue
 
-                filename = card_filename(card, language)
-                try:
-                    audio_bytes = synthesise(text, language, config=config)
-                except CartesiaError as e:
-                    stats["card_failed"] += 1
-                    self.stderr.write(self.style.WARNING(f"  card {card.id} ({language}): {e}"))
-                    continue
+            filename = card_filename(card)
+            try:
+                audio_bytes = synthesise(text, config=config)
+            except CartesiaError as e:
+                stats["card_failed"] += 1
+                self.stderr.write(self.style.WARNING(f"  card {card.id}: {e}"))
+                continue
 
-                getattr(card, field_attr).save(
-                    filename, ContentFile(audio_bytes), save=False
-                )
-                stats["card_added"] += 1
-                self.stdout.write(f"  card {card.id} ({language}) -> {filename}")
-                if sleep_s:
-                    time.sleep(sleep_s)
-            # Save the card once after both languages are settled.
-            card.save(update_fields=["audio_georgian", "audio_english", "updated_at"])
+            card.audio_georgian.save(filename, ContentFile(audio_bytes), save=False)
+            stats["card_added"] += 1
+            self.stdout.write(f"  card {card.id} -> {filename}")
+            card.save(update_fields=["audio_georgian", "updated_at"])
+            if sleep_s:
+                time.sleep(sleep_s)
 
     # --------------------------------------------------------------- alphabet
 
@@ -147,7 +137,7 @@ class Command(BaseCommand):
                 stats["letter_skipped"] += 1
                 continue
             try:
-                audio_bytes = synthesise(letter, "ka", config=config)
+                audio_bytes = synthesise(letter, config=config)
             except CartesiaError as e:
                 stats["letter_failed"] += 1
                 self.stderr.write(self.style.WARNING(f"  letter {letter}: {e}"))

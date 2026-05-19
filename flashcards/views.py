@@ -69,15 +69,13 @@ def _card_to_dict(card: Card) -> dict:
         "english": card.english,
         "georgian": card.georgian,
         "audio_georgian_url": card.audio_georgian.url if card.audio_georgian else None,
-        "audio_english_url": card.audio_english.url if card.audio_english else None,
     }
 
 
-# The romanised side reuses the Georgian recording (same word, same audio).
+# Only Georgian-script (and romanised, which shares it) get audio playback.
 FIELD_TO_AUDIO_ATTR = {
     "romanised": "audio_georgian",
     "georgian": "audio_georgian",
-    "english": "audio_english",
 }
 
 

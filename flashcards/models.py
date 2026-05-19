@@ -28,12 +28,9 @@ class Card(models.Model):
     english = models.CharField(max_length=255, blank=True)
     georgian = models.CharField(max_length=255, blank=True)
 
-    # Audio recordings (synthesised via Cartesia). The romanised side reuses
-    # the Georgian audio, since they're the same phrase phonetically.
+    # Georgian-script audio (synthesised via Cartesia). Romanised quiz prompts
+    # reuse this recording — same phrase, same pronunciation.
     audio_georgian = models.FileField(
-        upload_to=_audio_upload_path, blank=True, null=True
-    )
-    audio_english = models.FileField(
         upload_to=_audio_upload_path, blank=True, null=True
     )
 
@@ -51,15 +48,13 @@ class Card(models.Model):
         return bool(self.romanised and self.english and self.georgian)
 
     def save(self, *args, **kwargs):
-        """Drop stale audio when its underlying text changes."""
+        """Drop stale audio when the Georgian text changes."""
         if self.pk:
             try:
-                old = Card.objects.only("georgian", "english").get(pk=self.pk)
+                old = Card.objects.only("georgian").get(pk=self.pk)
             except Card.DoesNotExist:
                 old = None
             if old is not None:
                 if old.georgian != self.georgian and self.audio_georgian:
                     self.audio_georgian.delete(save=False)
-                if old.english != self.english and self.audio_english:
-                    self.audio_english.delete(save=False)
         super().save(*args, **kwargs)

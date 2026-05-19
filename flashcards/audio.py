@@ -21,11 +21,10 @@ def _slugify_for_filename(value: str) -> str:
     return cleaned[:32] or "x"
 
 
-def card_filename(card: "Card", language: str) -> str:
+def card_filename(card: "Card") -> str:
     """Stable, content-aware filename so edited text never reuses old audio."""
-    text = card.georgian if language == "ka" else card.english
-    digest = hashlib.sha1((text or "").encode("utf-8")).hexdigest()[:10]
-    return f"card_{card.id}_{language}_{digest}.mp3"
+    digest = hashlib.sha1((card.georgian or "").encode("utf-8")).hexdigest()[:10]
+    return f"card_{card.id}_ka_{digest}.mp3"
 
 
 def alphabet_filename(letter: str) -> str:

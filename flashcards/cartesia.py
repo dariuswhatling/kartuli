@@ -40,40 +40,30 @@ class CartesiaConfig:
     model_id: str
     api_version: str
     voice_ka: str
-    voice_en: str
 
     @classmethod
     def from_env(cls) -> "CartesiaConfig":
         api_key = os.environ.get("CARTESIA_API_KEY", "").strip()
         voice_ka = os.environ.get("CARTESIA_VOICE_KA", "").strip()
-        voice_en = os.environ.get("CARTESIA_VOICE_EN", "").strip()
         if not api_key:
             raise CartesiaNotConfigured("CARTESIA_API_KEY is not set.")
-        if not voice_ka or not voice_en:
-            raise CartesiaNotConfigured(
-                "CARTESIA_VOICE_KA and CARTESIA_VOICE_EN must both be set."
-            )
+        if not voice_ka:
+            raise CartesiaNotConfigured("CARTESIA_VOICE_KA is not set.")
         return cls(
             api_key=api_key,
             model_id=os.environ.get("CARTESIA_MODEL_ID", DEFAULT_MODEL_ID),
             api_version=os.environ.get("CARTESIA_API_VERSION", DEFAULT_API_VERSION),
             voice_ka=voice_ka,
-            voice_en=voice_en,
         )
 
 
-def synthesise(text: str, language: str, *, config: CartesiaConfig, timeout: float = 30.0) -> bytes:
-    """Return MP3 bytes for `text` in the given `language` ('ka' or 'en')."""
-    if language not in {"ka", "en"}:
-        raise ValueError(f"Unsupported language: {language!r}")
-
-    voice_id = config.voice_ka if language == "ka" else config.voice_en
-
+def synthesise(text: str, *, config: CartesiaConfig, timeout: float = 30.0) -> bytes:
+    """Return MP3 bytes for Georgian-script `text` (language ka)."""
     body = {
         "model_id": config.model_id,
         "transcript": text,
-        "voice": {"mode": "id", "id": voice_id},
-        "language": language,
+        "voice": {"mode": "id", "id": config.voice_ka},
+        "language": "ka",
         "output_format": DEFAULT_OUTPUT_FORMAT,
     }
     data = json.dumps(body).encode("utf-8")
@@ -95,7 +85,7 @@ def synthesise(text: str, language: str, *, config: CartesiaConfig, timeout: flo
     except urllib.error.HTTPError as e:
         detail = e.read().decode("utf-8", errors="replace")[:500]
         raise CartesiaError(
-            f"Cartesia HTTP {e.code} for {language!r} text {text[:40]!r}: {detail}"
+            f"Cartesia HTTP {e.code} for text {text[:40]!r}: {detail}"
         ) from e
     except urllib.error.URLError as e:
         raise CartesiaError(f"Cartesia connection error: {e.reason}") from e
