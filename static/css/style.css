@@ -742,7 +742,7 @@ input.is-georgian {
 
 .card-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto auto;
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto;
     gap: 0.35rem;
     align-items: center;
     padding: 0.2rem;
@@ -1050,7 +1050,7 @@ input.is-georgian {
 }
 
 @media (max-width: 480px) {
-    .card-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto auto; gap: 0.25rem; }
+    .card-row { grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto; gap: 0.25rem; }
     .card-row input { padding: 0.45rem 0.5rem; font-size: 0.9rem; }
     .card-row input.is-georgian { font-size: 1rem; }
 }

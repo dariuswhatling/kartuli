@@ -141,6 +141,13 @@
         row.dataset.chapterId = String(chapterId);
         if (card.id != null) row.dataset.cardId = String(card.id);
 
+        const play = document.createElement("button");
+        play.type = "button";
+        play.className = "row-audio";
+        play.setAttribute("aria-label", "Hear pronunciation");
+        play.innerHTML = SPEAKER_SVG;
+        row.appendChild(play);
+
         const inputs = {};
         FIELDS.forEach((field) => {
             const input = document.createElement("input");
@@ -160,20 +167,13 @@
             row.appendChild(input);
         });
 
-        const play = document.createElement("button");
-        play.type = "button";
-        play.className = "row-audio";
-        play.setAttribute("aria-label", "Hear pronunciation");
-        play.innerHTML = SPEAKER_SVG;
-
         const del = document.createElement("button");
         del.type = "button";
         del.className = "row-delete";
         del.setAttribute("aria-label", "Delete card");
         del.title = "Delete card";
         del.innerHTML = "&times;";
-
-        row.append(play, del);
+        row.appendChild(del);
 
         // --- Auto-save logic for this row ---
         const localState = {
