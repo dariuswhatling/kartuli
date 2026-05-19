@@ -17,4 +17,5 @@ urlpatterns = [
     ),
     path("api/cards/", views.api_cards, name="api_cards"),
     path("api/cards/<int:card_id>/", views.api_card_detail, name="api_card_detail"),
+    path("api/import/csv/", views.api_import_csv, name="api_import_csv"),
 ]

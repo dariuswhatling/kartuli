@@ -1,12 +1,15 @@
 from __future__ import annotations
 
+import csv
+import io
 import json
 import random
 
+from django.db import transaction
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
-from django.views.decorators.http import require_GET, require_http_methods
+from django.views.decorators.http import require_GET, require_http_methods, require_POST
 
 from .alphabet import ALPHABET
 from .models import Card, Chapter
@@ -175,7 +178,7 @@ def api_next(request: HttpRequest) -> JsonResponse:
             continue
         seen.add(value)
         distractors.append(value)
-        if len(distractors) >= 2:
+        if len(distractors) >= 3:
             break
 
     options = [answer] + distractors
@@ -301,3 +304,156 @@ def api_card_detail(request: HttpRequest, card_id: int) -> JsonResponse:
 
     card.save()
     return JsonResponse(_card_to_dict(card))
+
+
+# --- CSV import ---------------------------------------------------------------
+
+
+CSV_REQUIRED_COLUMNS = ("chapter", "english", "georgian", "romanised")
+CSV_COLUMN_ALIASES = {
+    "romanized": "romanised",  # American spelling
+    "transliteration": "romanised",
+}
+CSV_MAX_BYTES = 2 * 1024 * 1024  # 2 MB ceiling, plenty for personal use
+
+
+def _normalise_header(name: str) -> str:
+    key = (name or "").strip().lower()
+    return CSV_COLUMN_ALIASES.get(key, key)
+
+
+@require_POST
+def api_import_csv(request: HttpRequest) -> JsonResponse:
+    upload = request.FILES.get("file")
+    if upload is None:
+        return JsonResponse(
+            {"error": "missing_file", "message": "No file was uploaded."},
+            status=400,
+        )
+
+    if upload.size and upload.size > CSV_MAX_BYTES:
+        return JsonResponse(
+            {
+                "error": "file_too_large",
+                "message": f"File is larger than {CSV_MAX_BYTES // 1024} KB.",
+            },
+            status=400,
+        )
+
+    raw = upload.read()
+    try:
+        text = raw.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        try:
+            text = raw.decode("utf-16")
+        except UnicodeDecodeError:
+            return JsonResponse(
+                {
+                    "error": "decode_failed",
+                    "message": "Could not decode file. Save it as UTF-8 CSV.",
+                },
+                status=400,
+            )
+
+    reader = csv.reader(io.StringIO(text))
+    try:
+        header_row = next(reader)
+    except StopIteration:
+        return JsonResponse(
+            {"error": "empty_file", "message": "The file is empty."},
+            status=400,
+        )
+
+    headers = [_normalise_header(h) for h in header_row]
+    missing = [c for c in CSV_REQUIRED_COLUMNS if c not in headers]
+    if missing:
+        return JsonResponse(
+            {
+                "error": "missing_columns",
+                "message": (
+                    "Missing required column(s): "
+                    + ", ".join(missing)
+                    + ". Expected headers: chapter, english, georgian, romanised."
+                ),
+            },
+            status=400,
+        )
+
+    col_index = {name: headers.index(name) for name in CSV_REQUIRED_COLUMNS}
+
+    added = 0
+    skipped_duplicate = 0
+    skipped_empty = 0
+    errors: list[dict] = []
+    chapter_cache: dict[str, Chapter] = {}
+    created_chapter_names: list[str] = []
+    new_card_count_by_chapter: dict[int, int] = {}
+
+    def value_at(row: list[str], key: str) -> str:
+        idx = col_index[key]
+        if idx >= len(row):
+            return ""
+        return (row[idx] or "").strip()
+
+    with transaction.atomic():
+        for line_no, row in enumerate(reader, start=2):  # header is line 1
+            if not any((cell or "").strip() for cell in row):
+                continue  # silently skip blank lines
+
+            chapter_name = value_at(row, "chapter")
+            if not chapter_name:
+                errors.append({"row": line_no, "message": "Missing chapter name."})
+                continue
+
+            romanised = value_at(row, "romanised")
+            english = value_at(row, "english")
+            georgian = value_at(row, "georgian")
+
+            if not (romanised or english or georgian):
+                skipped_empty += 1
+                continue
+
+            chapter = chapter_cache.get(chapter_name)
+            if chapter is None:
+                chapter, was_created = Chapter.objects.get_or_create(
+                    name=chapter_name
+                )
+                chapter_cache[chapter_name] = chapter
+                if was_created:
+                    created_chapter_names.append(chapter_name)
+
+            exists = Card.objects.filter(
+                chapter=chapter,
+                romanised=romanised,
+                english=english,
+                georgian=georgian,
+            ).exists()
+            if exists:
+                skipped_duplicate += 1
+                continue
+
+            Card.objects.create(
+                chapter=chapter,
+                romanised=romanised,
+                english=english,
+                georgian=georgian,
+            )
+            added += 1
+            new_card_count_by_chapter[chapter.id] = (
+                new_card_count_by_chapter.get(chapter.id, 0) + 1
+            )
+
+    # Cap reported errors so the response stays small
+    max_errors = 20
+    truncated = len(errors) > max_errors
+
+    return JsonResponse(
+        {
+            "added": added,
+            "skipped_duplicate": skipped_duplicate,
+            "skipped_empty": skipped_empty,
+            "chapters_created": created_chapter_names,
+            "errors": errors[:max_errors],
+            "errors_truncated": truncated,
+        }
+    )

@@ -10,7 +10,7 @@
         english: "English",
         georgian: "Georgian",
     };
-    const KEY_LABELS = ["A", "B", "C"];
+    const KEY_LABELS = ["A", "B", "C", "D"];
 
     const els = {
         card: document.getElementById("card"),
@@ -180,7 +180,10 @@
 
     document.addEventListener("keydown", (e) => {
         if (state.locked) return;
-        const keyMap = { "1": 0, "2": 1, "3": 2, a: 0, A: 0, b: 1, B: 1, c: 2, C: 2 };
+        const keyMap = {
+            "1": 0, "2": 1, "3": 2, "4": 3,
+            a: 0, A: 0, b: 1, B: 1, c: 2, C: 2, d: 3, D: 3,
+        };
         const idx = keyMap[e.key];
         if (idx == null) return;
         const target = els.options.querySelectorAll(".option")[idx];

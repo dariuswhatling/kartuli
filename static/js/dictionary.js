@@ -4,7 +4,10 @@
     const els = {
         container: document.getElementById("chapters"),
         addChapter: document.getElementById("add-chapter"),
+        uploadCsv: document.getElementById("upload-csv"),
+        csvFile: document.getElementById("csv-file"),
         count: document.getElementById("dict-count"),
+        bannerHost: document.getElementById("banner-host"),
     };
 
     const SAVE_DEBOUNCE_MS = 450;
@@ -34,6 +37,59 @@
             throw err;
         }
         return data;
+    }
+
+    async function apiUpload(url, formData) {
+        const res = await fetch(url, {
+            method: "POST",
+            headers: { "X-CSRFToken": getCsrfToken() },
+            body: formData,
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+            const err = new Error(data.message || data.error || `HTTP ${res.status}`);
+            err.status = res.status;
+            err.data = data;
+            throw err;
+        }
+        return data;
+    }
+
+    // ---- Banner -------------------------------------------------------------
+
+    function showBanner({ tone = "info", title, lines = [], autoDismiss = false }) {
+        els.bannerHost.innerHTML = "";
+        const banner = document.createElement("div");
+        banner.className = `banner is-${tone}`;
+        banner.setAttribute("role", "status");
+
+        const body = document.createElement("div");
+        body.className = "banner-body";
+        if (title) {
+            const t = document.createElement("div");
+            t.className = "banner-title";
+            t.textContent = title;
+            body.appendChild(t);
+        }
+        lines.forEach((line) => {
+            const p = document.createElement("p");
+            p.textContent = line;
+            body.appendChild(p);
+        });
+
+        const close = document.createElement("button");
+        close.type = "button";
+        close.className = "banner-close";
+        close.setAttribute("aria-label", "Dismiss");
+        close.innerHTML = "&times;";
+        close.addEventListener("click", () => banner.remove());
+
+        banner.append(body, close);
+        els.bannerHost.appendChild(banner);
+
+        if (autoDismiss) {
+            setTimeout(() => banner.remove(), 6000);
+        }
     }
 
     // ---- Debounce helper ----------------------------------------------------
@@ -353,6 +409,73 @@
     }
 
     // ---- Top-level actions --------------------------------------------------
+
+    els.uploadCsv.addEventListener("click", () => {
+        els.csvFile.click();
+    });
+
+    els.csvFile.addEventListener("change", async () => {
+        const file = els.csvFile.files && els.csvFile.files[0];
+        if (!file) return;
+
+        const original = els.uploadCsv.textContent;
+        els.uploadCsv.disabled = true;
+        els.uploadCsv.textContent = "Uploading…";
+
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+            const result = await apiUpload("/api/import/csv/", formData);
+
+            const lines = [];
+            const added = result.added || 0;
+            const dup = result.skipped_duplicate || 0;
+            const empty = result.skipped_empty || 0;
+            const newChapters = result.chapters_created || [];
+
+            if (dup > 0) lines.push(`${dup} duplicate row(s) ignored.`);
+            if (empty > 0) lines.push(`${empty} blank row(s) ignored.`);
+            if (newChapters.length > 0) {
+                lines.push(`New chapter(s): ${newChapters.join(", ")}.`);
+            }
+            const errs = result.errors || [];
+            if (errs.length > 0) {
+                const shown = errs
+                    .slice(0, 5)
+                    .map((e) => `row ${e.row}: ${e.message}`)
+                    .join("; ");
+                const more = result.errors_truncated
+                    ? ` (+more)`
+                    : errs.length > 5
+                    ? ` (+${errs.length - 5} more)`
+                    : "";
+                lines.push(`Issues: ${shown}${more}`);
+            }
+
+            showBanner({
+                tone: added > 0 ? "success" : errs.length > 0 ? "warn" : "info",
+                title:
+                    added === 0
+                        ? "Nothing was added"
+                        : `Added ${added} card${added === 1 ? "" : "s"}`,
+                lines,
+                autoDismiss: added > 0 && errs.length === 0,
+            });
+
+            // Refresh chapters/cards from the server.
+            await load();
+        } catch (err) {
+            showBanner({
+                tone: "error",
+                title: "Upload failed",
+                lines: [err.message || "Unknown error."],
+            });
+        } finally {
+            els.csvFile.value = "";
+            els.uploadCsv.disabled = false;
+            els.uploadCsv.textContent = original;
+        }
+    });
 
     els.addChapter.addEventListener("click", async () => {
         try {

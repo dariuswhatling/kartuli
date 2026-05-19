@@ -13,8 +13,18 @@
 
     <div class="dict-toolbar">
         <button id="add-chapter" type="button" class="btn btn-primary">+ Add chapter</button>
+        <button id="upload-csv" type="button" class="btn btn-ghost">Upload CSV</button>
         <span class="dict-count" id="dict-count">0 chapters</span>
+        <input type="file" id="csv-file" accept=".csv,text/csv,text/plain" hidden />
     </div>
+
+    <p class="dict-csv-hint">
+        CSV format: header row with columns
+        <code>chapter</code>, <code>english</code>, <code>georgian</code>, <code>romanised</code>
+        (any order). Duplicates are skipped automatically.
+    </p>
+
+    <div class="banner-host" id="banner-host" aria-live="polite"></div>
 
     <div class="chapters" id="chapters" aria-live="polite">
         <p class="dict-empty">Loading…</p>
