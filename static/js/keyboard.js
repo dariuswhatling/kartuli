@@ -42,18 +42,8 @@
         keys: {}, // value -> button element
     };
 
-    // ---- Audio playback ----------------------------------------------------
-
-    let currentAudio = null;
     function playAudio(url) {
-        if (!url) return;
-        if (currentAudio) {
-            try { currentAudio.pause(); } catch {}
-        }
-        const audio = new Audio(url);
-        audio.preload = "auto";
-        currentAudio = audio;
-        audio.play().catch(() => {});
+        window.KartuliAudio?.play(url);
     }
 
     async function fetchAlphabet() {

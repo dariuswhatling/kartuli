@@ -61,20 +61,8 @@
         return field === "georgian";
     }
 
-    // ---- Audio playback -----------------------------------------------------
-
-    let currentAudio = null;
     function playAudio(url) {
-        if (!url) return;
-        if (currentAudio) {
-            try { currentAudio.pause(); } catch {}
-        }
-        const audio = new Audio(url);
-        audio.preload = "auto";
-        currentAudio = audio;
-        audio.play().catch(() => {
-            // Autoplay may be blocked until first user interaction; ignore.
-        });
+        window.KartuliAudio?.play(url);
     }
 
     // ---- Font sizing based on prompt length --------------------------------
