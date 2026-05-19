@@ -14,6 +14,7 @@ from django.views.decorators.http import require_GET, require_http_methods, requ
 from .alphabet import ALPHABET
 from .audio import alphabet_audio_url
 from .models import Card, Chapter
+from .tts_sync import schedule_card_audio_if_needed, schedule_cards_audio
 
 
 # The six possible (prompt-field, answer-field) directions for the quiz.
@@ -318,6 +319,7 @@ def api_cards(request: HttpRequest) -> JsonResponse:
         english=(payload.get("english") or "").strip(),
         georgian=(payload.get("georgian") or "").strip(),
     )
+    schedule_card_audio_if_needed(card)
     return JsonResponse(_card_to_dict(card), status=201)
 
 
@@ -342,6 +344,7 @@ def api_card_detail(request: HttpRequest, card_id: int) -> JsonResponse:
             setattr(card, field, (payload[field] or "").strip())
 
     card.save()
+    schedule_card_audio_if_needed(card)
     return JsonResponse(_card_to_dict(card))
 
 
@@ -423,6 +426,7 @@ def api_import_csv(request: HttpRequest) -> JsonResponse:
     added = 0
     skipped_duplicate = 0
     skipped_empty = 0
+    added_card_ids: list[int] = []
     errors: list[dict] = []
     chapter_cache: dict[str, Chapter] = {}
     created_chapter_names: list[str] = []
@@ -471,16 +475,19 @@ def api_import_csv(request: HttpRequest) -> JsonResponse:
                 skipped_duplicate += 1
                 continue
 
-            Card.objects.create(
+            new_card = Card.objects.create(
                 chapter=chapter,
                 romanised=romanised,
                 english=english,
                 georgian=georgian,
             )
             added += 1
+            added_card_ids.append(new_card.id)
             new_card_count_by_chapter[chapter.id] = (
                 new_card_count_by_chapter.get(chapter.id, 0) + 1
             )
+
+    schedule_cards_audio(added_card_ids)
 
     # Cap reported errors so the response stays small
     max_errors = 20
