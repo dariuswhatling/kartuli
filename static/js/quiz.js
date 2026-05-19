@@ -121,19 +121,41 @@
     function renderOptions(card) {
         els.options.innerHTML = "";
         const answerIsGeorgian = isGeorgianField(card.answer_field);
-        card.options.forEach((value, index) => {
+        card.options.forEach((opt, index) => {
+            const value = typeof opt === "string" ? opt : opt.value;
+            const audioUrl = typeof opt === "string" ? null : opt.audio_url;
+
             const btn = document.createElement("button");
             btn.type = "button";
             btn.className = "option" + (answerIsGeorgian ? " is-georgian" : "");
             btn.dataset.value = value;
+
             const key = document.createElement("span");
             key.className = "option-key";
             key.textContent = KEY_LABELS[index] || "";
+
             const text = document.createElement("span");
             text.className = "option-text";
             text.textContent = value;
             applyLengthClass(text, value);
+
             btn.append(key, text);
+
+            if (audioUrl) {
+                const hear = document.createElement("button");
+                hear.type = "button";
+                hear.className = "option-audio";
+                hear.setAttribute("aria-label", "Hear pronunciation");
+                hear.title = "Hear pronunciation";
+                hear.innerHTML =
+                    '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+                hear.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    playAudio(audioUrl);
+                });
+                btn.append(hear);
+            }
+
             btn.addEventListener("click", () => onAnswer(btn, value));
             els.options.appendChild(btn);
         });
@@ -142,7 +164,7 @@
     async function loadNext() {
         state.locked = true;
         els.feedback.textContent = "";
-        els.options.querySelectorAll("button").forEach((b) => {
+        els.options.querySelectorAll("button.option").forEach((b) => {
             b.disabled = true;
             b.classList.remove("is-correct", "is-wrong", "is-dimmed");
         });
@@ -156,7 +178,7 @@
             state.current = card;
             setPrompt(card);
             renderOptions(card);
-            els.options.querySelectorAll("button").forEach((b) => (b.disabled = false));
+            els.options.querySelectorAll("button.option").forEach((b) => (b.disabled = false));
             state.locked = false;
         } catch (err) {
             showEmptyState(
@@ -175,11 +197,7 @@
         if (state.locked || !state.current) return;
         state.locked = true;
 
-        // The audio for the *correct* answer plays whether the user picked
-        // right or wrong, as a learning cue.
-        playAudio(state.current.answer_audio_url);
-
-        els.options.querySelectorAll("button").forEach((b) => {
+        els.options.querySelectorAll("button.option").forEach((b) => {
             b.disabled = true;
             if (b !== btn) b.classList.add("is-dimmed");
         });
@@ -202,7 +220,7 @@
             els.card.classList.add("is-wrong");
             els.feedback.textContent = `Answer: ${answer}`;
             els.feedback.classList.add("is-wrong");
-            els.options.querySelectorAll("button").forEach((b) => {
+            els.options.querySelectorAll("button.option").forEach((b) => {
                 if (b.dataset.value === answer) {
                     b.classList.remove("is-dimmed");
                     b.classList.add("is-correct");

@@ -160,9 +160,6 @@
         const answer = state.current.answer;
         const correct = value === answer;
 
-        // Always play the audio for the correct letter as a learning cue.
-        playAudio(state.current.audio_url);
-
         state.total += 1;
         els.total.textContent = state.total;
 

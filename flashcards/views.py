@@ -200,8 +200,20 @@ def api_next(request: HttpRequest) -> JsonResponse:
         if len(distractors) >= 3:
             break
 
-    options = [answer] + distractors
-    random.shuffle(options)
+    option_values = [answer] + distractors
+    random.shuffle(option_values)
+
+    # Map each displayed answer text to audio from any card that has it.
+    value_to_audio: dict[str, str | None] = {}
+    for c in complete:
+        val = getattr(c, answer_field)
+        if val and val not in value_to_audio:
+            value_to_audio[val] = _card_audio_for_field(c, answer_field)
+
+    options = [
+        {"value": val, "audio_url": value_to_audio.get(val)}
+        for val in option_values
+    ]
 
     return JsonResponse(
         {
@@ -214,7 +226,6 @@ def api_next(request: HttpRequest) -> JsonResponse:
             "prompt_label": FIELD_LABELS[prompt_field],
             "answer_label": FIELD_LABELS[answer_field],
             "prompt_audio_url": _card_audio_for_field(card, prompt_field),
-            "answer_audio_url": _card_audio_for_field(card, answer_field),
         }
     )
 
