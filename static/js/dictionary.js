@@ -12,10 +12,26 @@
 
     const SAVE_DEBOUNCE_MS = 450;
     const FIELDS = ["romanised", "english", "georgian"];
+    const SPEAKER_SVG =
+        '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
 
     const state = {
         chapters: [],
     };
+
+    let currentAudio = null;
+    function playAudio(url) {
+        if (!url) return;
+        if (currentAudio) {
+            try {
+                currentAudio.pause();
+            } catch {}
+        }
+        const audio = new Audio(url);
+        audio.preload = "auto";
+        currentAudio = audio;
+        audio.play().catch(() => {});
+    }
 
     // ---- CSRF + fetch helper ------------------------------------------------
 
@@ -144,13 +160,20 @@
             row.appendChild(input);
         });
 
+        const play = document.createElement("button");
+        play.type = "button";
+        play.className = "row-audio";
+        play.setAttribute("aria-label", "Hear pronunciation");
+        play.innerHTML = SPEAKER_SVG;
+
         const del = document.createElement("button");
         del.type = "button";
         del.className = "row-delete";
         del.setAttribute("aria-label", "Delete card");
         del.title = "Delete card";
         del.innerHTML = "&times;";
-        row.appendChild(del);
+
+        row.append(play, del);
 
         // --- Auto-save logic for this row ---
         const localState = {
@@ -158,8 +181,92 @@
             romanised: card.romanised || "",
             english: card.english || "",
             georgian: card.georgian || "",
+            audioUrl: card.audio_georgian_url || null,
             saving: false,
         };
+
+        let audioPollTimer = null;
+        function stopAudioPoll() {
+            if (audioPollTimer) {
+                clearInterval(audioPollTimer);
+                audioPollTimer = null;
+            }
+        }
+
+        function syncPlayButton() {
+            const georgian = inputs.georgian.value.trim();
+            const hasGeo = !!georgian;
+            if (!hasGeo) {
+                play.disabled = true;
+                play.title = "Add Georgian text to hear audio";
+                play.classList.remove("is-ready", "is-pending");
+                delete play.dataset.audioUrl;
+                stopAudioPoll();
+                return;
+            }
+            if (localState.audioUrl) {
+                play.disabled = false;
+                play.title = "Hear pronunciation";
+                play.classList.add("is-ready");
+                play.classList.remove("is-pending");
+                play.dataset.audioUrl = localState.audioUrl;
+                stopAudioPoll();
+                return;
+            }
+            play.disabled = true;
+            play.title = "Audio generating…";
+            play.classList.add("is-pending");
+            play.classList.remove("is-ready");
+            delete play.dataset.audioUrl;
+        }
+
+        function startAudioPoll() {
+            if (!localState.id || localState.audioUrl) return;
+            stopAudioPoll();
+            let attempts = 0;
+            audioPollTimer = setInterval(async () => {
+                attempts += 1;
+                if (attempts > 20 || !localState.id) {
+                    stopAudioPoll();
+                    return;
+                }
+                try {
+                    const data = await api("/api/chapters/");
+                    const chapter = data.chapters.find((c) => c.id === chapterId);
+                    const fresh = chapter?.cards.find((c) => c.id === localState.id);
+                    if (fresh?.audio_georgian_url) {
+                        localState.audioUrl = fresh.audio_georgian_url;
+                        const ch = state.chapters.find((c) => c.id === chapterId);
+                        if (ch) {
+                            const idx = ch.cards.findIndex((c) => c.id === localState.id);
+                            if (idx >= 0) ch.cards[idx] = fresh;
+                        }
+                        syncPlayButton();
+                        stopAudioPoll();
+                    }
+                } catch {
+                    /* ignore transient poll errors */
+                }
+            }, 1500);
+        }
+
+        function applyCardFromApi(apiCard) {
+            if (apiCard.audio_georgian_url !== undefined) {
+                localState.audioUrl = apiCard.audio_georgian_url || null;
+            }
+            syncPlayButton();
+            if (inputs.georgian.value.trim() && !localState.audioUrl) {
+                startAudioPoll();
+            }
+        }
+
+        play.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const url = play.dataset.audioUrl;
+            if (url) playAudio(url);
+        });
+
+        syncPlayButton();
 
         async function flushSave() {
             const next = {
@@ -188,6 +295,7 @@
                     // Update in-memory chapter cards list
                     const chapter = state.chapters.find((c) => c.id === chapterId);
                     if (chapter) chapter.cards.push(created);
+                    applyCardFromApi(created);
                     ensureBlankRow(chapterId);
                     setStatus(row, "saved");
                     setTimeout(() => {
@@ -217,6 +325,7 @@
                     const idx = chapter.cards.findIndex((c) => c.id === localState.id);
                     if (idx >= 0) chapter.cards[idx] = updated;
                 }
+                applyCardFromApi(updated);
                 setStatus(row, "saved");
                 setTimeout(() => {
                     if (row.dataset.status === "saved") setStatus(row, "");
@@ -232,6 +341,10 @@
         FIELDS.forEach((field) => {
             inputs[field].addEventListener("input", () => {
                 setStatus(row, "dirty");
+                if (field === "georgian") {
+                    localState.audioUrl = null;
+                    syncPlayButton();
+                }
                 debouncedSave();
             });
             inputs[field].addEventListener("blur", () => debouncedSave.flush());
@@ -266,6 +379,7 @@
                 return;
             }
             if (!confirm("Delete this card?")) return;
+            stopAudioPoll();
             try {
                 await api(`/api/cards/${localState.id}/`, { method: "DELETE" });
                 const chapter = state.chapters.find((c) => c.id === chapterId);

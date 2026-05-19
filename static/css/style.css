@@ -742,7 +742,7 @@ input.is-georgian {
 
 .card-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto auto;
     gap: 0.35rem;
     align-items: center;
     padding: 0.2rem;
@@ -783,6 +783,41 @@ input.is-georgian {
 
 .card-row[data-status="error"] {
     border-color: rgba(248, 113, 113, 0.55);
+}
+
+.row-audio {
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(148, 163, 184, 0.08);
+    color: var(--fg-dim);
+    display: grid;
+    place-items: center;
+    padding: 0;
+    flex-shrink: 0;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+        opacity 0.15s ease;
+}
+
+.row-audio:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.row-audio.is-pending:not(:disabled) {
+    opacity: 0.55;
+}
+
+.row-audio.is-ready:not(:disabled):hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: rgba(56, 189, 248, 0.35);
+    color: var(--accent);
+}
+
+.row-audio.is-ready:not(:disabled):active {
+    transform: scale(0.94);
 }
 
 .row-delete {
@@ -1015,7 +1050,7 @@ input.is-georgian {
 }
 
 @media (max-width: 480px) {
-    .card-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto; gap: 0.25rem; }
+    .card-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) auto auto; gap: 0.25rem; }
     .card-row input { padding: 0.45rem 0.5rem; font-size: 0.9rem; }
     .card-row input.is-georgian { font-size: 1rem; }
 }
