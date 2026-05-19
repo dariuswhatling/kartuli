@@ -12,6 +12,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 
 from .alphabet import ALPHABET
+from .audio import alphabet_audio_url
 from .models import Card, Chapter
 
 
@@ -67,7 +68,25 @@ def _card_to_dict(card: Card) -> dict:
         "romanised": card.romanised,
         "english": card.english,
         "georgian": card.georgian,
+        "audio_georgian_url": card.audio_georgian.url if card.audio_georgian else None,
+        "audio_english_url": card.audio_english.url if card.audio_english else None,
     }
+
+
+# The romanised side reuses the Georgian recording (same word, same audio).
+FIELD_TO_AUDIO_ATTR = {
+    "romanised": "audio_georgian",
+    "georgian": "audio_georgian",
+    "english": "audio_english",
+}
+
+
+def _card_audio_for_field(card: Card, field: str) -> str | None:
+    attr = FIELD_TO_AUDIO_ATTR.get(field)
+    if not attr:
+        return None
+    f = getattr(card, attr)
+    return f.url if f else None
 
 
 def _chapter_to_dict(chapter: Chapter, cards: list[Card] | None = None) -> dict:
@@ -194,6 +213,8 @@ def api_next(request: HttpRequest) -> JsonResponse:
             "answer_field": answer_field,
             "prompt_label": FIELD_LABELS[prompt_field],
             "answer_label": FIELD_LABELS[answer_field],
+            "prompt_audio_url": _card_audio_for_field(card, prompt_field),
+            "answer_audio_url": _card_audio_for_field(card, answer_field),
         }
     )
 
@@ -204,7 +225,16 @@ def api_next(request: HttpRequest) -> JsonResponse:
 @require_GET
 def api_alphabet(request: HttpRequest) -> JsonResponse:
     return JsonResponse(
-        {"pairs": [{"georgian": g, "sound": s} for g, s in ALPHABET]}
+        {
+            "pairs": [
+                {
+                    "georgian": g,
+                    "sound": s,
+                    "audio_url": alphabet_audio_url(g),
+                }
+                for g, s in ALPHABET
+            ]
+        }
     )
 
 

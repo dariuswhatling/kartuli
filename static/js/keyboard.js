@@ -42,6 +42,20 @@
         keys: {}, // value -> button element
     };
 
+    // ---- Audio playback ----------------------------------------------------
+
+    let currentAudio = null;
+    function playAudio(url) {
+        if (!url) return;
+        if (currentAudio) {
+            try { currentAudio.pause(); } catch {}
+        }
+        const audio = new Audio(url);
+        audio.preload = "auto";
+        currentAudio = audio;
+        audio.play().catch(() => {});
+    }
+
     async function fetchAlphabet() {
         const res = await fetch("/api/alphabet/");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -108,6 +122,7 @@
         return {
             prompt: pair[cfg.promptKey],
             answer: pair[cfg.answerKey],
+            audio_url: pair.audio_url || null,
         };
     }
 
@@ -125,10 +140,16 @@
             "is-georgian",
             isGeorgianFont(state.direction, "prompt")
         );
+        els.card.classList.toggle("has-audio", !!state.current.audio_url);
 
         setKeysEnabled(true);
         state.locked = false;
     }
+
+    els.card.addEventListener("click", () => {
+        if (!state.current) return;
+        playAudio(state.current.audio_url);
+    });
 
     function onTap(value) {
         if (state.locked || !state.current) return;
@@ -138,6 +159,9 @@
         const tapped = state.keys[value];
         const answer = state.current.answer;
         const correct = value === answer;
+
+        // Always play the audio for the correct letter as a learning cue.
+        playAudio(state.current.audio_url);
 
         state.total += 1;
         els.total.textContent = state.total;

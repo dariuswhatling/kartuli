@@ -61,6 +61,32 @@
         return field === "georgian";
     }
 
+    // ---- Audio playback -----------------------------------------------------
+
+    let currentAudio = null;
+    function playAudio(url) {
+        if (!url) return;
+        if (currentAudio) {
+            try { currentAudio.pause(); } catch {}
+        }
+        const audio = new Audio(url);
+        audio.preload = "auto";
+        currentAudio = audio;
+        audio.play().catch(() => {
+            // Autoplay may be blocked until first user interaction; ignore.
+        });
+    }
+
+    // ---- Font sizing based on prompt length --------------------------------
+
+    function applyLengthClass(el, text) {
+        const len = (text || "").length;
+        el.classList.remove("len-medium", "len-long", "len-xlong");
+        if (len > 30) el.classList.add("len-xlong");
+        else if (len > 18) el.classList.add("len-long");
+        else if (len > 10) el.classList.add("len-medium");
+    }
+
     function showSummary() {
         const cText = `${state.chapters.length} chapter${state.chapters.length === 1 ? "" : "s"}`;
         const fText = state.fields
@@ -84,8 +110,10 @@
             isGeorgianField(card.prompt_field)
         );
         els.prompt.textContent = card.prompt;
+        applyLengthClass(els.prompt, card.prompt);
         els.direction.textContent = `${card.prompt_label} → ${card.answer_label}`;
         els.card.classList.remove("is-correct", "is-wrong");
+        els.card.classList.toggle("has-audio", !!card.prompt_audio_url);
         els.feedback.textContent = "";
         els.feedback.classList.remove("is-correct", "is-wrong");
     }
@@ -104,6 +132,7 @@
             const text = document.createElement("span");
             text.className = "option-text";
             text.textContent = value;
+            applyLengthClass(text, value);
             btn.append(key, text);
             btn.addEventListener("click", () => onAnswer(btn, value));
             els.options.appendChild(btn);
@@ -137,9 +166,18 @@
         }
     }
 
+    els.card.addEventListener("click", () => {
+        if (!state.current) return;
+        playAudio(state.current.prompt_audio_url);
+    });
+
     function onAnswer(btn, chosen) {
         if (state.locked || !state.current) return;
         state.locked = true;
+
+        // The audio for the *correct* answer plays whether the user picked
+        // right or wrong, as a learning cue.
+        playAudio(state.current.answer_audio_url);
 
         els.options.querySelectorAll("button").forEach((b) => {
             b.disabled = true;

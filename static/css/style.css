@@ -320,11 +320,32 @@ a:hover { text-decoration: underline; }
     text-align: center;
     box-shadow: var(--shadow-card);
     min-height: 220px;
+    max-height: 240px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 0.75rem;
     transition: border-color 0.2s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.card.has-audio {
+    cursor: pointer;
+}
+
+.card.has-audio::after {
+    content: "♪ tap to hear";
+    position: absolute;
+    right: 0.85rem;
+    bottom: 0.6rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+    font-weight: 600;
+    pointer-events: none;
+    opacity: 0.85;
 }
 
 .card.is-correct {
@@ -357,10 +378,18 @@ a:hover { text-decoration: underline; }
 }
 
 .card-prompt {
-    font-size: clamp(3.5rem, 16vw, 6rem);
-    line-height: 1;
+    font-size: clamp(3.25rem, 14vw, 5.5rem);
+    line-height: 1.05;
     font-weight: 700;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+    padding: 0 0.25rem;
 }
+
+.card-prompt.len-medium { font-size: clamp(2.5rem, 10vw, 4rem); }
+.card-prompt.len-long   { font-size: clamp(1.75rem, 6.5vw, 2.6rem); line-height: 1.15; }
+.card-prompt.len-xlong  { font-size: clamp(1.25rem, 4.5vw, 1.9rem); line-height: 1.25; }
 
 .card-prompt.is-georgian {
     font-family: var(--font-ge);
@@ -401,10 +430,25 @@ a:hover { text-decoration: underline; }
     font-weight: 700;
 }
 
+.option .option-text {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.option .option-text.len-medium { font-size: 0.95rem; }
+.option .option-text.len-long   { font-size: 0.85rem; line-height: 1.25; }
+.option .option-text.len-xlong  { font-size: 0.78rem; line-height: 1.3; }
+
 .option.is-georgian {
     font-family: var(--font-ge);
     font-size: 1.5rem;
 }
+
+.option.is-georgian .option-text.len-medium { font-size: 1.2rem; }
+.option.is-georgian .option-text.len-long   { font-size: 1rem; }
+.option.is-georgian .option-text.len-xlong  { font-size: 0.9rem; }
 
 .option:not(:disabled):hover {
     border-color: var(--border-strong);
