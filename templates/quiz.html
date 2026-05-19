@@ -6,21 +6,10 @@
 
 {% block content %}
 <section class="quiz" id="quiz">
-    <details class="chapter-picker" id="chapter-picker" open>
-        <summary>
-            <span class="chapter-picker-label">Chapters</span>
-            <span class="chapter-picker-summary" id="chapter-picker-summary">…</span>
-        </summary>
-        <div class="chapter-picker-body">
-            <div class="chapter-picker-actions">
-                <button type="button" class="btn btn-ghost btn-icon" id="select-all">Select all</button>
-                <button type="button" class="btn btn-ghost btn-icon" id="select-none">Clear</button>
-            </div>
-            <div class="chapter-list" id="chapter-list">
-                <p class="dict-empty">Loading…</p>
-            </div>
-        </div>
-    </details>
+    <div class="quiz-summary">
+        <span class="quiz-summary-text" id="quiz-summary-text">…</span>
+        <a class="quiz-summary-link" href="{% url 'quiz' %}">Change</a>
+    </div>
 
     <div class="quiz-stats">
         <div class="stat">

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Practice setup – Kartuli{% endblock %}
+{% block nav_quiz %}is-active{% endblock %}
+
+{% block content %}
+<section class="setup">
+    <header class="setup-header">
+        <h1>Practice setup</h1>
+        <p>Pick which chapters to study and which fields you want to be tested on.</p>
+    </header>
+
+    <section class="setup-block">
+        <div class="setup-block-header">
+            <h2>Chapters</h2>
+            <div class="setup-block-actions">
+                <button type="button" class="btn btn-ghost btn-icon" id="select-all">Select all</button>
+                <button type="button" class="btn btn-ghost btn-icon" id="select-none">Clear</button>
+            </div>
+        </div>
+        <div class="chapter-list" id="chapter-list">
+            <p class="dict-empty">Loading…</p>
+        </div>
+    </section>
+
+    <section class="setup-block">
+        <div class="setup-block-header">
+            <h2>Test fields</h2>
+            <span class="setup-hint">Pick at least two. The quiz will ask between any pair you keep.</span>
+        </div>
+        <div class="field-pills" id="field-pills" role="group" aria-label="Fields to test">
+            <button type="button" class="field-pill" data-field="romanised" aria-pressed="true">
+                Romanised
+            </button>
+            <button type="button" class="field-pill" data-field="english" aria-pressed="true">
+                English
+            </button>
+            <button type="button" class="field-pill" data-field="georgian" aria-pressed="true">
+                Georgian
+            </button>
+        </div>
+    </section>
+
+    <footer class="setup-footer">
+        <p class="setup-status" id="setup-status"></p>
+        <button type="button" class="btn btn-primary btn-lg" id="start">Start practising</button>
+    </footer>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/quiz_setup.js' %}" defer></script>
+{% endblock %}

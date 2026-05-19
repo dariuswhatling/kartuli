@@ -740,69 +740,144 @@ input.is-georgian {
     padding: 2rem 0;
 }
 
-/* ---- Chapter picker (quiz page) ---- */
-.chapter-picker {
+/* ---- Quiz setup page ---- */
+.setup {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.setup-header h1 {
+    margin: 0 0 0.4rem;
+    font-size: 1.85rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.setup-header p {
+    margin: 0;
+    color: var(--fg-muted);
+}
+
+.setup-block {
+    padding: 1rem;
     border-radius: var(--radius);
     background: var(--bg-elev);
     border: 1px solid var(--border);
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
 }
 
-.chapter-picker summary {
-    list-style: none;
-    cursor: pointer;
-    padding: 0.75rem 0.9rem;
+.setup-block-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-    user-select: none;
 }
 
-.chapter-picker summary::-webkit-details-marker { display: none; }
-
-.chapter-picker summary::after {
-    content: "▾";
-    color: var(--fg-dim);
-    font-size: 0.8rem;
-    transition: transform 0.2s ease;
-}
-
-.chapter-picker[open] summary::after { transform: rotate(180deg); }
-
-.chapter-picker-label {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--fg-dim);
+.setup-block-header h2 {
+    margin: 0;
+    font-size: 1rem;
     font-weight: 700;
-    margin-right: auto;
+    letter-spacing: -0.01em;
 }
 
-.chapter-picker-summary {
-    color: var(--fg);
-    font-size: 0.92rem;
-    font-weight: 600;
-}
-
-.chapter-picker-body {
-    padding: 0 0.75rem 0.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
-.chapter-picker-actions {
+.setup-block-actions {
     display: flex;
     gap: 0.4rem;
+}
+
+.setup-hint {
+    color: var(--fg-dim);
+    font-size: 0.82rem;
+    font-weight: 500;
 }
 
 .chapter-list {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    max-height: 260px;
-    overflow-y: auto;
+    gap: 0.3rem;
+}
+
+.field-pills {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.4rem;
+}
+
+.field-pill {
+    appearance: none;
+    padding: 0.7rem 0.5rem;
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--fg-muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.field-pill:hover { color: var(--fg); }
+
+.field-pill.is-active {
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    border-color: transparent;
+    color: #0b1220;
+    box-shadow: var(--shadow-soft);
+}
+
+.setup-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: stretch;
+}
+
+.setup-status {
+    margin: 0;
+    text-align: center;
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    min-height: 1.2rem;
+}
+
+.setup-status.is-error { color: var(--danger); }
+
+#start:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    filter: grayscale(0.3);
+}
+
+/* Quiz play page selection summary */
+.quiz-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 12px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--fg-muted);
+    font-size: 0.85rem;
+}
+
+.quiz-summary-text {
+    font-weight: 600;
+    color: var(--fg);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.quiz-summary-link {
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
 }
 
 .chapter-choice {

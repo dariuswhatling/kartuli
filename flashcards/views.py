@@ -22,6 +22,8 @@ DIRECTIONS: tuple[tuple[str, str], ...] = (
     ("georgian", "romanised"),
 )
 
+VALID_FIELDS: frozenset[str] = frozenset({"romanised", "english", "georgian"})
+
 FIELD_LABELS = {
     "romanised": "Romanised",
     "english": "English",
@@ -33,7 +35,12 @@ FIELD_LABELS = {
 
 
 @ensure_csrf_cookie
-def quiz_page(request: HttpRequest) -> HttpResponse:
+def quiz_setup_page(request: HttpRequest) -> HttpResponse:
+    return render(request, "quiz_setup.html")
+
+
+@ensure_csrf_cookie
+def quiz_play_page(request: HttpRequest) -> HttpResponse:
     return render(request, "quiz.html")
 
 
@@ -88,22 +95,52 @@ def api_next(request: HttpRequest) -> JsonResponse:
     last_id_raw = request.GET.get("last_id", "")
     last_id = int(last_id_raw) if last_id_raw.isdigit() else None
 
+    requested_fields = {
+        f.strip()
+        for f in request.GET.get("fields", "").split(",")
+        if f.strip() in VALID_FIELDS
+    }
+    if not requested_fields:
+        requested_fields = set(VALID_FIELDS)
+    if len(requested_fields) < 2:
+        return JsonResponse(
+            {
+                "error": "need_two_fields",
+                "message": "Pick at least two test fields.",
+            },
+            status=400,
+        )
+
+    allowed_directions = [
+        (p, a) for (p, a) in DIRECTIONS
+        if p in requested_fields and a in requested_fields
+    ]
+    if not allowed_directions:
+        return JsonResponse(
+            {
+                "error": "no_directions",
+                "message": "No valid prompt/answer combinations for those fields.",
+            },
+            status=400,
+        )
+
     cards_qs = Card.objects.all()
     if chapter_ids:
         cards_qs = cards_qs.filter(chapter_id__in=chapter_ids)
 
-    # Only quiz on cards that have all three fields filled in.
+    # Only quiz on cards where every requested field has content.
     complete = [
-        c for c in cards_qs if c.romanised and c.english and c.georgian
+        c for c in cards_qs
+        if all(getattr(c, f) for f in requested_fields)
     ]
 
     if not complete:
+        labels = ", ".join(FIELD_LABELS[f] for f in sorted(requested_fields))
         return JsonResponse(
             {
                 "error": "no_cards",
                 "message": (
-                    "Add at least one complete card (Romanised, English and "
-                    "Georgian) in a selected chapter."
+                    f"No cards in the selected chapters have all of: {labels}."
                 ),
             },
             status=404,
@@ -113,7 +150,7 @@ def api_next(request: HttpRequest) -> JsonResponse:
         return JsonResponse(
             {
                 "error": "not_enough_cards",
-                "message": "Need at least 3 complete cards to play.",
+                "message": "Need at least 3 matching cards to play.",
             },
             status=404,
         )
@@ -121,7 +158,7 @@ def api_next(request: HttpRequest) -> JsonResponse:
     pool = [c for c in complete if c.id != last_id] or complete
     card = random.choice(pool)
 
-    prompt_field, answer_field = random.choice(DIRECTIONS)
+    prompt_field, answer_field = random.choice(allowed_directions)
     prompt = getattr(card, prompt_field)
     answer = getattr(card, answer_field)
 

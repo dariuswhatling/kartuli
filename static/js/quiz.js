@@ -1,6 +1,17 @@
 (() => {
     "use strict";
 
+    const STORAGE_CHAPTERS = "kartuli.selectedChapters";
+    const STORAGE_FIELDS = "kartuli.selectedFields";
+    const SETUP_URL = "/quiz/";
+    const VALID_FIELDS = ["romanised", "english", "georgian"];
+    const FIELD_LABELS = {
+        romanised: "Romanised",
+        english: "English",
+        georgian: "Georgian",
+    };
+    const KEY_LABELS = ["A", "B", "C"];
+
     const els = {
         card: document.getElementById("card"),
         direction: document.getElementById("card-direction"),
@@ -10,19 +21,12 @@
         streak: document.getElementById("stat-streak"),
         correct: document.getElementById("stat-correct"),
         total: document.getElementById("stat-total"),
-        picker: document.getElementById("chapter-picker"),
-        pickerSummary: document.getElementById("chapter-picker-summary"),
-        chapterList: document.getElementById("chapter-list"),
-        selectAll: document.getElementById("select-all"),
-        selectNone: document.getElementById("select-none"),
+        summary: document.getElementById("quiz-summary-text"),
     };
-
-    const KEY_LABELS = ["A", "B", "C"];
-    const STORAGE_KEY = "kartuli.selectedChapters";
 
     const state = {
         chapters: [],
-        selected: new Set(),
+        fields: [],
         current: null,
         lastCardId: null,
         locked: false,
@@ -30,6 +34,16 @@
         correct: 0,
         total: 0,
     };
+
+    function loadStoredSet(key) {
+        try {
+            const raw = localStorage.getItem(key);
+            if (!raw) return null;
+            const arr = JSON.parse(raw);
+            if (Array.isArray(arr)) return arr;
+        } catch {}
+        return null;
+    }
 
     async function api(url) {
         const res = await fetch(url);
@@ -43,89 +57,37 @@
         return data;
     }
 
-    function loadSelection() {
-        try {
-            const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return null;
-            return new Set(JSON.parse(raw));
-        } catch {
-            return null;
-        }
-    }
-
-    function saveSelection() {
-        try {
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify([...state.selected])
-            );
-        } catch {}
-    }
-
     function isGeorgianField(field) {
         return field === "georgian";
     }
 
-    function renderChapterPicker() {
-        els.chapterList.innerHTML = "";
-        if (state.chapters.length === 0) {
-            const empty = document.createElement("p");
-            empty.className = "dict-empty";
-            empty.textContent = "No chapters yet. Add some in the Dictionary.";
-            els.chapterList.appendChild(empty);
-            updatePickerSummary();
-            return;
-        }
-        state.chapters.forEach((chapter) => {
-            const label = document.createElement("label");
-            label.className = "chapter-choice";
-
-            const cb = document.createElement("input");
-            cb.type = "checkbox";
-            cb.checked = state.selected.has(chapter.id);
-            cb.dataset.chapterId = String(chapter.id);
-            cb.addEventListener("change", () => {
-                if (cb.checked) state.selected.add(chapter.id);
-                else state.selected.delete(chapter.id);
-                saveSelection();
-                updatePickerSummary();
-                loadNext();
-            });
-
-            const name = document.createElement("span");
-            name.className = "chapter-choice-name";
-            name.textContent = chapter.name;
-
-            const count = document.createElement("span");
-            count.className = "chapter-choice-count";
-            const complete = chapter.cards.filter(
-                (c) => c.romanised && c.english && c.georgian
-            ).length;
-            count.textContent =
-                complete === chapter.cards.length
-                    ? `${complete}`
-                    : `${complete}/${chapter.cards.length}`;
-
-            label.append(cb, name, count);
-            els.chapterList.appendChild(label);
-        });
-        updatePickerSummary();
+    function showSummary() {
+        const cText = `${state.chapters.length} chapter${state.chapters.length === 1 ? "" : "s"}`;
+        const fText = state.fields
+            .map((f) => FIELD_LABELS[f].slice(0, 3))
+            .join(" · ");
+        els.summary.textContent = `${cText} · ${fText}`;
     }
 
-    function updatePickerSummary() {
-        const total = state.chapters.length;
-        const selected = state.selected.size;
-        if (total === 0) {
-            els.pickerSummary.textContent = "none";
-            return;
-        }
-        if (selected === 0) {
-            els.pickerSummary.textContent = "none selected";
-        } else if (selected === total) {
-            els.pickerSummary.textContent = "all";
-        } else {
-            els.pickerSummary.textContent = `${selected} of ${total}`;
-        }
+    function showEmptyState(message) {
+        els.direction.textContent = "";
+        els.prompt.textContent = "—";
+        els.options.innerHTML = "";
+        els.feedback.textContent = message;
+        els.feedback.classList.remove("is-correct");
+        els.feedback.classList.add("is-wrong");
+    }
+
+    function setPrompt(card) {
+        els.prompt.classList.toggle(
+            "is-georgian",
+            isGeorgianField(card.prompt_field)
+        );
+        els.prompt.textContent = card.prompt;
+        els.direction.textContent = `${card.prompt_label} → ${card.answer_label}`;
+        els.card.classList.remove("is-correct", "is-wrong");
+        els.feedback.textContent = "";
+        els.feedback.classList.remove("is-correct", "is-wrong");
     }
 
     function renderOptions(card) {
@@ -148,27 +110,6 @@
         });
     }
 
-    function setPrompt(card) {
-        els.prompt.classList.toggle(
-            "is-georgian",
-            isGeorgianField(card.prompt_field)
-        );
-        els.prompt.textContent = card.prompt;
-        els.direction.textContent = `${card.prompt_label} → ${card.answer_label}`;
-        els.card.classList.remove("is-correct", "is-wrong");
-        els.feedback.textContent = "";
-        els.feedback.classList.remove("is-correct", "is-wrong");
-    }
-
-    function showEmptyState(message) {
-        els.direction.textContent = "";
-        els.prompt.textContent = "—";
-        els.options.innerHTML = "";
-        els.feedback.textContent = message;
-        els.feedback.classList.remove("is-correct");
-        els.feedback.classList.add("is-wrong");
-    }
-
     async function loadNext() {
         state.locked = true;
         els.feedback.textContent = "";
@@ -177,21 +118,11 @@
             b.classList.remove("is-correct", "is-wrong", "is-dimmed");
         });
 
-        if (state.chapters.length === 0) {
-            showEmptyState("Create a chapter and add cards in the Dictionary.");
-            return;
-        }
-        if (state.selected.size === 0) {
-            showEmptyState("Pick at least one chapter above to start practising.");
-            return;
-        }
-
         try {
             const params = new URLSearchParams();
-            params.set("chapters", [...state.selected].join(","));
-            if (state.lastCardId != null) {
-                params.set("last_id", state.lastCardId);
-            }
+            params.set("chapters", state.chapters.join(","));
+            params.set("fields", state.fields.join(","));
+            if (state.lastCardId != null) params.set("last_id", state.lastCardId);
             const card = await api(`/api/quiz/next/?${params.toString()}`);
             state.current = card;
             setPrompt(card);
@@ -200,9 +131,8 @@
             state.locked = false;
         } catch (err) {
             showEmptyState(
-                err.data && err.data.message
-                    ? err.data.message
-                    : "Couldn't load a card. Try refreshing."
+                (err.data && err.data.message) ||
+                    "Couldn't load a card. Try refreshing."
             );
         }
     }
@@ -245,57 +175,32 @@
         els.streak.textContent = state.streak;
         state.lastCardId = state.current.card_id;
 
-        const delay = correct ? 700 : 1500;
-        setTimeout(loadNext, delay);
+        setTimeout(loadNext, correct ? 700 : 1500);
     }
-
-    els.selectAll.addEventListener("click", () => {
-        state.selected = new Set(state.chapters.map((c) => c.id));
-        saveSelection();
-        renderChapterPicker();
-        loadNext();
-    });
-
-    els.selectNone.addEventListener("click", () => {
-        state.selected = new Set();
-        saveSelection();
-        renderChapterPicker();
-        loadNext();
-    });
 
     document.addEventListener("keydown", (e) => {
         if (state.locked) return;
-        const idx = ["1", "2", "3", "a", "A", "b", "B", "c", "C"].indexOf(e.key);
-        if (idx === -1) return;
-        const optionIndex = idx < 3 ? idx : Math.floor((idx - 3) / 2);
-        const buttons = els.options.querySelectorAll(".option");
-        const target = buttons[optionIndex];
+        const keyMap = { "1": 0, "2": 1, "3": 2, a: 0, A: 0, b: 1, B: 1, c: 2, C: 2 };
+        const idx = keyMap[e.key];
+        if (idx == null) return;
+        const target = els.options.querySelectorAll(".option")[idx];
         if (target) target.click();
     });
 
-    (async () => {
-        try {
-            const data = await api("/api/chapters/");
-            state.chapters = data.chapters || [];
+    // ---- Boot ---------------------------------------------------------------
 
-            const stored = loadSelection();
-            const allIds = state.chapters.map((c) => c.id);
-            if (stored && stored.size > 0) {
-                // Drop ids that no longer exist
-                state.selected = new Set(
-                    allIds.filter((id) => stored.has(id))
-                );
-                if (state.selected.size === 0) {
-                    state.selected = new Set(allIds);
-                }
-            } else {
-                state.selected = new Set(allIds);
-            }
-            saveSelection();
-            renderChapterPicker();
-            await loadNext();
-        } catch (err) {
-            showEmptyState("Couldn't load chapters.");
-        }
-    })();
+    const storedChapters = loadStoredSet(STORAGE_CHAPTERS);
+    const storedFields = loadStoredSet(STORAGE_FIELDS);
+
+    const fields = (storedFields || []).filter((f) => VALID_FIELDS.includes(f));
+    const chapters = (storedChapters || []).filter((id) => Number.isInteger(id));
+
+    if (chapters.length === 0 || fields.length < 2) {
+        window.location.replace(SETUP_URL);
+    } else {
+        state.chapters = chapters;
+        state.fields = fields;
+        showSummary();
+        loadNext();
+    }
 })();
