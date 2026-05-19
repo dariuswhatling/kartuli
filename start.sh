@@ -1,6 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Wait for the database to accept connections. This matters when the app
+# and Postgres boot at the same time (e.g. a Coolify project restart);
+# otherwise migrate would fail with a connection error.
+echo "Waiting for database..."
+attempts=0
+until python manage.py shell -c "from django.db import connection; connection.ensure_connection()" >/dev/null 2>&1; do
+    attempts=$((attempts + 1))
+    if [ "$attempts" -ge 24 ]; then
+        echo "Database not reachable after 2 minutes, giving up." >&2
+        exit 1
+    fi
+    sleep 5
+done
+echo "Database ready."
+
 python manage.py migrate --noinput
 python manage.py collectstatic --noinput
 
