@@ -8,27 +8,15 @@
 <section class="dict">
     <header class="dict-header">
         <h1>Dictionary</h1>
-        <p>Add, edit, and remove flashcards used by the multiple-choice practice mode.</p>
+        <p>Organise flashcards into chapters. Changes save automatically as you type.</p>
     </header>
 
-    <form class="dict-add" id="dict-add" autocomplete="off">
-        <div class="field">
-            <label for="add-georgian">Georgian</label>
-            <input id="add-georgian" name="georgian" type="text" placeholder="ა" required spellcheck="false" />
-        </div>
-        <div class="field">
-            <label for="add-english">English / sound</label>
-            <input id="add-english" name="english" type="text" placeholder="a" required spellcheck="false" />
-        </div>
-        <button type="submit" class="btn btn-primary">Add card</button>
-    </form>
-
     <div class="dict-toolbar">
-        <input id="dict-search" type="search" placeholder="Search…" autocomplete="off" spellcheck="false" />
-        <span class="dict-count" id="dict-count">0 cards</span>
+        <button id="add-chapter" type="button" class="btn btn-primary">+ Add chapter</button>
+        <span class="dict-count" id="dict-count">0 chapters</span>
     </div>
 
-    <div class="dict-list" id="dict-list" aria-live="polite">
+    <div class="chapters" id="chapters" aria-live="polite">
         <p class="dict-empty">Loading…</p>
     </div>
 </section>
