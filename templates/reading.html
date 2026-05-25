@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Reading test – Kartuli{% endblock %}
+{% block nav_reading %}is-active{% endblock %}
+
+{% block content %}
+<section class="quiz reading" id="reading">
+    <div class="quiz-summary">
+        <span class="quiz-summary-text" id="reading-summary-text">…</span>
+        <a class="quiz-summary-link" href="{% url 'reading' %}">Change</a>
+    </div>
+
+    <div class="quiz-stats">
+        <div class="stat">
+            <span class="stat-label">Streak</span>
+            <span class="stat-value" id="stat-streak">0</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Correct</span>
+            <span class="stat-value" id="stat-correct">0</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Seen</span>
+            <span class="stat-value" id="stat-total">0</span>
+        </div>
+    </div>
+
+    <div class="card" id="card">
+        <div class="card-direction" id="card-direction">Georgian → Romanised</div>
+        <div class="card-prompt is-georgian" id="card-prompt">…</div>
+    </div>
+
+    <div class="options" id="options" role="list">
+        <button class="option" type="button" disabled>—</button>
+        <button class="option" type="button" disabled>—</button>
+        <button class="option" type="button" disabled>—</button>
+        <button class="option" type="button" disabled>—</button>
+    </div>
+
+    <div class="feedback" id="feedback" aria-live="polite"></div>
+
+    <div class="reading-learn" id="reading-learn" hidden>
+        <p class="reading-learn-label">Word</p>
+        <dl class="reading-learn-grid">
+            <div class="reading-learn-row">
+                <dt>Georgian</dt>
+                <dd class="reading-learn-georgian" id="learn-georgian">—</dd>
+            </div>
+            <div class="reading-learn-row">
+                <dt>Romanised</dt>
+                <dd id="learn-romanised">—</dd>
+            </div>
+            <div class="reading-learn-row">
+                <dt>English</dt>
+                <dd id="learn-english">—</dd>
+            </div>
+        </dl>
+        <button type="button" class="btn btn-primary btn-lg reading-next" id="reading-next">
+            Next word
+        </button>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/reading.js' %}" defer></script>
+{% endblock %}

@@ -10,6 +10,8 @@ urlpatterns = [
     path("keyboard/", views.keyboard_page, name="keyboard"),
     path("dictionary/", views.dictionary_page, name="dictionary"),
     path("1000-words/", views.common_words_page, name="common_words"),
+    path("reading/", views.reading_setup_page, name="reading"),
+    path("reading/play/", views.reading_play_page, name="reading_play"),
     path("api/quiz/next/", views.api_next, name="api_quiz_next"),
     path("api/flashcard/next/", views.api_flashcard_next, name="api_flashcard_next"),
     path("api/alphabet/", views.api_alphabet, name="api_alphabet"),
@@ -23,4 +25,5 @@ urlpatterns = [
     path("api/cards/<int:card_id>/", views.api_card_detail, name="api_card_detail"),
     path("api/import/csv/", views.api_import_csv, name="api_import_csv"),
     path("api/common-words/", views.api_common_words, name="api_common_words"),
+    path("api/reading/next/", views.api_reading_next, name="api_reading_next"),
 ]

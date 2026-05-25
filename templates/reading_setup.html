@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Reading test setup – Kartuli{% endblock %}
+{% block nav_reading %}is-active{% endblock %}
+
+{% block content %}
+<section class="setup">
+    <header class="setup-header">
+        <h1>Reading test setup</h1>
+        <p>
+            Pick categories from the 1000-word list. You'll see Georgian script and
+            choose the matching romanisation — wrong answers sound alike on purpose.
+        </p>
+    </header>
+
+    <section class="setup-block">
+        <div class="setup-block-header">
+            <h2>Categories</h2>
+            <div class="setup-block-actions">
+                <button type="button" class="btn btn-ghost btn-icon" id="select-all">Select all</button>
+                <button type="button" class="btn btn-ghost btn-icon" id="select-none">Clear</button>
+            </div>
+        </div>
+        <div class="chapter-list" id="chapter-list">
+            <p class="dict-empty">Loading…</p>
+        </div>
+    </section>
+
+    <footer class="setup-footer">
+        <p class="setup-status" id="setup-status"></p>
+        <button type="button" class="btn btn-primary btn-lg" id="start">Start reading test</button>
+    </footer>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/reading_setup.js' %}" defer></script>
+{% endblock %}

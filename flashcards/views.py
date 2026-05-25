@@ -14,6 +14,7 @@ from django.views.decorators.http import require_GET, require_http_methods, requ
 from .alphabet import ALPHABET
 from .audio import alphabet_audio_url
 from .models import Card, Chapter, CommonWordCard, CommonWordChapter
+from .reading_similarity import pick_similar_romanised_distractors
 from .tts_sync import schedule_card_audio_if_needed, schedule_cards_audio
 
 
@@ -74,6 +75,16 @@ def common_words_page(request: HttpRequest) -> HttpResponse:
     return render(request, "common_words.html")
 
 
+@ensure_csrf_cookie
+def reading_setup_page(request: HttpRequest) -> HttpResponse:
+    return render(request, "reading_setup.html")
+
+
+@ensure_csrf_cookie
+def reading_play_page(request: HttpRequest) -> HttpResponse:
+    return render(request, "reading.html")
+
+
 # --- Serialisers --------------------------------------------------------------
 
 
@@ -103,6 +114,12 @@ def _card_audio_for_field(card: Card, field: str) -> str | None:
     return f.url if f else None
 
 
+def _common_word_audio_url(card: CommonWordCard) -> str | None:
+    if card.audio_georgian and card.audio_georgian.name:
+        return card.audio_georgian.url
+    return None
+
+
 def _common_word_card_to_dict(card: CommonWordCard) -> dict:
     return {
         "id": card.id,
@@ -110,7 +127,7 @@ def _common_word_card_to_dict(card: CommonWordCard) -> dict:
         "georgian": card.georgian,
         "english": card.english,
         "romanised": card.romanised,
-        "audio_georgian_url": card.audio_georgian.url if card.audio_georgian else None,
+        "audio_georgian_url": _common_word_audio_url(card),
     }
 
 
@@ -366,6 +383,91 @@ def api_common_words(request: HttpRequest) -> JsonResponse:
                 for c in chapters
             ],
             "total_words": sum(len(c.cards.all()) for c in chapters),
+        }
+    )
+
+
+# --- Reading test (1000 words → romanised) ------------------------------------
+
+
+@require_GET
+def api_reading_next(request: HttpRequest) -> JsonResponse:
+    """Georgian prompt with four romanised options; distractors match by prefix."""
+    chapter_ids = _parse_int_list(request.GET.get("chapters", ""))
+    last_id_raw = request.GET.get("last_id", "")
+    last_id = int(last_id_raw) if last_id_raw.isdigit() else None
+
+    cards_qs = CommonWordCard.objects.select_related("chapter").all()
+    if chapter_ids:
+        cards_qs = cards_qs.filter(chapter_id__in=chapter_ids)
+
+    complete = [
+        c
+        for c in cards_qs
+        if (c.georgian or "").strip() and (c.romanised or "").strip()
+    ]
+
+    if not complete:
+        return JsonResponse(
+            {
+                "error": "no_cards",
+                "message": (
+                    "No words with both Georgian and romanised text in the "
+                    "selected categories."
+                ),
+            },
+            status=404,
+        )
+
+    if len(complete) < 4:
+        return JsonResponse(
+            {
+                "error": "not_enough_cards",
+                "message": "Need at least 4 words to build four answer choices.",
+            },
+            status=404,
+        )
+
+    pool = [c for c in complete if c.id != last_id] or complete
+    card = random.choice(pool)
+    answer = (card.romanised or "").strip()
+
+    distractor_pairs = pick_similar_romanised_distractors(
+        answer,
+        complete,
+        exclude_id=card.id,
+        count=3,
+    )
+
+    value_to_audio: dict[str, str | None] = {}
+    for c in complete:
+        rom = (c.romanised or "").strip()
+        if rom and rom not in value_to_audio:
+            value_to_audio[rom] = _common_word_audio_url(c)
+
+    option_values = [answer] + [rom for rom, _ in distractor_pairs]
+    while len(option_values) < 4:
+        extra = random.choice(complete)
+        rom = (extra.romanised or "").strip()
+        if rom and rom not in option_values:
+            option_values.append(rom)
+    option_values = option_values[:4]
+    random.shuffle(option_values)
+
+    options = [
+        {"value": val, "audio_url": value_to_audio.get(val)}
+        for val in option_values
+    ]
+
+    return JsonResponse(
+        {
+            "card_id": card.id,
+            "georgian": card.georgian,
+            "romanised": answer,
+            "english": card.english,
+            "answer": answer,
+            "prompt_audio_url": _common_word_audio_url(card),
+            "options": options,
         }
     )
 

@@ -633,6 +633,62 @@ a:hover { text-decoration: underline; }
 .feedback.is-correct { color: var(--success); }
 .feedback.is-wrong   { color: var(--danger); }
 
+/* ---- Reading test ---- */
+.reading-learn {
+    margin-top: 1rem;
+    padding: 1rem 1.1rem;
+    border-radius: var(--radius);
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+}
+
+.reading-learn-label {
+    margin: 0 0 0.65rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-muted);
+}
+
+.reading-learn-grid {
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.reading-learn-row {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 0.5rem;
+    align-items: baseline;
+}
+
+.reading-learn-row dt {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--fg-dim);
+}
+
+.reading-learn-row dd {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    word-break: break-word;
+}
+
+.reading-learn-georgian {
+    font-family: var(--font-ge);
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.reading-next {
+    width: 100%;
+}
+
 /* ---- Keyboard mode ---- */
 .kb {
     display: flex;
