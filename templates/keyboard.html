@@ -55,17 +55,23 @@
     </div>
 
     <div class="kb-draw kb-panel-hidden" id="kb-draw" hidden aria-hidden="true">
-        <p class="kb-draw-hint">Draw any Georgian letter, then press Check to see what OCR reads.</p>
         <div class="draw-canvas-wrap">
             <canvas id="draw-canvas" aria-label="Drawing area"></canvas>
         </div>
-        <div class="kb-draw-actions">
-            <button type="button" class="btn btn-ghost" id="draw-clear">Clear</button>
-            <button type="button" class="btn btn-primary" id="draw-check">Check</button>
+        <div class="kb-draw-toolbar" id="draw-toolbar">
+            <button type="button" class="btn btn-ghost btn-sm" id="draw-clear">Clear</button>
+            <button type="button" class="btn btn-primary btn-sm" id="draw-check">Check</button>
+        </div>
+        <div class="draw-reveal" id="draw-reveal" hidden>
+            <div class="draw-reveal-letter is-georgian" id="draw-reveal-letter" aria-hidden="true"></div>
+        </div>
+        <div class="draw-grade" id="draw-grade" hidden>
+            <button type="button" class="draw-grade-btn draw-grade-wrong" id="draw-wrong">Wrong</button>
+            <button type="button" class="draw-grade-btn draw-grade-right" id="draw-right">Correct</button>
         </div>
     </div>
 
-    <div class="feedback" id="feedback" aria-live="polite"></div>
+    <div class="feedback kb-draw-feedback" id="feedback" aria-live="polite"></div>
 </section>
 {% endblock %}
 

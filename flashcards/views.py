@@ -14,7 +14,6 @@ from django.views.decorators.http import require_GET, require_http_methods, requ
 from .alphabet import ALPHABET
 from .audio import alphabet_audio_url
 from .models import Card, Chapter
-from .letter_recognition import recognize_letter_payload
 from .tts_sync import schedule_card_audio_if_needed, schedule_cards_audio
 
 
@@ -231,24 +230,6 @@ def api_next(request: HttpRequest) -> JsonResponse:
 
 
 # --- Static alphabet (keyboard mode) -----------------------------------------
-
-
-@require_POST
-def api_keyboard_recognize(request: HttpRequest) -> JsonResponse:
-    try:
-        payload = json.loads(request.body or "{}")
-    except json.JSONDecodeError:
-        return JsonResponse({"error": "invalid_json"}, status=400)
-
-    image = payload.get("image", "")
-    if not image:
-        return JsonResponse(
-            {"error": "missing_image", "message": "No drawing was sent."},
-            status=400,
-        )
-
-    expected = (payload.get("expected") or "").strip()
-    return JsonResponse(recognize_letter_payload(image, expected=expected))
 
 
 @require_GET

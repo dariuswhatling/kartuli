@@ -2,15 +2,21 @@
     "use strict";
 
     const els = {
+        kb: document.getElementById("kb"),
         card: document.getElementById("card"),
         direction: document.getElementById("card-direction"),
         prompt: document.getElementById("card-prompt"),
         grid: document.getElementById("kb-grid"),
-        stats: document.getElementById("kb-stats"),
         drawPanel: document.getElementById("kb-draw"),
         drawCanvas: document.getElementById("draw-canvas"),
+        drawToolbar: document.getElementById("draw-toolbar"),
         drawClear: document.getElementById("draw-clear"),
         drawCheck: document.getElementById("draw-check"),
+        drawReveal: document.getElementById("draw-reveal"),
+        drawRevealLetter: document.getElementById("draw-reveal-letter"),
+        drawGrade: document.getElementById("draw-grade"),
+        drawWrong: document.getElementById("draw-wrong"),
+        drawRight: document.getElementById("draw-right"),
         feedback: document.getElementById("feedback"),
         streak: document.getElementById("stat-streak"),
         correct: document.getElementById("stat-correct"),
@@ -36,7 +42,9 @@
             interaction: "keyboard",
         },
         draw_to_geo: {
-            instruction: "Draw any letter, then press Check",
+            promptKey: "sound",
+            answerKey: "georgian",
+            instruction: "Draw the letter for this sound",
             interaction: "draw",
         },
     };
@@ -51,22 +59,18 @@
         correct: 0,
         total: 0,
         keys: {},
+        drawRevealed: false,
     };
 
     const canvasState = {
         ctx: null,
-        cssSize: 280,
+        cssSize: 220,
         hasInk: false,
         drawing: false,
     };
 
     function playAudio(url) {
         window.KartuliAudio?.play(url);
-    }
-
-    function getCsrfToken() {
-        const match = document.cookie.match(/(?:^|;\s*)csrftoken=([^;]+)/);
-        return match ? decodeURIComponent(match[1]) : "";
     }
 
     async function fetchAlphabet() {
@@ -82,7 +86,7 @@
 
     function isGeorgianFont(direction, role) {
         const cfg = DIRECTIONS[direction];
-        if (cfg.interaction === "draw") return false;
+        if (cfg.interaction === "draw") return role === "reveal";
         const field = role === "prompt" ? cfg.promptKey : cfg.keysKey;
         return field === "georgian";
     }
@@ -100,12 +104,37 @@
         Object.values(state.keys).forEach((btn) => (btn.disabled = !enabled));
     }
 
+    function hideDrawReveal() {
+        state.drawRevealed = false;
+        els.drawReveal.hidden = true;
+        els.drawRevealLetter.textContent = "";
+        els.drawRevealLetter.setAttribute("aria-hidden", "true");
+        els.drawGrade.hidden = true;
+        els.drawToolbar.hidden = false;
+        els.drawCheck.disabled = false;
+        els.drawClear.disabled = false;
+        els.drawWrong.disabled = true;
+        els.drawRight.disabled = true;
+    }
+
+    function showDrawReveal(letter) {
+        state.drawRevealed = true;
+        els.drawRevealLetter.textContent = letter;
+        els.drawRevealLetter.removeAttribute("aria-hidden");
+        els.drawReveal.hidden = false;
+        els.drawGrade.hidden = false;
+        els.drawToolbar.hidden = true;
+        els.drawCheck.disabled = true;
+        els.drawClear.disabled = true;
+        els.drawWrong.disabled = false;
+        els.drawRight.disabled = false;
+    }
+
     function updateModeUI() {
         const draw = isDrawMode();
-        if (els.stats) {
-            els.stats.hidden = draw;
-            els.stats.setAttribute("aria-hidden", draw ? "true" : "false");
-        }
+        els.kb?.classList.toggle("kb-is-draw", draw);
+        els.feedback?.classList.toggle("kb-panel-hidden", draw);
+
         if (draw) {
             els.grid.classList.add("kb-panel-hidden");
             els.grid.hidden = true;
@@ -116,11 +145,13 @@
             els.drawPanel.hidden = false;
             els.drawPanel.removeAttribute("aria-hidden");
             setupCanvas();
+            hideDrawReveal();
             clearCanvas();
         } else {
             els.drawPanel.classList.add("kb-panel-hidden");
             els.drawPanel.hidden = true;
             els.drawPanel.setAttribute("aria-hidden", "true");
+            hideDrawReveal();
             els.grid.classList.remove("kb-panel-hidden");
             els.grid.hidden = false;
             els.grid.removeAttribute("aria-hidden");
@@ -160,7 +191,12 @@
     function setupCanvas() {
         const canvas = els.drawCanvas;
         const wrap = canvas.parentElement;
-        const size = Math.min(wrap.clientWidth || 320, 320);
+        const maxSide = Math.min(
+            wrap?.clientWidth || 280,
+            window.innerWidth - 40,
+            240
+        );
+        const size = Math.max(160, maxSide);
         canvasState.cssSize = size;
         const dpr = window.devicePixelRatio || 1;
         canvas.width = Math.floor(size * dpr);
@@ -172,7 +208,7 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
-        ctx.lineWidth = Math.max(10, Math.round(size / 18));
+        ctx.lineWidth = Math.max(8, Math.round(size / 20));
         ctx.strokeStyle = "#000000";
         canvasState.ctx = ctx;
         clearCanvas();
@@ -199,20 +235,8 @@
         };
     }
 
-    function exportDrawing() {
-        const exportSize = 512;
-        const off = document.createElement("canvas");
-        off.width = exportSize;
-        off.height = exportSize;
-        const ctx = off.getContext("2d");
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, exportSize, exportSize);
-        ctx.drawImage(els.drawCanvas, 0, 0, exportSize, exportSize);
-        return off.toDataURL("image/png");
-    }
-
     function startStroke(event) {
-        if (state.locked || !isDrawMode()) return;
+        if (state.locked || !isDrawMode() || state.drawRevealed) return;
         event.preventDefault();
         els.drawCanvas.setPointerCapture?.(event.pointerId);
         canvasState.drawing = true;
@@ -223,7 +247,7 @@
     }
 
     function moveStroke(event) {
-        if (!canvasState.drawing || state.locked) return;
+        if (!canvasState.drawing || state.locked || state.drawRevealed) return;
         event.preventDefault();
         const { x, y } = canvasCoords(event);
         const { ctx } = canvasState;
@@ -250,31 +274,12 @@
         };
     }
 
-    function setupDrawMode() {
-        const cfg = DIRECTIONS.draw_to_geo;
-        state.current = null;
-        clearKeyHighlights();
-        els.direction.textContent = cfg.instruction;
-        els.prompt.textContent = "";
-        els.prompt.classList.remove("is-georgian");
-        els.card.classList.remove("has-audio", "is-correct", "is-wrong");
-        clearCanvas();
-        els.drawCheck.disabled = false;
-        state.locked = false;
-    }
-
     function loadNext() {
         if (!state.pairs.length) return;
         const cfg = DIRECTIONS[state.direction];
-
-        if (isDrawMode()) {
-            setupDrawMode();
-            return;
-        }
-
         state.locked = true;
-        setKeysEnabled(false);
         clearKeyHighlights();
+        hideDrawReveal();
 
         state.current = pickNext();
         els.direction.textContent = cfg.instruction;
@@ -283,13 +288,21 @@
             "is-georgian",
             isGeorgianFont(state.direction, "prompt")
         );
-        els.card.classList.toggle("has-audio", !!state.current.audio_url);
-        setKeysEnabled(true);
+        els.card.classList.toggle(
+            "has-audio",
+            !isDrawMode() && !!state.current.audio_url
+        );
+
+        if (isDrawMode()) {
+            clearCanvas();
+            els.drawCheck.disabled = false;
+        } else {
+            setKeysEnabled(true);
+        }
         state.locked = false;
     }
 
-    function finishRound(correct, recognized) {
-        const answer = state.current.answer;
+    function finishRound(correct) {
         state.total += 1;
         els.total.textContent = state.total;
 
@@ -297,20 +310,19 @@
             state.correct += 1;
             state.streak += 1;
             els.card.classList.add("is-correct");
-            els.feedback.textContent = "Correct";
-            els.feedback.classList.add("is-correct");
         } else {
             state.streak = 0;
             els.card.classList.add("is-wrong");
-            const drawn = recognized ? `You drew: ${recognized}. ` : "";
-            els.feedback.textContent = `${drawn}Answer: ${answer}`;
-            els.feedback.classList.add("is-wrong");
         }
         els.correct.textContent = state.correct;
         els.streak.textContent = state.streak;
         state.lastPrompt = state.current.prompt;
 
-        const delay = correct ? 650 : 1800;
+        state.locked = true;
+        els.drawWrong.disabled = true;
+        els.drawRight.disabled = true;
+
+        const delay = correct ? 500 : 900;
         setTimeout(loadNext, delay);
     }
 
@@ -325,68 +337,33 @@
         setKeysEnabled(false);
 
         const tapped = state.keys[value];
-        const answer = state.current.answer;
-        const correct = value === answer;
+        const correct = value === state.current.answer;
 
         if (correct) tapped.classList.add("is-correct");
         else tapped.classList.add("is-wrong");
 
-        finishRound(correct, value);
+        finishRound(correct);
     }
 
-    async function onDrawCheck() {
-        if (state.locked || !isDrawMode()) return;
+    function onDrawCheck() {
+        if (state.locked || !state.current || !isDrawMode() || state.drawRevealed) {
+            return;
+        }
         if (!canvasState.hasInk) {
-            els.feedback.textContent = "Draw a letter in the box first";
-            els.feedback.classList.remove("is-correct", "is-wrong");
+            els.card.classList.add("is-wrong");
+            setTimeout(() => els.card.classList.remove("is-wrong"), 400);
             return;
         }
 
-        state.locked = true;
-        els.drawCheck.disabled = true;
-        els.feedback.textContent = "Checking…";
-        els.feedback.classList.remove("is-correct", "is-wrong");
+        showDrawReveal(state.current.answer);
+    }
+
+    function onDrawGrade(correct) {
+        if (!state.drawRevealed || state.locked || !state.current) return;
         els.card.classList.remove("is-correct", "is-wrong");
-
-        try {
-            const res = await fetch("/api/keyboard/recognize/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRFToken": getCsrfToken(),
-                },
-                body: JSON.stringify({ image: exportDrawing() }),
-            });
-            const data = await res.json().catch(() => ({}));
-            if (!res.ok) {
-                throw new Error(data.message || data.error || `HTTP ${res.status}`);
-            }
-
-            if (data.recognized == null) {
-                const raw = data.raw_text ? ` (raw: ${data.raw_text})` : "";
-                els.feedback.textContent =
-                    (data.message || "Couldn't read that") + raw;
-                els.feedback.classList.add("is-wrong");
-            } else {
-                const pct =
-                    data.confidence != null
-                        ? ` · ${Math.round(data.confidence * 100)}%`
-                        : "";
-                const raw =
-                    data.raw_text && data.raw_text !== data.recognized
-                        ? ` · raw: ${data.raw_text}`
-                        : "";
-                const src = data.source ? ` · ${data.source}` : "";
-                els.feedback.textContent = `Saw: ${data.recognized}${pct}${raw}${src}`;
-                els.feedback.classList.add("is-correct");
-            }
-        } catch (err) {
-            els.feedback.textContent = err.message || "Recognition failed";
-            els.feedback.classList.add("is-wrong");
-        } finally {
-            state.locked = false;
-            els.drawCheck.disabled = false;
-        }
+        if (correct) els.card.classList.add("is-correct");
+        else els.card.classList.add("is-wrong");
+        finishRound(correct);
     }
 
     function setDirection(direction) {
@@ -406,8 +383,12 @@
         btn.addEventListener("click", () => setDirection(btn.dataset.direction));
     });
 
-    els.drawClear.addEventListener("click", clearCanvas);
+    els.drawClear.addEventListener("click", () => {
+        if (!state.drawRevealed) clearCanvas();
+    });
     els.drawCheck.addEventListener("click", onDrawCheck);
+    els.drawWrong.addEventListener("click", () => onDrawGrade(false));
+    els.drawRight.addEventListener("click", () => onDrawGrade(true));
 
     const canvas = els.drawCanvas;
     canvas.style.touchAction = "none";
@@ -416,6 +397,10 @@
     canvas.addEventListener("pointerup", endStroke);
     canvas.addEventListener("pointerleave", endStroke);
     canvas.addEventListener("pointercancel", endStroke);
+
+    window.addEventListener("resize", () => {
+        if (isDrawMode() && !state.drawRevealed) setupCanvas();
+    });
 
     (async () => {
         try {
