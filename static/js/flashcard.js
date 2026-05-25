@@ -69,21 +69,27 @@
         els.summary.textContent = `${cText} · Romanised ↔ English`;
     }
 
-    function hideReveal() {
+    /** Hide front and back so the previous card cannot flash during load. */
+    function collapseForTransition() {
         state.revealed = false;
         els.reveal.hidden = true;
         els.revealAnswer.textContent = "";
         els.revealLabel.textContent = "";
-        els.toolbar.hidden = false;
+        els.prompt.textContent = "";
+        els.direction.textContent = "";
+        els.toolbar.hidden = true;
         els.grade.hidden = true;
-        els.check.disabled = false;
+        els.check.disabled = true;
         els.wrong.disabled = true;
         els.right.disabled = true;
-        els.card.classList.remove("fc-front-hidden");
+        els.card.classList.add("fc-front-hidden");
+        els.card.classList.remove("is-correct", "is-wrong");
+        els.fc?.classList.add("fc-is-transitioning");
     }
 
     function showReveal(card) {
         state.revealed = true;
+        els.fc?.classList.remove("fc-is-transitioning");
         els.revealLabel.textContent = card.answer_label;
         els.revealAnswer.textContent = card.answer;
         applyLengthClass(els.revealAnswer, card.answer);
@@ -96,26 +102,33 @@
         els.card.classList.add("fc-front-hidden");
     }
 
-    function setFront(card) {
-        hideReveal();
+    function showFront(card) {
+        state.revealed = false;
         els.prompt.classList.remove("is-georgian");
         els.prompt.textContent = card.prompt;
         applyLengthClass(els.prompt, card.prompt);
         els.direction.textContent = `Think of the ${card.answer_label.toLowerCase()}`;
-        els.card.classList.remove("is-correct", "is-wrong", "has-audio");
+        els.reveal.hidden = true;
+        els.revealAnswer.textContent = "";
+        els.revealLabel.textContent = "";
+        els.card.classList.remove("fc-front-hidden", "is-correct", "is-wrong", "has-audio");
+        els.fc?.classList.remove("fc-is-transitioning", "fc-flash-ok", "fc-flash-bad");
+        els.toolbar.hidden = false;
+        els.grade.hidden = true;
+        els.check.disabled = false;
+        els.wrong.disabled = true;
+        els.right.disabled = true;
     }
 
     function showEmptyState(message) {
-        hideReveal();
-        els.direction.textContent = "";
-        els.prompt.textContent = "—";
+        collapseForTransition();
+        els.direction.textContent = message;
+        els.fc?.classList.remove("fc-is-transitioning");
         els.check.disabled = true;
-        els.card.classList.add("is-wrong");
     }
 
     async function loadNext() {
         state.locked = true;
-        hideReveal();
 
         try {
             const params = new URLSearchParams();
@@ -123,7 +136,7 @@
             if (state.lastCardId != null) params.set("last_id", state.lastCardId);
             const card = await api(`/api/flashcard/next/?${params.toString()}`);
             state.current = card;
-            setFront(card);
+            showFront(card);
             state.locked = false;
         } catch (err) {
             showEmptyState(
@@ -140,21 +153,23 @@
         if (wasCorrect) {
             state.correct += 1;
             state.streak += 1;
-            els.card.classList.add("is-correct");
         } else {
             state.streak = 0;
-            els.card.classList.add("is-wrong");
         }
         els.correct.textContent = state.correct;
         els.streak.textContent = state.streak;
         state.lastCardId = state.current.card_id;
 
         state.locked = true;
-        els.wrong.disabled = true;
-        els.right.disabled = true;
+        collapseForTransition();
+        els.fc?.classList.remove("fc-flash-ok", "fc-flash-bad");
+        els.fc?.classList.add(wasCorrect ? "fc-flash-ok" : "fc-flash-bad");
 
-        const delay = wasCorrect ? 500 : 900;
-        setTimeout(loadNext, delay);
+        const delay = wasCorrect ? 450 : 750;
+        setTimeout(() => {
+            els.fc?.classList.remove("fc-flash-ok", "fc-flash-bad");
+            loadNext();
+        }, delay);
     }
 
     function onCheck() {

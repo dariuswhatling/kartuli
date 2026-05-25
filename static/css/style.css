@@ -789,17 +789,25 @@ a:hover { text-decoration: underline; }
 .fc .card {
     padding: 0.65rem 0.75rem 0.75rem;
     min-height: 0;
-    transition: opacity 0.15s ease;
 }
 
 .fc .card.fc-front-hidden {
-    opacity: 0;
-    height: 0;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    min-height: 0;
-    pointer-events: none;
+    display: none;
+}
+
+.fc.fc-is-transitioning .card,
+.fc.fc-is-transitioning .fc-reveal {
+    display: none;
+}
+
+.fc.fc-flash-ok {
+    box-shadow: inset 0 0 0 2px rgba(46, 125, 50, 0.55);
+    border-radius: var(--radius);
+}
+
+.fc.fc-flash-bad {
+    box-shadow: inset 0 0 0 2px rgba(198, 40, 40, 0.55);
+    border-radius: var(--radius);
 }
 
 .fc .card-direction {
