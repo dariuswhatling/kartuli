@@ -71,6 +71,7 @@ a {
 a:hover { text-decoration: underline; }
 
 /* ---- Layout ---- */
+.site-header,
 .topbar {
     position: sticky;
     top: 0;
@@ -80,9 +81,7 @@ a:hover { text-decoration: underline; }
     justify-content: space-between;
     gap: 1rem;
     padding: 0.85rem 1.25rem;
-    background: rgba(11, 18, 32, 0.85);
-    backdrop-filter: saturate(180%) blur(12px);
-    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    background: rgba(11, 18, 32, 0.97);
     border-bottom: 1px solid var(--border);
 }
 
@@ -142,7 +141,7 @@ a:hover { text-decoration: underline; }
     -webkit-backdrop-filter: blur(2px);
 }
 
-body.nav-open .nav-backdrop {
+.nav-backdrop:not([hidden]) {
     display: block;
 }
 
@@ -969,7 +968,7 @@ body.nav-open .nav-backdrop {
 }
 
 @media (max-width: 860px) {
-    .topbar {
+    .site-header {
         z-index: 42;
     }
 
@@ -984,6 +983,7 @@ body.nav-open .nav-backdrop {
         bottom: 0;
         z-index: 41;
         width: min(17.5rem, 88vw);
+        display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 0;
@@ -1045,6 +1045,8 @@ body.nav-open .nav-backdrop {
     }
 
     .nav-links {
+        flex: 1;
+        min-height: 0;
         flex-direction: column;
         gap: 0.15rem;
         padding: 0.65rem;
@@ -1607,7 +1609,7 @@ input.is-georgian {
 }
 
 @media (max-width: 480px) {
-    .topbar { padding: 0.7rem 1rem; }
+    .site-header { padding: 0.7rem 1rem; }
     .brand-text { display: none; }
     .quiz-stats .stat-value { font-size: 1.2rem; }
 }
