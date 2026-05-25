@@ -1,11 +1,30 @@
 (() => {
     "use strict";
 
+    const STORAGE_FONT_MODE = "kartuli.kbLetterFontMode";
+
+    /** Top Georgian typefaces used locally (web-loadable + system). */
+    const GEORGIA_RANDOM_FONTS = [
+        { label: "Noto Serif Georgian", family: '"Noto Serif Georgian", serif' },
+        { label: "BPG Glaho", family: '"BPG Glaho", sans-serif' },
+        { label: "BPG Nino Mtavruli", family: '"BPG Nino Mtavruli", sans-serif' },
+        { label: "BPG Arial", family: '"BPG Arial", sans-serif' },
+        { label: "BPG Sans", family: '"BPG Sans", sans-serif' },
+        { label: "BPG Phone Sans", family: '"BPG Phone Sans", sans-serif' },
+        { label: "BPG Mrgvlovani", family: '"BPG Mrgvlovani", sans-serif' },
+        { label: "BPG Ingiri Arial", family: '"BPG Ingiri Arial", sans-serif' },
+        { label: "BPG Ucnobi", family: '"BPG Ucnobi", sans-serif' },
+        { label: "BPG Nino Medium", family: '"BPG Nino Medium", sans-serif' },
+    ];
+
     const els = {
         kb: document.getElementById("kb"),
         card: document.getElementById("card"),
         direction: document.getElementById("card-direction"),
         prompt: document.getElementById("card-prompt"),
+        promptOverlay: document.getElementById("card-prompt-overlay"),
+        fontToggle: document.getElementById("card-font-toggle"),
+        fontToggleButtons: document.querySelectorAll(".card-font-toggle-btn"),
         grid: document.getElementById("kb-grid"),
         drawPanel: document.getElementById("kb-draw"),
         drawCanvas: document.getElementById("draw-canvas"),
@@ -60,6 +79,8 @@
         total: 0,
         keys: {},
         drawRevealed: false,
+        fontMode: "main",
+        randomFontFamily: "",
     };
 
     const canvasState = {
@@ -89,6 +110,107 @@
         if (cfg.interaction === "draw") return role === "reveal";
         const field = role === "prompt" ? cfg.promptKey : cfg.keysKey;
         return field === "georgian";
+    }
+
+    function isLetterToSoundMode() {
+        return state.direction === "geo_to_en";
+    }
+
+    function loadFontMode() {
+        try {
+            const stored = localStorage.getItem(STORAGE_FONT_MODE);
+            if (stored === "random" || stored === "main") return stored;
+        } catch {}
+        return "main";
+    }
+
+    function saveFontMode(mode) {
+        try {
+            localStorage.setItem(STORAGE_FONT_MODE, mode);
+        } catch {}
+    }
+
+    function applyLengthClass(el, text) {
+        if (!el) return;
+        const len = (text || "").length;
+        el.classList.remove("len-medium", "len-long", "len-xlong");
+        if (len > 30) el.classList.add("len-xlong");
+        else if (len > 18) el.classList.add("len-long");
+        else if (len > 10) el.classList.add("len-medium");
+    }
+
+    function pickRandomGeorgiaFont() {
+        const font = GEORGIA_RANDOM_FONTS[
+            Math.floor(Math.random() * GEORGIA_RANDOM_FONTS.length)
+        ];
+        state.randomFontFamily = font.family;
+        return font;
+    }
+
+    function setCardPrompt(text) {
+        const georgian = isGeorgianFont(state.direction, "prompt");
+        els.prompt.textContent = text;
+        els.prompt.classList.toggle("is-georgian", georgian);
+        applyLengthClass(els.prompt, text);
+
+        if (els.promptOverlay) {
+            els.promptOverlay.textContent = text;
+            els.promptOverlay.classList.toggle("is-georgian", georgian);
+            applyLengthClass(els.promptOverlay, text);
+        }
+
+        const useRandomOverlay =
+            isLetterToSoundMode() && state.fontMode === "random" && georgian;
+
+        if (!useRandomOverlay) {
+            els.prompt.classList.remove("is-layout-ruler");
+            if (els.promptOverlay) {
+                els.promptOverlay.hidden = true;
+                els.promptOverlay.setAttribute("aria-hidden", "true");
+                els.promptOverlay.style.fontFamily = "";
+            }
+            return;
+        }
+
+        if (!state.randomFontFamily) pickRandomGeorgiaFont();
+        els.prompt.classList.add("is-layout-ruler");
+        els.promptOverlay.style.fontFamily = state.randomFontFamily;
+        els.promptOverlay.hidden = false;
+        els.promptOverlay.removeAttribute("aria-hidden");
+    }
+
+    function updateFontToggleVisibility() {
+        const show = isLetterToSoundMode();
+        if (els.fontToggle) {
+            els.fontToggle.classList.toggle("kb-panel-hidden", !show);
+            els.fontToggle.hidden = !show;
+            if (show) {
+                els.fontToggle.setAttribute("aria-hidden", "false");
+            } else {
+                els.fontToggle.setAttribute("aria-hidden", "true");
+            }
+        }
+        if (!show && state.fontMode !== "main") {
+            setFontMode("main", { skipSave: false });
+        }
+    }
+
+    function setFontMode(mode, { skipSave = false } = {}) {
+        state.fontMode = mode;
+        if (mode === "random") {
+            pickRandomGeorgiaFont();
+        } else {
+            state.randomFontFamily = "";
+        }
+        if (!skipSave) saveFontMode(mode);
+        els.fontToggleButtons.forEach((btn) => {
+            const active = btn.dataset.fontMode === mode;
+            btn.classList.toggle("is-active", active);
+            btn.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+        if (state.current) {
+            setCardPrompt(state.current.prompt);
+        }
     }
 
     function clearKeyHighlights() {
@@ -282,12 +404,11 @@
         hideDrawReveal();
 
         state.current = pickNext();
+        if (isLetterToSoundMode() && state.fontMode === "random") {
+            pickRandomGeorgiaFont();
+        }
         els.direction.textContent = cfg.instruction;
-        els.prompt.textContent = state.current.prompt;
-        els.prompt.classList.toggle(
-            "is-georgian",
-            isGeorgianFont(state.direction, "prompt")
-        );
+        setCardPrompt(state.current.prompt);
         els.card.classList.toggle(
             "has-audio",
             !isDrawMode() && !!state.current.audio_url
@@ -376,12 +497,23 @@
             btn.setAttribute("aria-selected", active ? "true" : "false");
         });
         updateModeUI();
+        updateFontToggleVisibility();
         loadNext();
     }
 
     els.toggleButtons.forEach((btn) => {
         btn.addEventListener("click", () => setDirection(btn.dataset.direction));
     });
+
+    els.fontToggleButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const mode = btn.dataset.fontMode;
+            if (mode && mode !== state.fontMode) setFontMode(mode);
+        });
+    });
+
+    state.fontMode = loadFontMode();
+    setFontMode(state.fontMode, { skipSave: true });
 
     els.drawClear.addEventListener("click", () => {
         if (!state.drawRevealed) clearCanvas();
@@ -411,6 +543,7 @@
                 return;
             }
             updateModeUI();
+            updateFontToggleVisibility();
             loadNext();
         } catch (err) {
             els.grid.innerHTML =

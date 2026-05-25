@@ -395,6 +395,79 @@ a:hover { text-decoration: underline; }
     font-family: var(--font-ge);
 }
 
+/* Keyboard Letter → Sound: font toggle + overlay (layout from ruler text) */
+.card-font-toggle {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 3;
+    display: inline-flex;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    background: rgba(26, 36, 64, 0.92);
+    backdrop-filter: blur(6px);
+}
+
+.card-font-toggle.kb-panel-hidden {
+    display: none !important;
+}
+
+.card-font-toggle-btn {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--fg-muted);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.card-font-toggle-btn.is-active {
+    color: var(--fg);
+    background: rgba(56, 189, 248, 0.18);
+}
+
+.card-font-toggle-btn:not(.is-active):hover {
+    color: var(--fg);
+}
+
+.card-prompt-stack {
+    display: grid;
+    width: 100%;
+    justify-items: center;
+}
+
+.card-prompt-stack > .card-prompt {
+    grid-area: 1 / 1;
+    width: 100%;
+    margin: 0;
+}
+
+.card-prompt.is-layout-ruler {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent;
+    user-select: none;
+    pointer-events: none;
+}
+
+.card-prompt-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+    font-weight: 700;
+}
+
+.card-prompt-overlay[hidden] {
+    display: none !important;
+}
+
 .options {
     display: grid;
     gap: 0.6rem;

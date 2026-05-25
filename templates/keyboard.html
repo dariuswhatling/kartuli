@@ -4,6 +4,19 @@
 {% block title %}Keyboard – Kartuli{% endblock %}
 {% block nav_kb %}is-active{% endblock %}
 
+{% block extra_head %}
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bpg-glaho@1.0.0/css/bpg-glaho.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bpg-nino-mtavruli@1.0.0/css/bpg-nino-mtavruli.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bpg-arial@1.0.0/css/bpg-arial.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bpg-sans@1.0.0/css/bpg-sans.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bpg-phone-sans@1.0.0/css/bpg-phone-sans.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bpg-mrgvlovani@1.0.0/css/bpg-mrgvlovani.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bpg-ingiri-arial@1.0.0/css/bpg-ingiri-arial.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bpg-ucnobi@1.0.0/css/bpg-ucnobi.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bpg-nino-medium@1.0.0/css/bpg-nino-medium.min.css" />
+{% endblock %}
+
 {% block content %}
 <section class="kb" id="kb">
     <div class="quiz-stats" id="kb-stats">
@@ -46,8 +59,25 @@
     </div>
 
     <div class="card" id="card">
+        <div
+            class="card-font-toggle kb-panel-hidden"
+            id="card-font-toggle"
+            role="group"
+            aria-label="Letter display font"
+        >
+            <button type="button" class="card-font-toggle-btn is-active" data-font-mode="main">Main</button>
+            <button type="button" class="card-font-toggle-btn" data-font-mode="random">Random</button>
+        </div>
         <div class="card-direction" id="card-direction">Tap the matching letter</div>
-        <div class="card-prompt" id="card-prompt">…</div>
+        <div class="card-prompt-stack">
+            <div class="card-prompt" id="card-prompt">…</div>
+            <div
+                class="card-prompt card-prompt-overlay is-georgian"
+                id="card-prompt-overlay"
+                hidden
+                aria-hidden="true"
+            ></div>
+        </div>
     </div>
 
     <div class="kb-grid" id="kb-grid" aria-label="On-screen keyboard">
