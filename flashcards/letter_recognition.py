@@ -68,7 +68,7 @@ def _decode_image_payload(raw: str) -> bytes:
 
 def _ink_ratio(image_bytes: bytes, *, threshold: int = 240) -> float:
     img = Image.open(io.BytesIO(image_bytes)).convert("L")
-    px = img.get_flattened_data()
+    px = img.getdata()
     if not px:
         return 0.0
     dark = sum(1 for p in px if p < threshold)
@@ -78,7 +78,7 @@ def _ink_ratio(image_bytes: bytes, *, threshold: int = 240) -> float:
 def _crop_to_ink(image_bytes: bytes) -> Image.Image:
     """Return a cropped grayscale image containing only the drawn ink."""
     img = Image.open(io.BytesIO(image_bytes)).convert("L")
-    px = img.get_flattened_data()
+    px = img.getdata()
     if not px:
         raise ValueError("empty image")
 
@@ -303,7 +303,7 @@ def _letter_templates() -> dict[str, Image.Image]:
 
 def _binarize(img: Image.Image, size: int = 64) -> list[int]:
     small = img.resize((size, size), Image.Resampling.LANCZOS).convert("L")
-    return [1 if p < 128 else 0 for p in small.get_flattened_data()]
+    return [1 if p < 128 else 0 for p in small.getdata()]
 
 
 def _template_match(image_bytes: bytes) -> tuple[str | None, float]:
