@@ -5,9 +5,12 @@ from . import views
 urlpatterns = [
     path("quiz/", views.quiz_setup_page, name="quiz"),
     path("quiz/play/", views.quiz_play_page, name="quiz_play"),
+    path("flashcard/", views.flashcard_setup_page, name="flashcard"),
+    path("flashcard/play/", views.flashcard_play_page, name="flashcard_play"),
     path("keyboard/", views.keyboard_page, name="keyboard"),
     path("dictionary/", views.dictionary_page, name="dictionary"),
     path("api/quiz/next/", views.api_next, name="api_quiz_next"),
+    path("api/flashcard/next/", views.api_flashcard_next, name="api_flashcard_next"),
     path("api/alphabet/", views.api_alphabet, name="api_alphabet"),
     path("api/chapters/", views.api_chapters, name="api_chapters"),
     path(

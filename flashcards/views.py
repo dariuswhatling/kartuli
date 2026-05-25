@@ -55,6 +55,16 @@ def keyboard_page(request: HttpRequest) -> HttpResponse:
 
 
 @ensure_csrf_cookie
+def flashcard_setup_page(request: HttpRequest) -> HttpResponse:
+    return render(request, "flashcard_setup.html")
+
+
+@ensure_csrf_cookie
+def flashcard_play_page(request: HttpRequest) -> HttpResponse:
+    return render(request, "flashcard.html")
+
+
+@ensure_csrf_cookie
 def dictionary_page(request: HttpRequest) -> HttpResponse:
     return render(request, "dictionary.html")
 
@@ -225,6 +235,59 @@ def api_next(request: HttpRequest) -> JsonResponse:
             "prompt_label": FIELD_LABELS[prompt_field],
             "answer_label": FIELD_LABELS[answer_field],
             "prompt_audio_url": _card_audio_for_field(card, prompt_field),
+        }
+    )
+
+
+FLASHCARD_DIRECTIONS: tuple[tuple[str, str], ...] = (
+    ("romanised", "english"),
+    ("english", "romanised"),
+)
+
+
+@require_GET
+def api_flashcard_next(request: HttpRequest) -> JsonResponse:
+    """Next flashcard: romanised ↔ english only (no Georgian script)."""
+    chapter_ids = _parse_int_list(request.GET.get("chapters", ""))
+    last_id_raw = request.GET.get("last_id", "")
+    last_id = int(last_id_raw) if last_id_raw.isdigit() else None
+
+    cards_qs = Card.objects.all()
+    if chapter_ids:
+        cards_qs = cards_qs.filter(chapter_id__in=chapter_ids)
+
+    complete = [
+        c for c in cards_qs
+        if c.romanised and c.english
+    ]
+
+    if not complete:
+        return JsonResponse(
+            {
+                "error": "no_cards",
+                "message": (
+                    "No cards in the selected chapters have both Romanised and English."
+                ),
+            },
+            status=404,
+        )
+
+    pool = [c for c in complete if c.id != last_id] or complete
+    card = random.choice(pool)
+
+    prompt_field, answer_field = random.choice(FLASHCARD_DIRECTIONS)
+    prompt = getattr(card, prompt_field)
+    answer = getattr(card, answer_field)
+
+    return JsonResponse(
+        {
+            "card_id": card.id,
+            "prompt": prompt,
+            "answer": answer,
+            "prompt_field": prompt_field,
+            "answer_field": answer_field,
+            "prompt_label": FIELD_LABELS[prompt_field],
+            "answer_label": FIELD_LABELS[answer_field],
         }
     )
 

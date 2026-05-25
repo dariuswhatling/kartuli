@@ -771,7 +771,75 @@ a:hover { text-decoration: underline; }
     display: none !important;
 }
 
+/* ---- Flashcard mode (self-graded, romanised/english only) ---- */
+.fc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.fc .quiz-summary {
+    margin-bottom: 0;
+}
+
+.fc .quiz-stats {
+    margin-bottom: 0;
+}
+
+.fc .card {
+    padding: 0.65rem 0.75rem 0.75rem;
+    min-height: 0;
+    transition: opacity 0.15s ease;
+}
+
+.fc .card.fc-front-hidden {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    min-height: 0;
+    pointer-events: none;
+}
+
+.fc .card-direction {
+    font-size: 0.62rem;
+    margin-bottom: 0.2rem;
+}
+
+.fc .card-prompt {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    line-height: 1.1;
+}
+
+.fc-reveal {
+    text-align: center;
+    padding: 0.35rem 0 0.15rem;
+}
+
+.fc-reveal-label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    color: var(--fg-muted);
+    margin-bottom: 0.25rem;
+}
+
+.fc-reveal-answer {
+    font-size: clamp(2rem, 11vw, 3.25rem);
+    line-height: 1.1;
+    font-weight: 700;
+    margin: 0;
+    padding: 0 0.25rem;
+}
+
+.fc-check-full {
+    grid-column: 1 / -1;
+}
+
 @media (max-width: 420px) {
+    .nav-link { padding: 0.45rem 0.5rem; font-size: 0.8rem; }
     .kb-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.35rem; }
     .kb-key { min-height: 44px; }
 }

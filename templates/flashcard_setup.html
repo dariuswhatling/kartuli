@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Flashcard setup – Kartuli{% endblock %}
+{% block nav_fc %}is-active{% endblock %}
+
+{% block content %}
+<section class="setup">
+    <header class="setup-header">
+        <h1>Flashcard setup</h1>
+        <p>Pick chapters to study. Cards show Romanised or English only — think of the other, then flip.</p>
+    </header>
+
+    <section class="setup-block">
+        <div class="setup-block-header">
+            <h2>Chapters</h2>
+            <div class="setup-block-actions">
+                <button type="button" class="btn btn-ghost btn-icon" id="select-all">Select all</button>
+                <button type="button" class="btn btn-ghost btn-icon" id="select-none">Clear</button>
+            </div>
+        </div>
+        <div class="chapter-list" id="chapter-list">
+            <p class="dict-empty">Loading…</p>
+        </div>
+    </section>
+
+    <footer class="setup-footer">
+        <p class="setup-status" id="setup-status"></p>
+        <button type="button" class="btn btn-primary btn-lg" id="start">Start flashcards</button>
+    </footer>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/flashcard_setup.js' %}" defer></script>
+{% endblock %}
