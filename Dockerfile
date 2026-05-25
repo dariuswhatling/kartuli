@@ -13,6 +13,9 @@ RUN apt-get update \
         build-essential \
         libpq-dev \
         curl \
+        fonts-dejavu-core \
+        tesseract-ocr \
+        tesseract-ocr-kat \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt ./
