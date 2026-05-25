@@ -3,28 +3,31 @@
 
     const STORAGE_FONT_MODE = "kartuli.kbLetterFontMode";
 
-    /** Twenty common Georgian typefaces (preloaded on keyboard page). */
+    /**
+     * Twenty distinct Georgian typefaces common in Georgia (one per family — no
+     * Bold/Caps/Medium variants of the same design). Sylfaen + Noto load separately.
+     */
     const GEORGIA_RANDOM_FONTS = [
+        { label: "Sylfaen", family: "Sylfaen, serif" },
         { label: "Noto Sans Georgian", family: '"Noto Sans Georgian", sans-serif' },
         { label: "Noto Serif Georgian", family: '"Noto Serif Georgian", serif' },
         { label: "BPG Glaho", family: '"BPG Glaho", sans-serif' },
-        { label: "BPG Nino Mtavruli", family: '"BPG Nino Mtavruli", sans-serif' },
         { label: "BPG Arial", family: '"BPG Arial", sans-serif' },
         { label: "BPG Sans", family: '"BPG Sans", sans-serif' },
         { label: "BPG Phone Sans", family: '"BPG Phone Sans", sans-serif' },
         { label: "BPG Mrgvlovani", family: '"BPG Mrgvlovani", sans-serif' },
-        { label: "BPG Ingiri Arial", family: '"BPG Ingiri Arial", sans-serif' },
-        { label: "BPG Ucnobi", family: '"BPG Ucnobi", sans-serif' },
-        { label: "BPG Nino Medium", family: '"BPG Nino Medium", sans-serif' },
+        { label: "BPG Nateli Mtavruli", family: '"BPG Nateli Mtavruli", sans-serif' },
         { label: "BPG Algeti", family: '"BPG Algeti", sans-serif' },
-        { label: "BPG Arial Caps", family: '"BPG Arial Caps", sans-serif' },
-        { label: "BPG Nino Mkhedruli", family: '"BPG Nino Mkhedruli", sans-serif' },
-        { label: "BPG Nino Mtavruli Bold", family: '"BPG Nino Mtavruli Bold", sans-serif' },
-        { label: "BPG Glaho Bold", family: '"BPG Glaho Bold", sans-serif' },
-        { label: "BPG Rioni Arial", family: '"BPG Rioni Arial", sans-serif' },
-        { label: "BPG Nino Elite", family: '"BPG Nino Elite", sans-serif' },
-        { label: "BPG Glaho Arial", family: '"BPG Glaho Arial", sans-serif' },
+        { label: "BPG Ucnobi", family: '"BPG Ucnobi", sans-serif' },
         { label: "BPG Nuskha Modern", family: '"BPG Nuskha Modern", sans-serif' },
+        { label: "BPG Irubaqidze", family: '"BPG Irubaqidze", sans-serif' },
+        { label: "BPG Mikheil Stefane", family: '"BPG Mikheil Stefane", sans-serif' },
+        { label: "BPG Ingiri", family: '"BPG Ingiri", sans-serif' },
+        { label: "BPG Rioni Arial", family: '"BPG Rioni Arial", sans-serif' },
+        { label: "BPG Venuri", family: '"BPG Venuri", sans-serif' },
+        { label: "BPG Nostalgia", family: '"BPG Nostalgia", sans-serif' },
+        { label: "BPG Boxo", family: '"BPG Boxo", sans-serif' },
+        { label: "BPG ExtraSquare", family: '"BPG ExtraSquare", sans-serif' },
     ];
 
     let fontsPreloadPromise = null;

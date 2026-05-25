@@ -1,16 +1,8 @@
-/* BPG Georgian webfonts — one bundle (woff2) for keyboard random mode */
+/* Distinct BPG families for keyboard random mode (one face per family, no weight variants). */
 
 @font-face {
   font-family: "BPG Glaho";
   src: url("https://cdn.jsdelivr.net/npm/bpg-glaho@1.0.0/fonts/bpg-glaho-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "BPG Nino Mtavruli";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-nino-mtavruli@1.0.0/fonts/bpg-nino-mtavruli-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -49,24 +41,8 @@
 }
 
 @font-face {
-  font-family: "BPG Ingiri Arial";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-ingiri-arial@1.0.0/fonts/bpg-ingiri-arial-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "BPG Ucnobi";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-ucnobi@1.0.0/fonts/bpg-ucnobi-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "BPG Nino Medium";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-nino-medium@1.0.0/fonts/bpg-nino-medium-webfont.woff2") format("woff2");
+  font-family: "BPG Nateli Mtavruli";
+  src: url("https://cdn.jsdelivr.net/npm/bpg-nateli-mtavruli@1.0.0/fonts/bpg-nateli-mtavruli-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -81,48 +57,32 @@
 }
 
 @font-face {
-  font-family: "BPG Arial Caps";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-arial-caps@1.0.0/fonts/bpg-arial-caps-webfont.woff2") format("woff2");
+  font-family: "BPG Ucnobi";
+  src: url("https://cdn.jsdelivr.net/npm/bpg-ucnobi@1.0.0/fonts/bpg-ucnobi-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "BPG Nino Mkhedruli";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-nino-mkhedruli@1.0.0/fonts/bpg-nino-mkhedruli-webfont.woff2") format("woff2");
+  font-family: "BPG Nuskha Modern";
+  src: url("https://cdn.jsdelivr.net/npm/bpg-nuskha-modern@1.0.0/fonts/bpg-nuskha-modern-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "BPG Nino Mtavruli Bold";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-nino-mtavruli-bold@1.0.0/fonts/bpg-nino-mtavruli-bold-webfont.woff2") format("woff2");
+  font-family: "BPG Irubaqidze";
+  src: url("https://cdn.jsdelivr.net/npm/bpg-irubaqidze@1.0.0/fonts/bpg-irubaqidze-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "BPG Glaho Bold";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-glaho-bold@1.0.0/fonts/bpg-glaho-bold-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "BPG Rioni Arial";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-rioni-arial@1.0.0/fonts/bpg-rioni-arial-webfont.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "BPG Nino Elite";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-nino-elite@1.0.0/fonts/bpg-nino-elite-webfont.woff2") format("woff2");
+  font-family: "BPG Mikheil Stefane";
+  src: url("https://cdn.jsdelivr.net/npm/bpg-mikheil-stefane@1.0.0/fonts/bpg-mikheil-stefane-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -137,16 +97,40 @@
 }
 
 @font-face {
-  font-family: "BPG Glaho Arial";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-glaho-arial@1.0.0/fonts/bpg-glaho-arial-webfont.woff2") format("woff2");
+  font-family: "BPG Rioni Arial";
+  src: url("https://cdn.jsdelivr.net/npm/bpg-rioni-arial@1.0.0/fonts/bpg-rioni-arial-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "BPG Nuskha Modern";
-  src: url("https://cdn.jsdelivr.net/npm/bpg-nuskha-modern@1.0.0/fonts/bpg-nuskha-modern-webfont.woff2") format("woff2");
+  font-family: "BPG Venuri";
+  src: url("https://cdn.jsdelivr.net/npm/bpg-venuri@1.0.0/fonts/bpg-venuri-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BPG Nostalgia";
+  src: url("https://cdn.jsdelivr.net/npm/bpg-nostalgia@1.0.0/fonts/bpg-nostalgia-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BPG Boxo";
+  src: url("https://cdn.jsdelivr.net/npm/bpg-boxo@1.0.0/fonts/bpg-boxo-webfont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BPG ExtraSquare";
+  src: url("https://cdn.jsdelivr.net/npm/bpg-extrasquare@1.0.0/fonts/bpg-extrasquare-webfont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
