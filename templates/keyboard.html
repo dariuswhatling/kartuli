@@ -6,7 +6,7 @@
 
 {% block content %}
 <section class="kb" id="kb">
-    <div class="quiz-stats">
+    <div class="quiz-stats" id="kb-stats">
         <div class="stat">
             <span class="stat-label">Streak</span>
             <span class="stat-value" id="stat-streak">0</span>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="kb-draw kb-panel-hidden" id="kb-draw" hidden aria-hidden="true">
-        <p class="kb-draw-hint">Draw the Georgian letter that matches the sound.</p>
+        <p class="kb-draw-hint">Draw any Georgian letter, then press Check to see what OCR reads.</p>
         <div class="draw-canvas-wrap">
             <canvas id="draw-canvas" aria-label="Drawing area"></canvas>
         </div>

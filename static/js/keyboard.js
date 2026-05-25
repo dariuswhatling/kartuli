@@ -6,6 +6,7 @@
         direction: document.getElementById("card-direction"),
         prompt: document.getElementById("card-prompt"),
         grid: document.getElementById("kb-grid"),
+        stats: document.getElementById("kb-stats"),
         drawPanel: document.getElementById("kb-draw"),
         drawCanvas: document.getElementById("draw-canvas"),
         drawClear: document.getElementById("draw-clear"),
@@ -35,9 +36,7 @@
             interaction: "keyboard",
         },
         draw_to_geo: {
-            promptKey: "sound",
-            answerKey: "georgian",
-            instruction: "Draw the matching Georgian letter",
+            instruction: "Draw any letter, then press Check",
             interaction: "draw",
         },
     };
@@ -83,7 +82,7 @@
 
     function isGeorgianFont(direction, role) {
         const cfg = DIRECTIONS[direction];
-        if (cfg.interaction === "draw" && role === "prompt") return false;
+        if (cfg.interaction === "draw") return false;
         const field = role === "prompt" ? cfg.promptKey : cfg.keysKey;
         return field === "georgian";
     }
@@ -103,6 +102,10 @@
 
     function updateModeUI() {
         const draw = isDrawMode();
+        if (els.stats) {
+            els.stats.hidden = draw;
+            els.stats.setAttribute("aria-hidden", draw ? "true" : "false");
+        }
         if (draw) {
             els.grid.classList.add("kb-panel-hidden");
             els.grid.hidden = true;
@@ -169,7 +172,7 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
-        ctx.lineWidth = Math.max(6, Math.round(size / 28));
+        ctx.lineWidth = Math.max(10, Math.round(size / 18));
         ctx.strokeStyle = "#000000";
         canvasState.ctx = ctx;
         clearCanvas();
@@ -196,9 +199,22 @@
         };
     }
 
+    function exportDrawing() {
+        const exportSize = 512;
+        const off = document.createElement("canvas");
+        off.width = exportSize;
+        off.height = exportSize;
+        const ctx = off.getContext("2d");
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, exportSize, exportSize);
+        ctx.drawImage(els.drawCanvas, 0, 0, exportSize, exportSize);
+        return off.toDataURL("image/png");
+    }
+
     function startStroke(event) {
         if (state.locked || !isDrawMode()) return;
         event.preventDefault();
+        els.drawCanvas.setPointerCapture?.(event.pointerId);
         canvasState.drawing = true;
         const { x, y } = canvasCoords(event);
         const { ctx } = canvasState;
@@ -234,12 +250,30 @@
         };
     }
 
+    function setupDrawMode() {
+        const cfg = DIRECTIONS.draw_to_geo;
+        state.current = null;
+        clearKeyHighlights();
+        els.direction.textContent = cfg.instruction;
+        els.prompt.textContent = "";
+        els.prompt.classList.remove("is-georgian");
+        els.card.classList.remove("has-audio", "is-correct", "is-wrong");
+        clearCanvas();
+        els.drawCheck.disabled = false;
+        state.locked = false;
+    }
+
     function loadNext() {
         if (!state.pairs.length) return;
         const cfg = DIRECTIONS[state.direction];
+
+        if (isDrawMode()) {
+            setupDrawMode();
+            return;
+        }
+
         state.locked = true;
         setKeysEnabled(false);
-        if (isDrawMode()) els.drawCheck.disabled = true;
         clearKeyHighlights();
 
         state.current = pickNext();
@@ -249,17 +283,8 @@
             "is-georgian",
             isGeorgianFont(state.direction, "prompt")
         );
-        els.card.classList.toggle(
-            "has-audio",
-            !isDrawMode() && !!state.current.audio_url
-        );
-
-        if (isDrawMode()) {
-            clearCanvas();
-            els.drawCheck.disabled = false;
-        } else {
-            setKeysEnabled(true);
-        }
+        els.card.classList.toggle("has-audio", !!state.current.audio_url);
+        setKeysEnabled(true);
         state.locked = false;
     }
 
@@ -310,7 +335,7 @@
     }
 
     async function onDrawCheck() {
-        if (state.locked || !state.current || !isDrawMode()) return;
+        if (state.locked || !isDrawMode()) return;
         if (!canvasState.hasInk) {
             els.feedback.textContent = "Draw a letter in the box first";
             els.feedback.classList.remove("is-correct", "is-wrong");
@@ -321,6 +346,7 @@
         els.drawCheck.disabled = true;
         els.feedback.textContent = "Checking…";
         els.feedback.classList.remove("is-correct", "is-wrong");
+        els.card.classList.remove("is-correct", "is-wrong");
 
         try {
             const res = await fetch("/api/keyboard/recognize/", {
@@ -329,10 +355,7 @@
                     "Content-Type": "application/json",
                     "X-CSRFToken": getCsrfToken(),
                 },
-                body: JSON.stringify({
-                    image: els.drawCanvas.toDataURL("image/png"),
-                    expected: state.current.answer,
-                }),
+                body: JSON.stringify({ image: exportDrawing() }),
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok) {
@@ -340,21 +363,27 @@
             }
 
             if (data.recognized == null) {
+                const raw = data.raw_text ? ` (raw: ${data.raw_text})` : "";
                 els.feedback.textContent =
-                    data.message ||
-                    (data.raw_text
-                        ? `Couldn't read that (saw: ${data.raw_text})`
-                        : "Couldn't read that — try again");
+                    (data.message || "Couldn't read that") + raw;
                 els.feedback.classList.add("is-wrong");
-                state.locked = false;
-                els.drawCheck.disabled = false;
-                return;
+            } else {
+                const pct =
+                    data.confidence != null
+                        ? ` · ${Math.round(data.confidence * 100)}%`
+                        : "";
+                const raw =
+                    data.raw_text && data.raw_text !== data.recognized
+                        ? ` · raw: ${data.raw_text}`
+                        : "";
+                const src = data.source ? ` · ${data.source}` : "";
+                els.feedback.textContent = `Saw: ${data.recognized}${pct}${raw}${src}`;
+                els.feedback.classList.add("is-correct");
             }
-
-            finishRound(!!data.correct, data.recognized);
         } catch (err) {
             els.feedback.textContent = err.message || "Recognition failed";
             els.feedback.classList.add("is-wrong");
+        } finally {
             state.locked = false;
             els.drawCheck.disabled = false;
         }
