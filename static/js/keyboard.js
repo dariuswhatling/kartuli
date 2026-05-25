@@ -169,8 +169,8 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
-        ctx.lineWidth = 5;
-        ctx.strokeStyle = "#0b1220";
+        ctx.lineWidth = Math.max(6, Math.round(size / 28));
+        ctx.strokeStyle = "#000000";
         canvasState.ctx = ctx;
         clearCanvas();
     }
@@ -188,9 +188,11 @@
         const rect = els.drawCanvas.getBoundingClientRect();
         const clientX = event.clientX ?? event.touches?.[0]?.clientX ?? 0;
         const clientY = event.clientY ?? event.touches?.[0]?.clientY ?? 0;
+        const scaleX = canvasState.cssSize / (rect.width || canvasState.cssSize);
+        const scaleY = canvasState.cssSize / (rect.height || canvasState.cssSize);
         return {
-            x: clientX - rect.left,
-            y: clientY - rect.top,
+            x: (clientX - rect.left) * scaleX,
+            y: (clientY - rect.top) * scaleY,
         };
     }
 
@@ -339,7 +341,10 @@
 
             if (data.recognized == null) {
                 els.feedback.textContent =
-                    data.message || "Couldn't read that — try again";
+                    data.message ||
+                    (data.raw_text
+                        ? `Couldn't read that (saw: ${data.raw_text})`
+                        : "Couldn't read that — try again");
                 els.feedback.classList.add("is-wrong");
                 state.locked = false;
                 els.drawCheck.disabled = false;
@@ -376,6 +381,7 @@
     els.drawCheck.addEventListener("click", onDrawCheck);
 
     const canvas = els.drawCanvas;
+    canvas.style.touchAction = "none";
     canvas.addEventListener("pointerdown", startStroke);
     canvas.addEventListener("pointermove", moveStroke);
     canvas.addEventListener("pointerup", endStroke);
