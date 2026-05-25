@@ -1,41 +1,27 @@
-"""Recognise a hand-drawn Georgian letter against alphabet templates.
-
-Uses normalised cross-correlation on binarised, centred 64×64 glyphs rendered
-with Noto Sans Georgian. Works best for deliberate single-letter drawing in
-the on-screen box (phone finger or mouse), not cursive sentences.
-"""
+"""Recognise a hand-drawn Georgian letter via Google Cloud Vision API."""
 
 from __future__ import annotations
 
 import base64
-import io
+import json
 import logging
+import os
+import re
+import urllib.error
+import urllib.request
 from dataclasses import dataclass
-from functools import lru_cache
-from pathlib import Path
-
-import numpy as np
-from PIL import Image, ImageDraw, ImageFont
 
 from .alphabet import LETTERS
 
 logger = logging.getLogger(__name__)
 
-CANVAS_SIZE = 64
-# Minimum best-template correlation to accept a guess.
-MIN_SCORE = 0.42
-# Best must beat the runner-up by at least this much.
-MIN_MARGIN = 0.06
+VISION_URL = "https://vision.googleapis.com/v1/images:annotate"
+GEORGIAN_LETTER_RE = re.compile(r"[\u10A0-\u10FF]")
+KNOWN_LETTERS = frozenset(LETTERS)
 
-_FONT_CANDIDATES = (
-    Path("/usr/share/fonts/truetype/noto/NotoSansGeorgian-Regular.ttf"),
-    Path("/usr/share/fonts/opentype/noto/NotoSansGeorgian-Regular.ttf"),
-    Path("/usr/share/fonts/truetype/noto/NotoSansGeorgian[wdth,wght].ttf"),
-    Path(__file__).resolve().parent.parent
-    / "static"
-    / "fonts"
-    / "NotoSansGeorgian-Regular.ttf",
-)
+
+class VisionNotConfigured(RuntimeError):
+    """Raised when GOOGLE_CLOUD_VISION_API_KEY is missing."""
 
 
 @dataclass(frozen=True)
@@ -43,79 +29,17 @@ class RecognitionResult:
     letter: str | None
     confidence: float
     message: str = ""
+    raw_text: str = ""
 
 
-def _find_font() -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
-    for path in _FONT_CANDIDATES:
-        if path.is_file():
-            try:
-                return ImageFont.truetype(str(path), 52)
-            except OSError:
-                continue
-    logger.warning(
-        "Georgian font not found; letter recognition may be inaccurate. "
-        "Install fonts-noto-extra (Docker) or place NotoSansGeorgian-Regular.ttf "
-        "in static/fonts/."
-    )
-    return ImageFont.load_default()
-
-
-def _to_bitmap(img: Image.Image) -> np.ndarray | None:
-    """Centre ink in a CANVAS_SIZE square; return float array 0–1 or None if empty."""
-    gray = np.asarray(img.convert("L"), dtype=np.float32)
-    ink = gray < 200
-    if not ink.any():
-        return None
-
-    rows = np.where(ink.any(axis=1))[0]
-    cols = np.where(ink.any(axis=0))[0]
-    crop = gray[rows[0] : rows[-1] + 1, cols[0] : cols[-1] + 1]
-    ch, cw = crop.shape
-    if ch < 2 or cw < 2:
-        return None
-
-    side = max(ch, cw)
-    pad = int(side * 0.15)
-    padded = np.full((ch + 2 * pad, cw + 2 * pad), 255.0, dtype=np.float32)
-    padded[pad : pad + ch, pad : pad + cw] = crop
-
-    pil = Image.fromarray(padded.astype(np.uint8), mode="L")
-    pil = pil.resize((CANVAS_SIZE, CANVAS_SIZE), Image.Resampling.LANCZOS)
-    arr = np.asarray(pil, dtype=np.float32) / 255.0
-    return 1.0 - arr  # ink = 1, background = 0
-
-
-def _render_letter_glyph(letter: str, font: ImageFont.FreeTypeFont) -> np.ndarray:
-    size = 128
-    img = Image.new("L", (size, size), 255)
-    draw = ImageDraw.Draw(img)
-    bbox = draw.textbbox((0, 0), letter, font=font)
-    tw = bbox[2] - bbox[0]
-    th = bbox[3] - bbox[1]
-    x = (size - tw) / 2 - bbox[0]
-    y = (size - th) / 2 - bbox[1]
-    draw.text((x, y), letter, fill=0, font=font)
-    bitmap = _to_bitmap(img)
-    if bitmap is None:
-        raise RuntimeError(f"Failed to render template for {letter!r}")
-    return bitmap
-
-
-@lru_cache(maxsize=1)
-def _letter_templates() -> dict[str, np.ndarray]:
-    font = _find_font()
-    return {letter: _render_letter_glyph(letter, font) for letter in LETTERS}
-
-
-def _ncc(a: np.ndarray, b: np.ndarray) -> float:
-    af = a.ravel().astype(np.float64)
-    bf = b.ravel().astype(np.float64)
-    af -= af.mean()
-    bf -= bf.mean()
-    denom = np.linalg.norm(af) * np.linalg.norm(bf)
-    if denom < 1e-9:
-        return 0.0
-    return float(np.dot(af, bf) / denom)
+def _api_key() -> str:
+    key = os.environ.get("GOOGLE_CLOUD_VISION_API_KEY", "").strip()
+    if not key:
+        raise VisionNotConfigured(
+            "GOOGLE_CLOUD_VISION_API_KEY is not set. "
+            "Create a Google Cloud Vision API key and add it to your environment."
+        )
+    return key
 
 
 def _decode_image_payload(raw: str) -> bytes:
@@ -124,35 +48,90 @@ def _decode_image_payload(raw: str) -> bytes:
     return base64.b64decode(raw)
 
 
+def _extract_georgian_letter(text: str) -> str | None:
+    """Return the first Georgian letter found in Vision OCR output."""
+    for ch in text.replace("\n", "").replace(" ", ""):
+        if GEORGIAN_LETTER_RE.match(ch) and ch in KNOWN_LETTERS:
+            return ch
+    match = GEORGIAN_LETTER_RE.search(text)
+    if not match:
+        return None
+    letter = match.group(0)
+    return letter if letter in KNOWN_LETTERS else letter[0]
+
+
+def _call_vision_api(image_bytes: bytes) -> dict:
+    api_key = _api_key()
+    body = {
+        "requests": [
+            {
+                "image": {"content": base64.b64encode(image_bytes).decode("ascii")},
+                "features": [{"type": "TEXT_DETECTION", "maxResults": 1}],
+                "imageContext": {"languageHints": ["ka"]},
+            }
+        ]
+    }
+    url = f"{VISION_URL}?key={api_key}"
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(body).encode("utf-8"),
+        method="POST",
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", errors="replace")[:500]
+        logger.warning("Vision API HTTP %s: %s", e.code, detail)
+        raise VisionNotConfigured(f"Vision API error ({e.code}): {detail}") from e
+    except urllib.error.URLError as e:
+        raise VisionNotConfigured(f"Vision API connection failed: {e.reason}") from e
+
+
 def recognize_letter_image(image_bytes: bytes) -> RecognitionResult:
-    try:
-        img = Image.open(io.BytesIO(image_bytes))
-    except Exception:
-        return RecognitionResult(None, 0.0, message="Invalid image data.")
-
-    drawn = _to_bitmap(img)
-    if drawn is None:
-        return RecognitionResult(None, 0.0, message="Draw a letter in the box first.")
+    if not image_bytes:
+        return RecognitionResult(None, 0.0, message="No image was sent.")
 
     try:
-        templates = _letter_templates()
-    except Exception as e:
-        logger.exception("Letter templates unavailable")
-        return RecognitionResult(None, 0.0, message=f"Recognition unavailable: {e}")
+        payload = _call_vision_api(image_bytes)
+    except VisionNotConfigured as e:
+        return RecognitionResult(None, 0.0, message=str(e))
 
-    scores = {letter: _ncc(drawn, tmpl) for letter, tmpl in templates.items()}
-    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    best_letter, best_score = ranked[0]
-    second_score = ranked[1][1] if len(ranked) > 1 else 0.0
-
-    if best_score < MIN_SCORE or (best_score - second_score) < MIN_MARGIN:
+    responses = payload.get("responses") or []
+    if not responses:
         return RecognitionResult(
-            None,
-            best_score,
-            message="Couldn't read that — try drawing larger and clearer.",
+            None, 0.0, message="No response from Vision API.",
         )
 
-    return RecognitionResult(best_letter, best_score, message="")
+    first = responses[0]
+    if "error" in first:
+        err = first["error"]
+        return RecognitionResult(
+            None,
+            0.0,
+            message=err.get("message", "Vision API returned an error."),
+        )
+
+    annotations = first.get("textAnnotations") or []
+    if not annotations:
+        return RecognitionResult(
+            None,
+            0.0,
+            message="Couldn't read a letter — try drawing larger and clearer.",
+        )
+
+    raw_text = (annotations[0].get("description") or "").strip()
+    letter = _extract_georgian_letter(raw_text)
+    if not letter:
+        return RecognitionResult(
+            None,
+            0.0,
+            message="No Georgian letter detected — draw one letter in the box.",
+            raw_text=raw_text,
+        )
+
+    return RecognitionResult(letter, 0.9, raw_text=raw_text)
 
 
 def recognize_letter_payload(data_url_or_b64: str, *, expected: str = "") -> dict:
@@ -178,4 +157,5 @@ def recognize_letter_payload(data_url_or_b64: str, *, expected: str = "") -> dic
         "correct": correct,
         "message": result.message,
         "expected": expected or None,
+        "raw_text": result.raw_text or None,
     }

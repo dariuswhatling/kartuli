@@ -626,6 +626,13 @@ a:hover { text-decoration: underline; }
     padding: 1rem 0;
 }
 
+/* Hide keyboard or draw panel when the other mode is active */
+.kb-panel-hidden,
+.kb-grid[hidden],
+.kb-draw[hidden] {
+    display: none !important;
+}
+
 /* Keyboard draw mode */
 .kb-draw {
     display: flex;

@@ -103,12 +103,24 @@
 
     function updateModeUI() {
         const draw = isDrawMode();
-        els.grid.hidden = draw;
-        els.drawPanel.hidden = !draw;
         if (draw) {
+            els.grid.classList.add("kb-panel-hidden");
+            els.grid.hidden = true;
+            els.grid.setAttribute("aria-hidden", "true");
+            els.grid.innerHTML = "";
+            state.keys = {};
+            els.drawPanel.classList.remove("kb-panel-hidden");
+            els.drawPanel.hidden = false;
+            els.drawPanel.removeAttribute("aria-hidden");
             setupCanvas();
             clearCanvas();
         } else {
+            els.drawPanel.classList.add("kb-panel-hidden");
+            els.drawPanel.hidden = true;
+            els.drawPanel.setAttribute("aria-hidden", "true");
+            els.grid.classList.remove("kb-panel-hidden");
+            els.grid.hidden = false;
+            els.grid.removeAttribute("aria-hidden");
             buildKeyboard();
         }
     }
