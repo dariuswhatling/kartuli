@@ -1,0 +1,5407 @@
+{
+  "verbs": {
+    "name": "Verbs",
+    "words": [
+      {
+        "georgian": "იყოს",
+        "english": "to be",
+        "romanised": "ikos"
+      },
+      {
+        "georgian": "ჰყავდეს",
+        "english": "to have",
+        "romanised": "hqavdes"
+      },
+      {
+        "georgian": "ქონდეს",
+        "english": "to hold",
+        "romanised": "kondes"
+      },
+      {
+        "georgian": "გაკეთება",
+        "english": "to do/make",
+        "romanised": "gaketeba"
+      },
+      {
+        "georgian": "გატეხვა",
+        "english": "to break",
+        "romanised": "gatekhva"
+      },
+      {
+        "georgian": "დაფარვა",
+        "english": "to cover",
+        "romanised": "dap'arva"
+      },
+      {
+        "georgian": "მიზიდვა",
+        "english": "to attract",
+        "romanised": "mizidva"
+      },
+      {
+        "georgian": "დასვენება",
+        "english": "to rest",
+        "romanised": "dasveneba"
+      },
+      {
+        "georgian": "პასუხის გაცემა",
+        "english": "to answer",
+        "romanised": "pasukhis gatsema"
+      },
+      {
+        "georgian": "ბრძოლა",
+        "english": "to fight",
+        "romanised": "brdzola"
+      },
+      {
+        "georgian": "ხტომა",
+        "english": "to jump",
+        "romanised": "khtoma"
+      },
+      {
+        "georgian": "გადატანა",
+        "english": "to move",
+        "romanised": "gadatana"
+      },
+      {
+        "georgian": "დარტყმა",
+        "english": "to hit",
+        "romanised": "dartykhma"
+      },
+      {
+        "georgian": "დასველება",
+        "english": "to wet",
+        "romanised": "dasveleba"
+      },
+      {
+        "georgian": "ტირილი",
+        "english": "to cry",
+        "romanised": "tirili"
+      },
+      {
+        "georgian": "იცინება",
+        "english": "to laugh",
+        "romanised": "itsiniba"
+      },
+      {
+        "georgian": "ყვირილი",
+        "english": "to shout",
+        "romanised": "qvirili"
+      },
+      {
+        "georgian": "მღერა",
+        "english": "to sing",
+        "romanised": "mghera"
+      },
+      {
+        "georgian": "გაფრთხილება",
+        "english": "to warn",
+        "romanised": "gaprtkhileba"
+      },
+      {
+        "georgian": "ზომვა",
+        "english": "to measure",
+        "romanised": "zomva"
+      },
+      {
+        "georgian": "წონა",
+        "english": "to weigh",
+        "romanised": "ts'ona"
+      },
+      {
+        "georgian": "სიყვარული",
+        "english": "to love",
+        "romanised": "siqvaruli"
+      },
+      {
+        "georgian": "სიძულვილი",
+        "english": "to hate",
+        "romanised": "sidzulvili"
+      },
+      {
+        "georgian": "დაშავება",
+        "english": "to hurt",
+        "romanised": "dashaveba"
+      },
+      {
+        "georgian": "დადენა",
+        "english": "to bleed",
+        "romanised": "dadena"
+      },
+      {
+        "georgian": "გამოჯანმრთელება",
+        "english": "to heal",
+        "romanised": "gamojanmrteleba"
+      },
+      {
+        "georgian": "დაბინძურება",
+        "english": "to dirty",
+        "romanised": "dabinzureba"
+      },
+      {
+        "georgian": "დასუფთავება",
+        "english": "to clean",
+        "romanised": "dasuftaveba"
+      },
+      {
+        "georgian": "დაჭერა",
+        "english": "to grab",
+        "romanised": "datch'era"
+      },
+      {
+        "georgian": "გაშვება",
+        "english": "to release",
+        "romanised": "gashveba"
+      },
+      {
+        "georgian": "ბიძგი",
+        "english": "to push",
+        "romanised": "bidzgi"
+      },
+      {
+        "georgian": "გადაგდება",
+        "english": "to throw",
+        "romanised": "gadagdeba"
+      },
+      {
+        "georgian": "დაჭრა",
+        "english": "to cut",
+        "romanised": "dach'ra"
+      },
+      {
+        "georgian": "შეკვრა",
+        "english": "to tie",
+        "romanised": "shekvra"
+      },
+      {
+        "georgian": "გაშლა",
+        "english": "to untie",
+        "romanised": "gashla"
+      },
+      {
+        "georgian": "მოღუნვა",
+        "english": "to bend/fold",
+        "romanised": "moghunva"
+      },
+      {
+        "georgian": "შერევა",
+        "english": "to mix",
+        "romanised": "shereva"
+      },
+      {
+        "georgian": "გაყოფა",
+        "english": "to divide",
+        "romanised": "gagopha"
+      },
+      {
+        "georgian": "დამატება",
+        "english": "to add",
+        "romanised": "damateba"
+      },
+      {
+        "georgian": "გამოკლება",
+        "english": "to subtract",
+        "romanised": "gamokleba"
+      },
+      {
+        "georgian": "გამრავლება",
+        "english": "to multiply",
+        "romanised": "gamravleba"
+      },
+      {
+        "georgian": "გამორთვა",
+        "english": "to turn off",
+        "romanised": "gamortva"
+      },
+      {
+        "georgian": "ჩართვა",
+        "english": "to turn on",
+        "romanised": "chartva"
+      },
+      {
+        "georgian": "განადგურება",
+        "english": "to destroy",
+        "romanised": "ganadgureba"
+      },
+      {
+        "georgian": "მშენებლობა",
+        "english": "to build",
+        "romanised": "mshenebloba"
+      },
+      {
+        "georgian": "დადება",
+        "english": "to place",
+        "romanised": "dadeba"
+      },
+      {
+        "georgian": "ვარცხნა",
+        "english": "to comb",
+        "romanised": "vartskhna"
+      },
+      {
+        "georgian": "პარსვა",
+        "english": "to shave",
+        "romanised": "parsva"
+      },
+      {
+        "georgian": "ბანაობა",
+        "english": "to bathe",
+        "romanised": "banaoba"
+      },
+      {
+        "georgian": "ეჭვი",
+        "english": "to doubt",
+        "romanised": "echvi"
+      },
+      {
+        "georgian": "დავიწყება",
+        "english": "to forget",
+        "romanised": "davits'qheba"
+      },
+      {
+        "georgian": "დამახსოვრება",
+        "english": "to remember",
+        "romanised": "damakhsovreba"
+      },
+      {
+        "georgian": "შეგროვება",
+        "english": "to gather",
+        "romanised": "shegroveba"
+      },
+      {
+        "georgian": "დაშორება",
+        "english": "to separate",
+        "romanised": "dashoreba"
+      },
+      {
+        "georgian": "გაგზავნა",
+        "english": "to send",
+        "romanised": "gagzavna"
+      },
+      {
+        "georgian": "აღება",
+        "english": "to pick up",
+        "romanised": "agheba"
+      },
+      {
+        "georgian": "დალოდება",
+        "english": "to wait",
+        "romanised": "dalodeba"
+      },
+      {
+        "georgian": "მოგზაურობა",
+        "english": "to travel",
+        "romanised": "mogzauroba"
+      },
+      {
+        "georgian": "ამტანობა",
+        "english": "to endure",
+        "romanised": "amtanoba"
+      },
+      {
+        "georgian": "გამოთვლა",
+        "english": "to calculate",
+        "romanised": "gamotvla"
+      },
+      {
+        "georgian": "დაზოგვა",
+        "english": "to save (money)",
+        "romanised": "dazogva"
+      },
+      {
+        "georgian": "დახარჯვა",
+        "english": "to spend",
+        "romanised": "dakhardzhva"
+      },
+      {
+        "georgian": "დატენვა",
+        "english": "to charge/load",
+        "romanised": "datenva"
+      },
+      {
+        "georgian": "გადმოწერა",
+        "english": "to unload/download",
+        "romanised": "gadmotsera"
+      },
+      {
+        "georgian": "მუშაობა",
+        "english": "to function/work",
+        "romanised": "mushaoba"
+      },
+      {
+        "georgian": "წარდგენა",
+        "english": "to present",
+        "romanised": "tsardgena"
+      },
+      {
+        "georgian": "დამტკიცება",
+        "english": "to accept",
+        "romanised": "damtkitseba"
+      },
+      {
+        "georgian": "მიღწევა",
+        "english": "to achieve",
+        "romanised": "mightseva"
+      },
+      {
+        "georgian": "აღნიშვნა",
+        "english": "to explain",
+        "romanised": "aghnishvna"
+      },
+      {
+        "georgian": "დაკითხვა",
+        "english": "to ask",
+        "romanised": "dakitkhva"
+      },
+      {
+        "georgian": "შეხება",
+        "english": "to touch/play (an instrument)",
+        "romanised": "shekheba"
+      },
+      {
+        "georgian": "ცნობა",
+        "english": "to recognize",
+        "romanised": "tsnoba"
+      },
+      {
+        "georgian": "სწავლა",
+        "english": "to study",
+        "romanised": "sts'avla"
+      },
+      {
+        "georgian": "მიღწევა",
+        "english": "to reach",
+        "romanised": "mightseva"
+      },
+      {
+        "georgian": "დაბადება",
+        "english": "to be born",
+        "romanised": "dababadeba"
+      },
+      {
+        "georgian": "მიმართვა",
+        "english": "to direct",
+        "romanised": "mimartva"
+      },
+      {
+        "georgian": "ქრუენა",
+        "english": "to run",
+        "romanised": "krvena"
+      },
+      {
+        "georgian": "გამოყენება",
+        "english": "to use",
+        "romanised": "gamoyeneba"
+      },
+      {
+        "georgian": "გადახდა",
+        "english": "to pay",
+        "romanised": "gadakhda"
+      },
+      {
+        "georgian": "დახმარება",
+        "english": "to help",
+        "romanised": "dakhmareba"
+      },
+      {
+        "georgian": "მოყვარეობა",
+        "english": "to like",
+        "romanised": "moqvareoba"
+      },
+      {
+        "georgian": "თამაშები",
+        "english": "to play",
+        "romanised": "t'amashobi"
+      },
+      {
+        "georgian": "მოსმენა",
+        "english": "to listen",
+        "romanised": "mosmena"
+      },
+      {
+        "georgian": "აღება",
+        "english": "to lift",
+        "romanised": "agheba"
+      },
+      {
+        "georgian": "נסწარი",
+        "english": "to try",
+        "romanised": "nats'ari"
+      },
+      {
+        "georgian": "განვითარება",
+        "english": "to develop",
+        "romanised": "ganvitareba"
+      },
+      {
+        "georgian": "ანიშნვა",
+        "english": "to point out",
+        "romanised": "anishvna"
+      },
+      {
+        "georgian": "მომზადება",
+        "english": "to prepare",
+        "romanised": "momzadeba"
+      },
+      {
+        "georgian": "კითხვის დასმა",
+        "english": "to ask",
+        "romanised": "kitkhvis dasma"
+      },
+      {
+        "georgian": "შეთავაზება",
+        "english": "to offer",
+        "romanised": "shethavazeba"
+      },
+      {
+        "georgian": "აღმოჩენა",
+        "english": "to discover",
+        "romanised": "aghmochena"
+      },
+      {
+        "georgian": "გაგება",
+        "english": "to understand",
+        "romanised": "gageba"
+      },
+      {
+        "georgian": "შესრულება",
+        "english": "to fulfill",
+        "romanised": "shesruleba"
+      },
+      {
+        "georgian": "აღება",
+        "english": "to lift",
+        "romanised": "agheba"
+      },
+      {
+        "georgian": "დაარსება",
+        "english": "to establish",
+        "romanised": "daarseba"
+      },
+      {
+        "georgian": "მონაწილეობა",
+        "english": "to participate",
+        "romanised": "monats'ileoba"
+      },
+      {
+        "georgian": "გამოიკვლევა",
+        "english": "to imagine",
+        "romanised": "gamoikvleva"
+      },
+      {
+        "georgian": "მიღება",
+        "english": "to obtain",
+        "romanised": "migheba"
+      },
+      {
+        "georgian": "შეზღუდვა",
+        "english": "to stop",
+        "romanised": "shesghudva"
+      },
+      {
+        "georgian": "არჩევა",
+        "english": "to choose",
+        "romanised": "artseva"
+      },
+      {
+        "georgian": "ტანჯვა",
+        "english": "to suffer",
+        "romanised": "t'anjva"
+      },
+      {
+        "georgian": "სესხი",
+        "english": "to lend",
+        "romanised": "seskhi"
+      },
+      {
+        "georgian": "დაშვება",
+        "english": "to allow",
+        "romanised": "dashveba"
+      },
+      {
+        "georgian": "გადაწერა",
+        "english": "to declare",
+        "romanised": "gadats'era"
+      },
+      {
+        "georgian": "დამოწმება",
+        "english": "to affirm",
+        "romanised": "damots'kheba"
+      },
+      {
+        "georgian": "შედარება",
+        "english": "to compare",
+        "romanised": "shedareba"
+      },
+      {
+        "georgian": "დარწმუნება",
+        "english": "to assure",
+        "romanised": "dartsmuneba"
+      },
+      {
+        "georgian": "დაჭერა",
+        "english": "to sustain",
+        "romanised": "datshera"
+      },
+      {
+        "georgian": "გასინჯვა",
+        "english": "to check",
+        "romanised": "gasinjva"
+      },
+      {
+        "georgian": "მხარდაჭერა",
+        "english": "to support",
+        "romanised": "mkhardatshera"
+      },
+      {
+        "georgian": "განრისხვა",
+        "english": "to risk",
+        "romanised": "ganrishva"
+      },
+      {
+        "georgian": "დაცვის",
+        "english": "to defend",
+        "romanised": "dats'vis"
+      },
+      {
+        "georgian": "გაცვლა",
+        "english": "to protect",
+        "romanised": "gats'vla"
+      },
+      {
+        "georgian": "გამოწვევა",
+        "english": "to provoke",
+        "romanised": "gamots'vleba"
+      },
+      {
+        "georgian": "დამალვა",
+        "english": "to hide",
+        "romanised": "damalva"
+      },
+      {
+        "georgian": "დამოკლება",
+        "english": "to reduce",
+        "romanised": "damokleba"
+      },
+      {
+        "georgian": "დაჭერილობა",
+        "english": "to accuse",
+        "romanised": "dats'eriloba"
+      },
+      {
+        "georgian": "ინტერპრეტაცია",
+        "english": "to interpret",
+        "romanised": "interp'retats'ia"
+      },
+      {
+        "georgian": "მმართველობა",
+        "english": "to dominate",
+        "romanised": "mavrt'leloeba"
+      },
+      {
+        "georgian": "ცეკვა",
+        "english": "to dance",
+        "romanised": "tsekva"
+      },
+      {
+        "georgian": "მომზადება",
+        "english": "to cook",
+        "romanised": "momzadeba"
+      },
+      {
+        "georgian": "გამოიცვლა",
+        "english": "to draw",
+        "romanised": "gamoits'vla"
+      },
+      {
+        "georgian": "ოცნება",
+        "english": "to dream",
+        "romanised": "ots'neba"
+      },
+      {
+        "georgian": "შესწორება",
+        "english": "to fix",
+        "romanised": "shesst'oreba"
+      },
+      {
+        "georgian": "კონსტრუირება",
+        "english": "to build",
+        "romanised": "konst'ruireba"
+      },
+      {
+        "georgian": "აკეთება",
+        "english": "to do/make",
+        "romanised": "aketeba"
+      },
+      {
+        "georgian": "უნდა იყოს",
+        "english": "to be",
+        "romanised": "unda ikos"
+      },
+      {
+        "georgian": "იქნებ",
+        "english": "to be (temporary)",
+        "romanised": "iqneb"
+      },
+      {
+        "georgian": "ქონდეს",
+        "english": "to have",
+        "romanised": "khondes"
+      },
+      {
+        "georgian": "შეძლება",
+        "english": "to be able to",
+        "romanised": "shedzleba"
+      },
+      {
+        "georgian": "თქვა",
+        "english": "to say",
+        "romanised": "tk'va"
+      },
+      {
+        "georgian": "ყურება",
+        "english": "to see",
+        "romanised": "q'ureba"
+      },
+      {
+        "georgian": "მიცემა",
+        "english": "to give",
+        "romanised": "mi'tsema"
+      },
+      {
+        "georgian": "ცოდნა",
+        "english": "to know",
+        "romanised": "tsodna"
+      },
+      {
+        "georgian": "სურვილი",
+        "english": "to want/love",
+        "romanised": "survili"
+      },
+      {
+        "georgian": "მომგზავრობს",
+        "english": "to arrive",
+        "romanised": "momgzavrobs"
+      },
+      {
+        "georgian": "გადასვლა",
+        "english": "to pass/happen",
+        "romanised": "gadasvla"
+      },
+      {
+        "georgian": "დალაგება",
+        "english": "to owe/must",
+        "romanised": "dalageba"
+      },
+      {
+        "georgian": "დადო",
+        "english": "to put",
+        "romanised": "dado"
+      },
+      {
+        "georgian": "მომეტებული",
+        "english": "to seem",
+        "romanised": "moetebuli"
+      },
+      {
+        "georgian": "დარჩენა",
+        "english": "to stay/remain",
+        "romanised": "darchena"
+      },
+      {
+        "georgian": "ჯერევა",
+        "english": "to believe",
+        "romanised": "jer'eva"
+      },
+      {
+        "georgian": "საუბარი",
+        "english": "to speak",
+        "romanised": "saubari"
+      },
+      {
+        "georgian": "მიღება",
+        "english": "to carry/take",
+        "romanised": "migheba"
+      },
+      {
+        "georgian": "გადაწყვეტა",
+        "english": "to leave",
+        "romanised": "gadatseta"
+      },
+      {
+        "georgian": "გაგრძელება",
+        "english": "to follow",
+        "romanised": "gagrdzeleba"
+      },
+      {
+        "georgian": "მონახვა",
+        "english": "to find",
+        "romanised": "monakhva"
+      },
+      {
+        "georgian": "მოხმობება",
+        "english": "to call",
+        "romanised": "mokhmbeba"
+      },
+      {
+        "georgian": "მოსვლა",
+        "english": "to come",
+        "romanised": "mosvla"
+      },
+      {
+        "georgian": "მონაწილეობა",
+        "english": "to think",
+        "romanised": "monats'ileoba"
+      },
+      {
+        "georgian": "დახრა",
+        "english": "to leave",
+        "romanised": "dakhra"
+      },
+      {
+        "georgian": "გავარდნა",
+        "english": "to return",
+        "romanised": "gavardna"
+      },
+      {
+        "georgian": "გამართვა",
+        "english": "to take/drink",
+        "romanised": "gamartva"
+      },
+      {
+        "georgian": "იცნობი",
+        "english": "to know (someone)",
+        "romanised": "itsnobi"
+      },
+      {
+        "georgian": "ცხოვრება",
+        "english": "to live",
+        "romanised": "tskhovreba"
+      },
+      {
+        "georgian": "გრძნობა",
+        "english": "to feel",
+        "romanised": "grzhnoba"
+      },
+      {
+        "georgian": "ცდადა",
+        "english": "to try/treat",
+        "romanised": "tsdada"
+      },
+      {
+        "georgian": "მოვალეს",
+        "english": "to look at",
+        "romanised": "movaless"
+      },
+      {
+        "georgian": "გათვლა",
+        "english": "to count/tell",
+        "romanised": "gatvla"
+      },
+      {
+        "georgian": "დაწყება",
+        "english": "to start",
+        "romanised": "dats'kheba"
+      },
+      {
+        "georgian": "მოლოდინი",
+        "english": "to wait/hope",
+        "romanised": "molodini"
+      },
+      {
+        "georgian": "ძებნა",
+        "english": "to search/look for",
+        "romanised": "dzebna"
+      },
+      {
+        "georgian": "შესვლა",
+        "english": "to enter",
+        "romanised": "shesvla"
+      },
+      {
+        "georgian": "შრომა",
+        "english": "to work",
+        "romanised": "shroma"
+      },
+      {
+        "georgian": "წერა",
+        "english": "to write",
+        "romanised": "ts'era"
+      },
+      {
+        "georgian": "წაგება",
+        "english": "to lose",
+        "romanised": "tsageba"
+      },
+      {
+        "georgian": "წარმოება",
+        "english": "to produce",
+        "romanised": "tsarmoeba"
+      },
+      {
+        "georgian": "შემთხვევა",
+        "english": "to happen",
+        "romanised": "shemtkhveba"
+      },
+      {
+        "georgian": "გაგება",
+        "english": "to understand",
+        "romanised": "gageba"
+      },
+      {
+        "georgian": "მიუთითეთ",
+        "english": "to ask for",
+        "romanised": "miut'it'et"
+      },
+      {
+        "georgian": "მიღება",
+        "english": "to receive",
+        "romanised": "migheba"
+      },
+      {
+        "georgian": "გახსენება",
+        "english": "to remember",
+        "romanised": "ghaksnema"
+      },
+      {
+        "georgian": "დამთავრება",
+        "english": "to finish",
+        "romanised": "damtavreba"
+      },
+      {
+        "georgian": "გადაცემის უფლება",
+        "english": "to allow",
+        "romanised": "gadacemis ufleba"
+      },
+      {
+        "georgian": "გამოცემა",
+        "english": "to appear",
+        "romanised": "gamotsema"
+      },
+      {
+        "georgian": "მიღება",
+        "english": "to get",
+        "romanised": "migheba"
+      },
+      {
+        "georgian": "დაწყება",
+        "english": "to begin",
+        "romanised": "dats'kheba"
+      },
+      {
+        "georgian": "მსახურება",
+        "english": "to serve",
+        "romanised": "msakhureba"
+      },
+      {
+        "georgian": "გატანა",
+        "english": "to take out",
+        "romanised": "gat'ana"
+      },
+      {
+        "georgian": "მოყვება",
+        "english": "to need",
+        "romanised": "mokhveba"
+      },
+      {
+        "georgian": "წაკითხვა",
+        "english": "to read",
+        "romanised": "ts'ak'ithva"
+      },
+      {
+        "georgian": "ჩავარდნა",
+        "english": "to fall",
+        "romanised": "chavardna"
+      },
+      {
+        "georgian": "ცვლა",
+        "english": "to change",
+        "romanised": "ts'vla"
+      },
+      {
+        "georgian": "მიტანება",
+        "english": "to deliver",
+        "romanised": "mitaneba"
+      },
+      {
+        "georgian": "დაწესება",
+        "english": "to solve",
+        "romanised": "dats'eseba"
+      },
+      {
+        "georgian": "გაცილება",
+        "english": "to confuse",
+        "romanised": "gatsileba"
+      },
+      {
+        "georgian": "დაუშვება",
+        "english": "to worry",
+        "romanised": "daushveba"
+      },
+      {
+        "georgian": "დაპანიკება",
+        "english": "to celebrate",
+        "romanised": "dap'anikeba"
+      },
+      {
+        "georgian": "დალევა",
+        "english": "to descend",
+        "romanised": "daleva"
+      },
+      {
+        "georgian": "გმადლობთ",
+        "english": "to thank",
+        "romanised": "gmadlobt"
+      },
+      {
+        "georgian": "დარწმუნება",
+        "english": "to trust",
+        "romanised": "dartsmuneba"
+      },
+      {
+        "georgian": "მოგატყუება",
+        "english": "to lie",
+        "romanised": "mogat'vueba"
+      },
+      {
+        "georgian": "შეცდომა",
+        "english": "to sin",
+        "romanised": "chetsdoma"
+      },
+      {
+        "georgian": "კვლევა",
+        "english": "to investigate",
+        "romanised": "k'vleba"
+      },
+      {
+        "georgian": "გაქცევა",
+        "english": "to flee",
+        "romanised": "gats'evba"
+      },
+      {
+        "georgian": "ნავიგაცია",
+        "english": "to navigate",
+        "romanised": "navigatsia"
+      },
+      {
+        "georgian": "მოაზრებული",
+        "english": "to attract",
+        "romanised": "moazrebuli"
+      },
+      {
+        "georgian": "გამოცემა",
+        "english": "to appear",
+        "romanised": "gamotsema"
+      },
+      {
+        "georgian": "დაკარგვა",
+        "english": "to disappear",
+        "romanised": "dak'argva"
+      },
+      {
+        "georgian": "მოიცემა",
+        "english": "to guess",
+        "romanised": "moitsema"
+      },
+      {
+        "georgian": "მორჩილება",
+        "english": "to obey",
+        "romanised": "morchileba"
+      },
+      {
+        "georgian": "დაბნევა",
+        "english": "to be mistaken",
+        "romanised": "dabneva"
+      },
+      {
+        "georgian": "ჩივილი",
+        "english": "to complain",
+        "romanised": "ts'ivili"
+      },
+      {
+        "georgian": "ჭამა",
+        "english": "to eat",
+        "romanised": "ch'ama"
+      },
+      {
+        "georgian": "დალევა",
+        "english": "to drink",
+        "romanised": "daleva"
+      },
+      {
+        "georgian": "ძილი",
+        "english": "to sleep",
+        "romanised": "dzili"
+      },
+      {
+        "georgian": "გაღვიძება",
+        "english": "to wake up",
+        "romanised": "gaghvidzeba"
+      },
+      {
+        "georgian": "ყიდვა",
+        "english": "to buy",
+        "romanised": "qidva"
+      },
+      {
+        "georgian": "გაყიდვა",
+        "english": "to sell",
+        "romanised": "gaqidva"
+      },
+      {
+        "georgian": "სუნთქვა",
+        "english": "to breathe",
+        "romanised": "suntkva"
+      },
+      {
+        "georgian": "ნახვა",
+        "english": "to watch/see",
+        "romanised": "nakhva"
+      },
+      {
+        "georgian": "გასვლა",
+        "english": "to go out",
+        "romanised": "gasvla"
+      },
+      {
+        "georgian": "დაჯდომა",
+        "english": "to sit down",
+        "romanised": "dajdoma"
+      },
+      {
+        "georgian": "ადგომა",
+        "english": "to stand up",
+        "romanised": "adgoma"
+      },
+      {
+        "georgian": "ყნოსვა",
+        "english": "to smell",
+        "romanised": "qnosva"
+      },
+      {
+        "georgian": "გემოს გასინჯვა",
+        "english": "to taste",
+        "romanised": "gemos gasinjva"
+      },
+      {
+        "georgian": "გაფრენა",
+        "english": "to fly",
+        "romanised": "gaprena"
+      },
+      {
+        "georgian": "ცურვა",
+        "english": "to swim",
+        "romanised": "tsurva"
+      },
+      {
+        "georgian": "ტარება",
+        "english": "to drive/wear",
+        "romanised": "tareba"
+      },
+      {
+        "georgian": "გაშრობა",
+        "english": "to dry",
+        "romanised": "gashroba"
+      },
+      {
+        "georgian": "მოწევა",
+        "english": "to smoke/pull",
+        "romanised": "motseva"
+      },
+      {
+        "georgian": "ხატვა",
+        "english": "to paint",
+        "romanised": "khatva"
+      },
+      {
+        "georgian": "წერა",
+        "english": "to write",
+        "romanised": "tsera"
+      },
+      {
+        "georgian": "თარგმნა",
+        "english": "to translate",
+        "romanised": "targmna"
+      },
+      {
+        "georgian": "ჩაცმა",
+        "english": "to dress up",
+        "romanised": "chatsma"
+      },
+      {
+        "georgian": "გახდა",
+        "english": "to undress/become",
+        "romanised": "gakhda"
+      },
+      {
+        "georgian": "სროლა",
+        "english": "to shoot",
+        "romanised": "srola"
+      },
+      {
+        "georgian": "მოკვლა",
+        "english": "to kill",
+        "romanised": "mokvla"
+      },
+      {
+        "georgian": "კვდომა",
+        "english": "to die",
+        "romanised": "kvdoma"
+      },
+      {
+        "georgian": "ნადირობა",
+        "english": "to hunt",
+        "romanised": "nadiroba"
+      },
+      {
+        "georgian": "თევზაობა",
+        "english": "to fish",
+        "romanised": "tevzaoba"
+      },
+      {
+        "georgian": "ცხობა",
+        "english": "to bake",
+        "romanised": "tskhoba"
+      },
+      {
+        "georgian": "ხარშვა",
+        "english": "to boil",
+        "romanised": "kharshva"
+      },
+      {
+        "georgian": "წვა",
+        "english": "to burn",
+        "romanised": "tsva"
+      },
+      {
+        "georgian": "გამაგრება",
+        "english": "to strengthen",
+        "romanised": "gamagreba"
+      },
+      {
+        "georgian": "დარბილება",
+        "english": "to soften",
+        "romanised": "darbileba"
+      },
+      {
+        "georgian": "გაციება",
+        "english": "to cool down",
+        "romanised": "gatsieba"
+      },
+      {
+        "georgian": "გათბობა",
+        "english": "to warm up",
+        "romanised": "gatboba"
+      },
+      {
+        "georgian": "გამოყენება",
+        "english": "to use",
+        "romanised": "gamoyeneba"
+      },
+      {
+        "georgian": "დამალვა",
+        "english": "to hide (something)",
+        "romanised": "damalva"
+      },
+      {
+        "georgian": "დამალვა",
+        "english": "to hide (oneself)",
+        "romanised": "damalva"
+      },
+      {
+        "georgian": "გამოცხადება",
+        "english": "to announce",
+        "romanised": "gamotskhadeba"
+      },
+      {
+        "georgian": "დაპატიჟება",
+        "english": "to invite",
+        "romanised": "dapatizheba"
+      },
+      {
+        "georgian": "სტუმრობა",
+        "english": "to visit",
+        "romanised": "stumroba"
+      },
+      {
+        "georgian": "დაქირავება",
+        "english": "to hire/rent",
+        "romanised": "dakiraveba"
+      },
+      {
+        "georgian": "დაპირება",
+        "english": "to promise",
+        "romanised": "dapireba"
+      },
+      {
+        "georgian": "ბრძანება",
+        "english": "to order/command",
+        "romanised": "brdzaneba"
+      },
+      {
+        "georgian": "თხოვნა",
+        "english": "to request",
+        "romanised": "tkhovna"
+      },
+      {
+        "georgian": "მადლობის გადახდა",
+        "english": "to thank",
+        "romanised": "madlobis gadakhda"
+      },
+      {
+        "georgian": "პატიება",
+        "english": "to forgive",
+        "romanised": "patieba"
+      },
+      {
+        "georgian": "დაჯარიმება",
+        "english": "to fine",
+        "romanised": "dajarimeba"
+      },
+      {
+        "georgian": "დაპატიმრება",
+        "english": "to arrest",
+        "romanised": "dapatimreba"
+      },
+      {
+        "georgian": "მოპარვა",
+        "english": "to steal",
+        "romanised": "moparva"
+      },
+      {
+        "georgian": "ტყუილი",
+        "english": "to lie",
+        "romanised": "tquili"
+      },
+      {
+        "georgian": "ხუმრობა",
+        "english": "to joke",
+        "romanised": "khumroba"
+      },
+      {
+        "georgian": "გაფუჭება",
+        "english": "to spoil/break",
+        "romanised": "gapucheba"
+      },
+      {
+        "georgian": "შეკეთება",
+        "english": "to repair",
+        "romanised": "sheketeba"
+      },
+      {
+        "georgian": "გათხრა",
+        "english": "to dig",
+        "romanised": "gatkhra"
+      },
+      {
+        "georgian": "დარგვა",
+        "english": "to plant",
+        "romanised": "dargva"
+      },
+      {
+        "georgian": "მორწყვა",
+        "english": "to water",
+        "romanised": "mortsqva"
+      },
+      {
+        "georgian": "ყვავილობა",
+        "english": "to bloom",
+        "romanised": "qvaviloba"
+      },
+      {
+        "georgian": "თოვვა",
+        "english": "to snow",
+        "romanised": "tovva"
+      },
+      {
+        "georgian": "წვიმა",
+        "english": "to rain",
+        "romanised": "tsvivma"
+      },
+      {
+        "georgian": "ქროლა",
+        "english": "to blow (wind)",
+        "romanised": "krola"
+      },
+      {
+        "georgian": "გაშორება",
+        "english": "to divorce/separate",
+        "romanised": "gashoreba"
+      },
+      {
+        "georgian": "დაქორწინება",
+        "english": "to marry",
+        "romanised": "daqortsineba"
+      },
+      {
+        "georgian": "გართობა",
+        "english": "to entertain",
+        "romanised": "gartoba"
+      },
+      {
+        "georgian": "ლოცვა",
+        "english": "to pray",
+        "romanised": "lotsva"
+      },
+      {
+        "georgian": "ოცნება",
+        "english": "to dream (awake)",
+        "romanised": "otsneba"
+      },
+      {
+        "georgian": "შიში",
+        "english": "to fear",
+        "romanised": "shishi"
+      },
+      {
+        "georgian": "გაკვირვება",
+        "english": "to be surprised",
+        "romanised": "gakvirveba"
+      },
+      {
+        "georgian": "იმედოვნება",
+        "english": "to hope",
+        "romanised": "imedovneba"
+      },
+      {
+        "georgian": "შური",
+        "english": "to envy",
+        "romanised": "shuri"
+      },
+      {
+        "georgian": "ბრაზი",
+        "english": "to be angry",
+        "romanised": "brazi"
+      },
+      {
+        "georgian": "დამშვიდება",
+        "english": "to calm down",
+        "romanised": "damshvideba"
+      },
+      {
+        "georgian": "გაღიმება",
+        "english": "to smile",
+        "romanised": "gagimeba"
+      },
+      {
+        "georgian": "კოცნა",
+        "english": "to kiss",
+        "romanised": "kotsna"
+      },
+      {
+        "georgian": "ჩახუტება",
+        "english": "to hug",
+        "romanised": "chakhuteba"
+      },
+      {
+        "georgian": "მონატრება",
+        "english": "to miss someone",
+        "romanised": "monatreba"
+      },
+      {
+        "georgian": "დაჯერება",
+        "english": "to believe",
+        "romanised": "dajereba"
+      },
+      {
+        "georgian": "უარყოფა",
+        "english": "to deny/reject",
+        "romanised": "uaryopa"
+      },
+      {
+        "georgian": "თანხმობა",
+        "english": "to agree",
+        "romanised": "tankhmoba"
+      },
+      {
+        "georgian": "კამათი",
+        "english": "to argue",
+        "romanised": "kamati"
+      },
+      {
+        "georgian": "ყეფა",
+        "english": "to bark",
+        "romanised": "qepa"
+      },
+      {
+        "georgian": "კბენა",
+        "english": "to bite",
+        "romanised": "kbena"
+      },
+      {
+        "georgian": "წოვა",
+        "english": "to suck",
+        "romanised": "tsova"
+      },
+      {
+        "georgian": "ლოკვა",
+        "english": "to lick",
+        "romanised": "lokva"
+      },
+      {
+        "georgian": "ფხანა",
+        "english": "to scratch",
+        "romanised": "pkhana"
+      },
+      {
+        "georgian": "დაღლა",
+        "english": "to get tired",
+        "romanised": "daghla"
+      },
+      {
+        "georgian": "გასუქება",
+        "english": "to get fat",
+        "romanised": "gasuqeba"
+      },
+      {
+        "georgian": "გახდომა",
+        "english": "to lose weight",
+        "romanised": "gakhdoma"
+      },
+      {
+        "georgian": "დაბერება",
+        "english": "to grow old",
+        "romanised": "dabereba"
+      },
+      {
+        "georgian": "გაზრდა",
+        "english": "to grow up",
+        "romanised": "gazrda"
+      },
+      {
+        "georgian": "შემოწმება",
+        "english": "to verify/check",
+        "romanised": "shemotsmeba"
+      },
+      {
+        "georgian": "დაგეგმვა",
+        "english": "to plan",
+        "romanised": "dagegmva"
+      },
+      {
+        "georgian": "ორგანიზება",
+        "english": "to organize",
+        "romanised": "organizeba"
+      },
+      {
+        "georgian": "მართვა",
+        "english": "to manage",
+        "romanised": "martva"
+      },
+      {
+        "georgian": "გამოგონება",
+        "english": "to invent",
+        "romanised": "gamogoneba"
+      },
+      {
+        "georgian": "მოგება",
+        "english": "to win",
+        "romanised": "mogeba"
+      },
+      {
+        "georgian": "თვლა",
+        "english": "to count",
+        "romanised": "tvla"
+      },
+      {
+        "georgian": "გადახტომა",
+        "english": "to jump over",
+        "romanised": "gadakhtoma"
+      },
+      {
+        "georgian": "სირბილი",
+        "english": "to run (process)",
+        "romanised": "sirbili"
+      },
+      {
+        "georgian": "გამგზავრება",
+        "english": "to set off/depart",
+        "romanised": "gamgzavreba"
+      }
+    ]
+  },
+  "nouns": {
+    "name": "Nouns",
+    "words": [
+      {
+        "georgian": "დრო",
+        "english": "time/weather",
+        "romanised": "dro"
+      },
+      {
+        "georgian": "წელი",
+        "english": "year",
+        "romanised": "ts'eli"
+      },
+      {
+        "georgian": "დღე",
+        "english": "day",
+        "romanised": "dɣe"
+      },
+      {
+        "georgian": "წელი",
+        "english": "year",
+        "romanised": "ts'eli"
+      },
+      {
+        "georgian": "დღე",
+        "english": "day",
+        "romanised": "dɣe"
+      },
+      {
+        "georgian": "ჯერ",
+        "english": "time (occurrence)",
+        "romanised": "jer"
+      },
+      {
+        "georgian": "ადამიანი",
+        "english": "person",
+        "romanised": "adamiani"
+      },
+      {
+        "georgian": "კაცი",
+        "english": "man",
+        "romanised": "k'atsi"
+      },
+      {
+        "georgian": "ქალი",
+        "english": "woman",
+        "romanised": "k'ali"
+      },
+      {
+        "georgian": "რაღაც",
+        "english": "thing",
+        "romanised": "raghats"
+      },
+      {
+        "georgian": "შემთხვევა",
+        "english": "case",
+        "romanised": "shemtkhveva"
+      },
+      {
+        "georgian": "ქვეყანა",
+        "english": "country",
+        "romanised": "k'vek'ana"
+      },
+      {
+        "georgian": "მომენტი",
+        "english": "moment",
+        "romanised": "momenti"
+      },
+      {
+        "georgian": "ფორმა",
+        "english": "form, shape",
+        "romanised": "porma"
+      },
+      {
+        "georgian": "დრო",
+        "english": "time, weather",
+        "romanised": "dro"
+      },
+      {
+        "georgian": "ნაწილი",
+        "english": "part",
+        "romanised": "nats'ili"
+      },
+      {
+        "georgian": "ცხოვრება",
+        "english": "life",
+        "romanised": "tskhovreba"
+      },
+      {
+        "georgian": "სამუშაო",
+        "english": "work, job",
+        "romanised": "samushao"
+      },
+      {
+        "georgian": "წერტილი",
+        "english": "point",
+        "romanised": "ts'ert'ili"
+      },
+      {
+        "georgian": "ხელი",
+        "english": "hand",
+        "romanised": "kheli"
+      },
+      {
+        "georgian": "ხალხი",
+        "english": "people",
+        "romanised": "khalkhi"
+      },
+      {
+        "georgian": "საათი",
+        "english": "hour",
+        "romanised": "saati"
+      },
+      {
+        "georgian": "დასასრული",
+        "english": "end",
+        "romanised": "dasasruli"
+      },
+      {
+        "georgian": "ტიპი",
+        "english": "type, kind",
+        "romanised": "tipi"
+      },
+      {
+        "georgian": "მაგალითი",
+        "english": "example",
+        "romanised": "magalit'i"
+      },
+      {
+        "georgian": "მხარე",
+        "english": "side",
+        "romanised": "mkhare"
+      },
+      {
+        "georgian": "პრობლემა",
+        "english": "problem",
+        "romanised": "problema"
+      },
+      {
+        "georgian": "ანგარიში",
+        "english": "account, bill",
+        "romanised": "angarishi"
+      },
+      {
+        "georgian": "ბიჭი",
+        "english": "child, boy",
+        "romanised": "bichi"
+      },
+      {
+        "georgian": "გოგო",
+        "english": "child, girl",
+        "romanised": "gogo"
+      },
+      {
+        "georgian": "ფაქტი",
+        "english": "fact",
+        "romanised": "p'akt'i"
+      },
+      {
+        "georgian": "სახელი",
+        "english": "name",
+        "romanised": "sakheli"
+      },
+      {
+        "georgian": "მეგობარი",
+        "english": "friend (male)",
+        "romanised": "megobari"
+      },
+      {
+        "georgian": "მეგობარი",
+        "english": "friend (female)",
+        "romanised": "megobari"
+      },
+      {
+        "georgian": "უფლება",
+        "english": "right, law",
+        "romanised": "upleba"
+      },
+      {
+        "georgian": "ქალაქი",
+        "english": "city",
+        "romanised": "kalaki"
+      },
+      {
+        "georgian": "წყალი",
+        "english": "water",
+        "romanised": "ts'q'ali"
+      },
+      {
+        "georgian": "ღამე",
+        "english": "night",
+        "romanised": "ghame"
+      },
+      {
+        "georgian": "მანქანა",
+        "english": "car",
+        "romanised": "manqana"
+      },
+      {
+        "georgian": "ქუჩა",
+        "english": "street",
+        "romanised": "k'uch'a"
+      },
+      {
+        "georgian": "ოჯახი",
+        "english": "family",
+        "romanised": "ojakhi"
+      },
+      {
+        "georgian": "ისტორია",
+        "english": "history, story",
+        "romanised": "ist'oria"
+      },
+      {
+        "georgian": "მამა",
+        "english": "father",
+        "romanised": "mama"
+      },
+      {
+        "georgian": "დედა",
+        "english": "mother",
+        "romanised": "deda"
+      },
+      {
+        "georgian": "ძმა",
+        "english": "brother",
+        "romanised": "dzma"
+      },
+      {
+        "georgian": "და",
+        "english": "sister",
+        "romanised": "da"
+      },
+      {
+        "georgian": "შვილი",
+        "english": "son",
+        "romanised": "shvili"
+      },
+      {
+        "georgian": "შვილი",
+        "english": "daughter",
+        "romanised": "shvili"
+      },
+      {
+        "georgian": "ფული",
+        "english": "money",
+        "romanised": "puli"
+      },
+      {
+        "georgian": "სხეული",
+        "english": "body",
+        "romanised": "skheuli"
+      },
+      {
+        "georgian": "ჯგუფი",
+        "english": "group",
+        "romanised": "jgupi"
+      },
+      {
+        "georgian": "ურთიერთობა",
+        "english": "relationship",
+        "romanised": "urtiertoba"
+      },
+      {
+        "georgian": "ძალა",
+        "english": "strength, force",
+        "romanised": "dzala"
+      },
+      {
+        "georgian": "წამი",
+        "english": "second",
+        "romanised": "ts'ami"
+      },
+      {
+        "georgian": "თვე",
+        "english": "month",
+        "romanised": "t've"
+      },
+      {
+        "georgian": "კვირა",
+        "english": "week",
+        "romanised": "k'vira"
+      },
+      {
+        "georgian": "დილა",
+        "english": "morning",
+        "romanised": "dila"
+      },
+      {
+        "georgian": "საღამო",
+        "english": "afternoon, evening",
+        "romanised": "saghamo"
+      },
+      {
+        "georgian": "ველი",
+        "english": "field, countryside",
+        "romanised": "veli"
+      },
+      {
+        "georgian": "მაგიდა",
+        "english": "table",
+        "romanised": "magida"
+      },
+      {
+        "georgian": "კარი",
+        "english": "door",
+        "romanised": "kari"
+      },
+      {
+        "georgian": "ფანჯარა",
+        "english": "window",
+        "romanised": "panjara"
+      },
+      {
+        "georgian": "სკამი",
+        "english": "chair",
+        "romanised": "sk'ami"
+      },
+      {
+        "georgian": "ხორცი",
+        "english": "meat",
+        "romanised": "khorts'i"
+      },
+      {
+        "georgian": "თევზი",
+        "english": "fish",
+        "romanised": "tevzi"
+      },
+      {
+        "georgian": "ხილი",
+        "english": "fruit",
+        "romanised": "khili"
+      },
+      {
+        "georgian": "ბოსტნეული",
+        "english": "vegetable",
+        "romanised": "bost'neuli"
+      },
+      {
+        "georgian": "პური",
+        "english": "bread",
+        "romanised": "puri"
+      },
+      {
+        "georgian": "შაქარი",
+        "english": "sugar",
+        "romanised": "shakari"
+      },
+      {
+        "georgian": "მარილი",
+        "english": "salt",
+        "romanised": "marili"
+      },
+      {
+        "georgian": "ღვინო",
+        "english": "wine",
+        "romanised": "ghvino"
+      },
+      {
+        "georgian": "ყავა",
+        "english": "coffee",
+        "romanised": "q'ava"
+      },
+      {
+        "georgian": "ჩაი",
+        "english": "tea",
+        "romanised": "chai"
+      },
+      {
+        "georgian": "რძე",
+        "english": "milk",
+        "romanised": "rdze"
+      },
+      {
+        "georgian": "შოკოლადი",
+        "english": "chocolate",
+        "romanised": "shokoladi"
+      },
+      {
+        "georgian": "მუსიკა",
+        "english": "music",
+        "romanised": "musika"
+      },
+      {
+        "georgian": "სიმღერა",
+        "english": "song",
+        "romanised": "simghera"
+      },
+      {
+        "georgian": "წიგნი",
+        "english": "book",
+        "romanised": "ts'igni"
+      },
+      {
+        "georgian": "ჟურნალი",
+        "english": "magazine",
+        "romanised": "zhurnali"
+      },
+      {
+        "georgian": "გაზეთი",
+        "english": "newspaper",
+        "romanised": "gazeti"
+      },
+      {
+        "georgian": "ფილმი",
+        "english": "movie",
+        "romanised": "pilmi"
+      },
+      {
+        "georgian": "სერიალი",
+        "english": "series",
+        "romanised": "seriali"
+      },
+      {
+        "georgian": "სპორტი",
+        "english": "sport",
+        "romanised": "sporti"
+      },
+      {
+        "georgian": "თამაში",
+        "english": "game",
+        "romanised": "tamashi"
+      },
+      {
+        "georgian": "მოგზაურობა",
+        "english": "trip",
+        "romanised": "mogzauroba"
+      },
+      {
+        "georgian": "სასტუმრო",
+        "english": "hotel",
+        "romanised": "sast'umro"
+      },
+      {
+        "georgian": "საწოლი",
+        "english": "bed",
+        "romanised": "sats'oli"
+      },
+      {
+        "georgian": "აბაზანა",
+        "english": "bathroom",
+        "romanised": "abazana"
+      },
+      {
+        "georgian": "საშხაპე",
+        "english": "shower",
+        "romanised": "sashkhape"
+      },
+      {
+        "georgian": "ტანსაცმელი",
+        "english": "clothes",
+        "romanised": "tansatsmeli"
+      },
+      {
+        "georgian": "ფეხსაცმელი",
+        "english": "shoe",
+        "romanised": "pekhsts'ameli"
+      },
+      {
+        "georgian": "ქუდი",
+        "english": "hat",
+        "romanised": "kudi"
+      },
+      {
+        "georgian": "საათი",
+        "english": "watch, clock",
+        "romanised": "saati"
+      },
+      {
+        "georgian": "ყუთი",
+        "english": "box",
+        "romanised": "quti"
+      },
+      {
+        "georgian": "ჩანთა",
+        "english": "bag",
+        "romanised": "chanta"
+      },
+      {
+        "georgian": "ტელეფონი",
+        "english": "telephone",
+        "romanised": "telefoni"
+      },
+      {
+        "georgian": "კომპიუტერი",
+        "english": "computer",
+        "romanised": "kompiuteri"
+      },
+      {
+        "georgian": "ნათურა",
+        "english": "light",
+        "romanised": "natura"
+      },
+      {
+        "georgian": "ჩრდილი",
+        "english": "shadow",
+        "romanised": "chrdili"
+      },
+      {
+        "georgian": "ფერი",
+        "english": "color",
+        "romanised": "peri"
+      },
+      {
+        "georgian": "დრო",
+        "english": "time/occasion",
+        "romanised": "dro"
+      },
+      {
+        "georgian": "მზე",
+        "english": "sun",
+        "romanised": "mze"
+      },
+      {
+        "georgian": "მთვარე",
+        "english": "moon",
+        "romanised": "mtvare"
+      },
+      {
+        "georgian": "ვარსკვლავი",
+        "english": "star",
+        "romanised": "varsk'vlavi"
+      },
+      {
+        "georgian": "ცა",
+        "english": "sky",
+        "romanised": "tsa"
+      },
+      {
+        "georgian": "ზღვა",
+        "english": "sea",
+        "romanised": "zghva"
+      },
+      {
+        "georgian": "მთა",
+        "english": "mountain",
+        "romanised": "mta"
+      },
+      {
+        "georgian": "ტყე",
+        "english": "forest",
+        "romanised": "t'q'e"
+      },
+      {
+        "georgian": "ხე",
+        "english": "tree",
+        "romanised": "khe"
+      },
+      {
+        "georgian": "ყვავილი",
+        "english": "flower",
+        "romanised": "q'vavili"
+      },
+      {
+        "georgian": "სახლი",
+        "english": "house",
+        "romanised": "sakhli"
+      },
+      {
+        "georgian": "ოთახი",
+        "english": "room",
+        "romanised": "otakhi"
+      },
+      {
+        "georgian": "სამზარეულო",
+        "english": "kitchen",
+        "romanised": "samzareulo"
+      },
+      {
+        "georgian": "კედელი",
+        "english": "wall",
+        "romanised": "k'edeli"
+      },
+      {
+        "georgian": "იატაკი",
+        "english": "floor",
+        "romanised": "iat'ak'i"
+      },
+      {
+        "georgian": "ჭერი",
+        "english": "ceiling",
+        "romanised": "ch'eri"
+      },
+      {
+        "georgian": "სკოლა",
+        "english": "school",
+        "romanised": "sk'ola"
+      },
+      {
+        "georgian": "უნივერსიტეტი",
+        "english": "university",
+        "romanised": "universit'et'i"
+      },
+      {
+        "georgian": "სამსახური",
+        "english": "office/workplace",
+        "romanised": "samsakhuri"
+      },
+      {
+        "georgian": "მაღაზია",
+        "english": "shop/store",
+        "romanised": "maghazia"
+      },
+      {
+        "georgian": "ბაზარი",
+        "english": "market",
+        "romanised": "bazari"
+      },
+      {
+        "georgian": "საავადმყოფო",
+        "english": "hospital",
+        "romanised": "saavadm'q'opo"
+      },
+      {
+        "georgian": "ცხოველი",
+        "english": "animal",
+        "romanised": "tskhoveli"
+      },
+      {
+        "georgian": "ძაღლი",
+        "english": "dog",
+        "romanised": "dzaghli"
+      },
+      {
+        "georgian": "კატა",
+        "english": "cat",
+        "romanised": "k'at'a"
+      },
+      {
+        "georgian": "ჩიტი",
+        "english": "bird",
+        "romanised": "ch'it'i"
+      },
+      {
+        "georgian": "ცხენი",
+        "english": "horse",
+        "romanised": "ts'kheni"
+      },
+      {
+        "georgian": "თავი",
+        "english": "head",
+        "romanised": "tavi"
+      },
+      {
+        "georgian": "თვალი",
+        "english": "eye",
+        "romanised": "tvali"
+      },
+      {
+        "georgian": "ყური",
+        "english": "ear",
+        "romanised": "q'uri"
+      },
+      {
+        "georgian": "ცხვირი",
+        "english": "nose",
+        "romanised": "tskhviri"
+      },
+      {
+        "georgian": "პირი",
+        "english": "mouth",
+        "romanised": "p'iri"
+      },
+      {
+        "georgian": "ენა",
+        "english": "language/tongue",
+        "romanised": "ena"
+      },
+      {
+        "georgian": "გული",
+        "english": "heart",
+        "romanised": "guli"
+      },
+      {
+        "georgian": "ფეხი",
+        "english": "leg/foot",
+        "romanised": "pekhi"
+      },
+      {
+        "georgian": "თმა",
+        "english": "hair",
+        "romanised": "tma"
+      },
+      {
+        "georgian": "კალამი",
+        "english": "pen",
+        "romanised": "k'alami"
+      },
+      {
+        "georgian": "ქაღალდი",
+        "english": "paper",
+        "romanised": "kaghaldi"
+      },
+      {
+        "georgian": "სიტყვა",
+        "english": "word",
+        "romanised": "sit'q'va"
+      },
+      {
+        "georgian": "წინადადება",
+        "english": "sentence",
+        "romanised": "ts'inadadeba"
+      },
+      {
+        "georgian": "კითხვა",
+        "english": "question",
+        "romanised": "k'itkhva"
+      },
+      {
+        "georgian": "პასუხი",
+        "english": "answer",
+        "romanised": "p'asukhi"
+      },
+      {
+        "georgian": "აზრი",
+        "english": "thought/opinion",
+        "romanised": "azri"
+      },
+      {
+        "georgian": "ჰაერი",
+        "english": "air",
+        "romanised": "haeri"
+      },
+      {
+        "georgian": "ცეცხლი",
+        "english": "fire",
+        "romanised": "tsetskhli"
+      },
+      {
+        "georgian": "მიწა",
+        "english": "earth/ground",
+        "romanised": "mitsa"
+      },
+      {
+        "georgian": "გზა",
+        "english": "road/way",
+        "romanised": "gza"
+      },
+      {
+        "georgian": "ხიდი",
+        "english": "bridge",
+        "romanised": "khidi"
+      },
+      {
+        "georgian": "თვითმფრინავი",
+        "english": "airplane",
+        "romanised": "tvitmprinavi"
+      },
+      {
+        "georgian": "ველოსიპედი",
+        "english": "bicycle",
+        "romanised": "velosip'edi"
+      }
+    ]
+  },
+  "adjectives": {
+    "name": "Adjectives",
+    "words": [
+      {
+        "georgian": "კარგი",
+        "english": "good",
+        "romanised": "kargi"
+      },
+      {
+        "georgian": "ცუდი",
+        "english": "bad",
+        "romanised": "tsudi"
+      },
+      {
+        "georgian": "დიდი",
+        "english": "big",
+        "romanised": "didi"
+      },
+      {
+        "georgian": "პატარა",
+        "english": "small",
+        "romanised": "pat'ara"
+      },
+      {
+        "georgian": "მაღალი",
+        "english": "tall",
+        "romanised": "maghali"
+      },
+      {
+        "georgian": "დაბალი",
+        "english": "short",
+        "romanised": "dabali"
+      },
+      {
+        "georgian": "გრძელი",
+        "english": "long",
+        "romanised": "grdzeli"
+      },
+      {
+        "georgian": "მოკლე",
+        "english": "short (length)",
+        "romanised": "mokle"
+      },
+      {
+        "georgian": "ადვილი",
+        "english": "easy",
+        "romanised": "advili"
+      },
+      {
+        "georgian": "რთული",
+        "english": "difficult",
+        "romanised": "rtuli"
+      },
+      {
+        "georgian": "სწრაფი",
+        "english": "fast",
+        "romanised": "sts'rapi"
+      },
+      {
+        "georgian": "ნელი",
+        "english": "slow",
+        "romanised": "neli"
+      },
+      {
+        "georgian": "ახალი",
+        "english": "new",
+        "romanised": "akhali"
+      },
+      {
+        "georgian": "ძველი",
+        "english": "old",
+        "romanised": "dzveli"
+      },
+      {
+        "georgian": "ძვირი",
+        "english": "expensive",
+        "romanised": "dzviri"
+      },
+      {
+        "georgian": "იაფი",
+        "english": "cheap",
+        "romanised": "iapi"
+      },
+      {
+        "georgian": "ძლიერი",
+        "english": "strong",
+        "romanised": "dzlieri"
+      },
+      {
+        "georgian": "სუსტი",
+        "english": "weak",
+        "romanised": "susti"
+      },
+      {
+        "georgian": "ბედნიერი",
+        "english": "happy",
+        "romanised": "bednieri"
+      },
+      {
+        "georgian": "მოწყენილი",
+        "english": "sad",
+        "romanised": "mots'q'nili"
+      },
+      {
+        "georgian": "ცხელი",
+        "english": "hot",
+        "romanised": "tskheli"
+      },
+      {
+        "georgian": "ცივი",
+        "english": "cold",
+        "romanised": "tsivi"
+      },
+      {
+        "georgian": "ნათელი",
+        "english": "clear",
+        "romanised": "natheli"
+      },
+      {
+        "georgian": "ბნელი",
+        "english": "dark",
+        "romanised": "bneli"
+      },
+      {
+        "georgian": "მაგარი",
+        "english": "hard",
+        "romanised": "magari"
+      },
+      {
+        "georgian": "რბილი",
+        "english": "soft",
+        "romanised": "rbili"
+      },
+      {
+        "georgian": "სუფთა",
+        "english": "clean",
+        "romanised": "supta"
+      },
+      {
+        "georgian": "ბინძური",
+        "english": "dirty",
+        "romanised": "bindzuri"
+      },
+      {
+        "georgian": "სავსე",
+        "english": "full",
+        "romanised": "savse"
+      },
+      {
+        "georgian": "ცარიელი",
+        "english": "empty",
+        "romanised": "tsarieli"
+      },
+      {
+        "georgian": "ტკბილი",
+        "english": "sweet",
+        "romanised": "tkbili"
+      },
+      {
+        "georgian": "მწარე",
+        "english": "bitter",
+        "romanised": "mts'are"
+      },
+      {
+        "georgian": "ცნობილი",
+        "english": "famous",
+        "romanised": "tsnobili"
+      },
+      {
+        "georgian": "უცნობი",
+        "english": "unknown",
+        "romanised": "utsnobi"
+      },
+      {
+        "georgian": "მდიდარი",
+        "english": "rich",
+        "romanised": "mdidari"
+      },
+      {
+        "georgian": "ღარიბი",
+        "english": "poor",
+        "romanised": "gharibi"
+      },
+      {
+        "georgian": "ღია",
+        "english": "open",
+        "romanised": "ghia"
+      },
+      {
+        "georgian": "დახურული",
+        "english": "closed",
+        "romanised": "dakhuruli"
+      },
+      {
+        "georgian": "საინტერესო",
+        "english": "interesting",
+        "romanised": "sa-intereso"
+      },
+      {
+        "georgian": "მოსაწყენი",
+        "english": "boring",
+        "romanised": "mosats'qeni"
+      },
+      {
+        "georgian": "პატიოსანი",
+        "english": "honest",
+        "romanised": "patiosani"
+      },
+      {
+        "georgian": "მტყუვანი",
+        "english": "liar",
+        "romanised": "mtq'uvani"
+      },
+      {
+        "georgian": "დაღლილი",
+        "english": "tired",
+        "romanised": "daghlili"
+      },
+      {
+        "georgian": "ენერგიული",
+        "english": "energetic",
+        "romanised": "energili"
+      },
+      {
+        "georgian": "კეთილი",
+        "english": "kind",
+        "romanised": "ketili"
+      },
+      {
+        "georgian": "სასტიკი",
+        "english": "cruel",
+        "romanised": "sastiki"
+      },
+      {
+        "georgian": "ზრდილობიანი",
+        "english": "polite",
+        "romanised": "zrdilobiani"
+      },
+      {
+        "georgian": "უზრდელი",
+        "english": "rude",
+        "romanised": "uzrdeli"
+      },
+      {
+        "georgian": "გულიანი",
+        "english": "faithful",
+        "romanised": "guliani"
+      },
+      {
+        "georgian": "მოღალატე",
+        "english": "unfaithful",
+        "romanised": "moghalate"
+      },
+      {
+        "georgian": "სამართლიანი",
+        "english": "fair",
+        "romanised": "samartliani"
+      },
+      {
+        "georgian": "უსამართლო",
+        "english": "unfair",
+        "romanised": "usamartlo"
+      },
+      {
+        "georgian": "უსაფრთხო",
+        "english": "safe",
+        "romanised": "usaptkho"
+      },
+      {
+        "georgian": "საშიში",
+        "english": "dangerous",
+        "romanised": "sashishi"
+      },
+      {
+        "georgian": "აუცილებელი",
+        "english": "necessary",
+        "romanised": "autsilebeli"
+      },
+      {
+        "georgian": "დაუშვებელი",
+        "english": "unnecessary",
+        "romanised": "daushvebeli"
+      },
+      {
+        "georgian": "დაკავებული",
+        "english": "busy",
+        "romanised": "dakavhebuli"
+      },
+      {
+        "georgian": "თავისუფალი",
+        "english": "free",
+        "romanised": "tavisupali"
+      },
+      {
+        "georgian": "პასუხისმგებელი",
+        "english": "responsible",
+        "romanised": "pasukhismgebliani"
+      },
+      {
+        "georgian": "უმეთვალყურეო",
+        "english": "irresponsible",
+        "romanised": "umetvalqureo"
+      },
+      {
+        "georgian": "სხვა",
+        "english": "different",
+        "romanised": "skhva"
+      },
+      {
+        "georgian": "იგივე",
+        "english": "same",
+        "romanised": "igive"
+      },
+      {
+        "georgian": "ღრმა",
+        "english": "deep",
+        "romanised": "ghrma"
+      },
+      {
+        "georgian": "ზედაპირული",
+        "english": "superficial",
+        "romanised": "zedapiruli"
+      },
+      {
+        "georgian": "მძიმე",
+        "english": "heavy",
+        "romanised": "mdzime"
+      },
+      {
+        "georgian": "მსუბუქი",
+        "english": "light",
+        "romanised": "msubuqi"
+      },
+      {
+        "georgian": "სერიოზული",
+        "english": "serious",
+        "romanised": "seriozuli"
+      },
+      {
+        "georgian": "გასართობი",
+        "english": "fun",
+        "romanised": "gasartobi"
+      },
+      {
+        "georgian": "ჯანმრთელი",
+        "english": "healthy",
+        "romanised": "janmrtheli"
+      },
+      {
+        "georgian": "ავადმყოფი",
+        "english": "sick",
+        "romanised": "avadmyop'i"
+      },
+      {
+        "georgian": "ახალი",
+        "english": "new",
+        "romanised": "akhali"
+      },
+      {
+        "georgian": "უძველესი",
+        "english": "ancient",
+        "romanised": "udzvelesi"
+      },
+      {
+        "georgian": "სულელი",
+        "english": "foolish",
+        "romanised": "suleli"
+      },
+      {
+        "georgian": "მეცნიერი",
+        "english": "wise",
+        "romanised": "metsnieri"
+      },
+      {
+        "georgian": "გემრიელი",
+        "english": "delicious",
+        "romanised": "gemrieli"
+      },
+      {
+        "georgian": "უგემური",
+        "english": "tasteless",
+        "romanised": "ugemuri"
+      },
+      {
+        "georgian": "გამხდარი",
+        "english": "thin",
+        "romanised": "gamkhdari"
+      },
+      {
+        "georgian": "სქელი",
+        "english": "fat",
+        "romanised": "sqeli"
+      },
+      {
+        "georgian": "ლამაზი",
+        "english": "beautiful",
+        "romanised": "lamazi"
+      },
+      {
+        "georgian": "მახინჯი",
+        "english": "ugly",
+        "romanised": "makhinji"
+      },
+      {
+        "georgian": "თანამედროვე",
+        "english": "modern",
+        "romanised": "tanamedrove"
+      },
+      {
+        "georgian": "ტრადიციული",
+        "english": "traditional",
+        "romanised": "traditsiuli"
+      },
+      {
+        "georgian": "სწრაფი",
+        "english": "quick",
+        "romanised": "stsrapi"
+      },
+      {
+        "georgian": "ნელა",
+        "english": "slowly",
+        "romanised": "nela"
+      },
+      {
+        "georgian": "ძლიერი",
+        "english": "strong",
+        "romanised": "dzlieri"
+      },
+      {
+        "georgian": "სუსტი",
+        "english": "weak",
+        "romanised": "susti"
+      },
+      {
+        "georgian": "მხიარული",
+        "english": "cheerful",
+        "romanised": "mkhiaruli"
+      },
+      {
+        "georgian": "სერიოზული",
+        "english": "serious",
+        "romanised": "seriozuli"
+      },
+      {
+        "georgian": "ახალი",
+        "english": "new",
+        "romanised": "akhali"
+      },
+      {
+        "georgian": "ძველი",
+        "english": "old",
+        "romanised": "dzveli"
+      },
+      {
+        "georgian": "მძიმე",
+        "english": "heavy",
+        "romanised": "mdzime"
+      },
+      {
+        "georgian": "მსუბუქი",
+        "english": "light (weight)",
+        "romanised": "msubuqi"
+      },
+      {
+        "georgian": "მორცხვი",
+        "english": "shy",
+        "romanised": "mortsxvi"
+      },
+      {
+        "georgian": "ექსტროვერტი",
+        "english": "extroverted",
+        "romanised": "ekst'rovert'i"
+      },
+      {
+        "georgian": "კომფორტული",
+        "english": "comfortable",
+        "romanised": "komfortuli"
+      },
+      {
+        "georgian": "დარაკრული",
+        "english": "uncomfortable",
+        "romanised": "darak'ruli"
+      },
+      {
+        "georgian": "დარწმუნებული",
+        "english": "certain",
+        "romanised": "dartsmunebuli"
+      },
+      {
+        "georgian": "მერყევი",
+        "english": "doubtful",
+        "romanised": "merkhevi"
+      },
+      {
+        "georgian": "მომთმენი",
+        "english": "patient",
+        "romanised": "momthmeni"
+      },
+      {
+        "georgian": "დამეთმენი",
+        "english": "impatient",
+        "romanised": "dametmeni"
+      },
+      {
+        "georgian": "ჭკვიანი",
+        "english": "smart/intelligent",
+        "romanised": "ch'k'viani"
+      },
+      {
+        "georgian": "მამაცი",
+        "english": "brave",
+        "romanised": "mamatsi"
+      },
+      {
+        "georgian": "მშიშარა",
+        "english": "cowardly",
+        "romanised": "mshishara"
+      },
+      {
+        "georgian": "მშვიდი",
+        "english": "quiet/calm",
+        "romanised": "mshvidi"
+      },
+      {
+        "georgian": "ხმაურიანი",
+        "english": "noisy",
+        "romanised": "khmauriani"
+      },
+      {
+        "georgian": "მშრალი",
+        "english": "dry",
+        "romanised": "mshrali"
+      },
+      {
+        "georgian": "სველი",
+        "english": "wet",
+        "romanised": "sveli"
+      },
+      {
+        "georgian": "მრგვალი",
+        "english": "round",
+        "romanised": "mrgvali"
+      },
+      {
+        "georgian": "ბრტყელი",
+        "english": "flat",
+        "romanised": "brt'q'eli"
+      },
+      {
+        "georgian": "ვიწრო",
+        "english": "narrow",
+        "romanised": "vits'ro"
+      },
+      {
+        "georgian": "ფართო",
+        "english": "wide",
+        "romanised": "parto"
+      },
+      {
+        "georgian": "მარილიანი",
+        "english": "salty",
+        "romanised": "mariliani"
+      },
+      {
+        "georgian": "მჟავე",
+        "english": "sour",
+        "romanised": "mzhave"
+      },
+      {
+        "georgian": "ცხიმიანი",
+        "english": "greasy/fatty",
+        "romanised": "tskhimiani"
+      },
+      {
+        "georgian": "სიფრთხილიანი",
+        "english": "cautious",
+        "romanised": "siprtkhiliani"
+      },
+      {
+        "georgian": "უშიშარი",
+        "english": "fearless",
+        "romanised": "ushishari"
+      },
+      {
+        "georgian": "თბილი",
+        "english": "warm",
+        "romanised": "tbili"
+      },
+      {
+        "georgian": "გრრილი",
+        "english": "cool (temperature)",
+        "romanised": "grili"
+      },
+      {
+        "georgian": "მკაცრი",
+        "english": "strict/harsh",
+        "romanised": "mk'atsri"
+      },
+      {
+        "georgian": "მსგავსი",
+        "english": "similar",
+        "romanised": "msgavsi"
+      },
+      {
+        "georgian": "განსხვავებული",
+        "english": "different/distinct",
+        "romanised": "ganskhvavebuli"
+      },
+      {
+        "georgian": "სუფთა",
+        "english": "pure",
+        "romanised": "supta"
+      },
+      {
+        "georgian": "ნამდვილი",
+        "english": "real/true",
+        "romanised": "namdvili"
+      },
+      {
+        "georgian": "ყალბი",
+        "english": "fake/false",
+        "romanised": "qalbi"
+      },
+      {
+        "georgian": "მრავალფეროვანი",
+        "english": "diverse/colorful",
+        "romanised": "mravalperovani"
+      },
+      {
+        "georgian": "ერთფეროვანი",
+        "english": "monotonous",
+        "romanised": "ertperovani"
+      },
+      {
+        "georgian": "მკვდარი",
+        "english": "dead",
+        "romanised": "mk'vdari"
+      },
+      {
+        "georgian": "ცოცხალი",
+        "english": "alive",
+        "romanised": "tsotskhali"
+      },
+      {
+        "georgian": "მწარე",
+        "english": "spicy",
+        "romanised": "mts'are"
+      },
+      {
+        "georgian": "ნაზი",
+        "english": "gentle/delicate",
+        "romanised": "nazi"
+      },
+      {
+        "georgian": "უხეში",
+        "english": "rough/coarse",
+        "romanised": "ukheshi"
+      },
+      {
+        "georgian": "საჭირო",
+        "english": "useful/needed",
+        "romanised": "sach'iro"
+      },
+      {
+        "georgian": "უსარგებლო",
+        "english": "useless",
+        "romanised": "usargeblo"
+      },
+      {
+        "georgian": "მშვენიერი",
+        "english": "wonderful/splendid",
+        "romanised": "mshvenieri"
+      },
+      {
+        "georgian": "საშინელი",
+        "english": "terrible/horrible",
+        "romanised": "sashineli"
+      },
+      {
+        "georgian": "უცნაური",
+        "english": "strange/weird",
+        "romanised": "utsnauri"
+      },
+      {
+        "georgian": "ჩვეულებრივი",
+        "english": "ordinary/common",
+        "romanised": "chveulebrivi"
+      },
+      {
+        "georgian": "მთვრალი",
+        "english": "drunk",
+        "romanised": "mtvrali"
+      },
+      {
+        "georgian": "ფხიზელი",
+        "english": "sober",
+        "romanised": "pkhizeli"
+      },
+      {
+        "georgian": "მშიერი",
+        "english": "hungry",
+        "romanised": "mshieri"
+      },
+      {
+        "georgian": "მაძღარი",
+        "english": "full (satisfied from eating)",
+        "romanised": "madzghari"
+      },
+      {
+        "georgian": "მწყურვალი",
+        "english": "thirsty",
+        "romanised": "mts'q'urvali"
+      },
+      {
+        "georgian": "ბასრი",
+        "english": "sharp",
+        "romanised": "basri"
+      },
+      {
+        "georgian": "ბლაგვი",
+        "english": "blunt/dull",
+        "romanised": "blagvi"
+      },
+      {
+        "georgian": "ძვირფასი",
+        "english": "precious/valuable",
+        "romanised": "dzvirpasi"
+      },
+      {
+        "georgian": "ბრწყინვალე",
+        "english": "brilliant/shiny",
+        "romanised": "brts'qinvale"
+      },
+      {
+        "georgian": "მოხუცი",
+        "english": "elderly (person)",
+        "romanised": "mokhutsi"
+      },
+      {
+        "georgian": "ახალგაზრდა",
+        "english": "young",
+        "romanised": "akhalgazrda"
+      },
+      {
+        "georgian": "ხარბი",
+        "english": "greedy",
+        "romanised": "kharbi"
+      },
+      {
+        "georgian": "უანგარო",
+        "english": "selfless",
+        "romanised": "uangaro"
+      }
+    ]
+  },
+  "adverbs": {
+    "name": "Adverbs",
+    "words": [
+      {
+        "georgian": "ახლა",
+        "english": "now",
+        "romanised": "akhla"
+      },
+      {
+        "georgian": "ყოველთვის",
+        "english": "always",
+        "romanised": "khoveltvis"
+      },
+      {
+        "georgian": "არასოდეს",
+        "english": "never",
+        "romanised": "arasodes"
+      },
+      {
+        "georgian": "გვიან",
+        "english": "late",
+        "romanised": "gvian"
+      },
+      {
+        "georgian": "ადრე",
+        "english": "early",
+        "romanised": "adre"
+      },
+      {
+        "georgian": "გუშინ",
+        "english": "yesterday",
+        "romanised": "gushin"
+      },
+      {
+        "georgian": "დღეს",
+        "english": "today",
+        "romanised": "dghes"
+      },
+      {
+        "georgian": "ხვალ",
+        "english": "tomorrow",
+        "romanised": "khval"
+      },
+      {
+        "georgian": "უკვე",
+        "english": "already",
+        "romanised": "ukve"
+      },
+      {
+        "georgian": "ჯერ კიდევ",
+        "english": "still",
+        "romanised": "jer kidev"
+      },
+      {
+        "georgian": "ჯერ",
+        "english": "yet",
+        "romanised": "jer"
+      },
+      {
+        "georgian": "მანამდე",
+        "english": "before",
+        "romanised": "manamde"
+      },
+      {
+        "georgian": "შემდეგ",
+        "english": "after",
+        "romanised": "shemdeg"
+      },
+      {
+        "georgian": "მერე",
+        "english": "then",
+        "romanised": "mere"
+      },
+      {
+        "georgian": "მაშინ",
+        "english": "so",
+        "romanised": "mashin"
+      },
+      {
+        "georgian": "მალე",
+        "english": "soon",
+        "romanised": "male"
+      },
+      {
+        "georgian": "არც",
+        "english": "neither",
+        "romanised": "arts"
+      },
+      {
+        "georgian": "ასევე",
+        "english": "also",
+        "romanised": "aseve"
+      },
+      {
+        "georgian": "ასე",
+        "english": "thus",
+        "romanised": "ase"
+      },
+      {
+        "georgian": "კარგად",
+        "english": "well",
+        "romanised": "kargad"
+      },
+      {
+        "georgian": "ცუდად",
+        "english": "badly",
+        "romanised": "tsudad"
+      },
+      {
+        "georgian": "ახლოს",
+        "english": "near",
+        "romanised": "akhlos"
+      },
+      {
+        "georgian": "შორს",
+        "english": "far",
+        "romanised": "shors"
+      },
+      {
+        "georgian": "ძალიან",
+        "english": "a lot",
+        "romanised": "dzalian"
+      },
+      {
+        "georgian": "ცოტა",
+        "english": "a little",
+        "romanised": "tsota"
+      },
+      {
+        "georgian": "მეტი",
+        "english": "more",
+        "romanised": "meti"
+      },
+      {
+        "georgian": "ნაკლები",
+        "english": "less",
+        "romanised": "naklebi"
+      },
+      {
+        "georgian": "ძალიან ბევრი",
+        "english": "too much",
+        "romanised": "dzalian bevri"
+      },
+      {
+        "georgian": "საკმარისი",
+        "english": "enough",
+        "romanised": "sakmarisi"
+      },
+      {
+        "georgian": "დაახლოებით",
+        "english": "approximately",
+        "romanised": "daakhloebit"
+      },
+      {
+        "georgian": "ზუსტად",
+        "english": "exactly",
+        "romanised": "zudat"
+      },
+      {
+        "georgian": "მხოლოდ",
+        "english": "only",
+        "romanised": "mkholod"
+      },
+      {
+        "georgian": "უბრალოდ",
+        "english": "simply",
+        "romanised": "ubralod"
+      },
+      {
+        "georgian": "აშკარად",
+        "english": "clearly",
+        "romanised": "ashkarad"
+      },
+      {
+        "georgian": "სწრაფად",
+        "english": "quickly",
+        "romanised": "stsrapad"
+      },
+      {
+        "georgian": "ნელა",
+        "english": "slowly",
+        "romanised": "nela"
+      },
+      {
+        "georgian": "შესაძლოა",
+        "english": "possibly",
+        "romanised": "shesadzloa"
+      },
+      {
+        "georgian": "ალბათ",
+        "english": "probably",
+        "romanised": "albat"
+      },
+      {
+        "georgian": "დადასტურებით",
+        "english": "definitely",
+        "romanised": "dadasturebit"
+      },
+      {
+        "georgian": "დაუსაბუთოდ",
+        "english": "unfortunately",
+        "romanised": "dausabutod"
+      },
+      {
+        "georgian": "ბედნიერად",
+        "english": "happily",
+        "romanised": "bednierad"
+      },
+      {
+        "georgian": "სევდიანად",
+        "english": "sadly",
+        "romanised": "sevdianad"
+      },
+      {
+        "georgian": "ბუნებრივად",
+        "english": "naturally",
+        "romanised": "bunebrivad"
+      },
+      {
+        "georgian": "ნათლად",
+        "english": "obviously",
+        "romanised": "natlad"
+      },
+      {
+        "georgian": "აუცილებლად",
+        "english": "surely",
+        "romanised": "autsileblad"
+      },
+      {
+        "georgian": "განსაკუთრებით",
+        "english": "particularly",
+        "romanised": "gansakutrebid"
+      },
+      {
+        "georgian": "ხშირად",
+        "english": "frequently",
+        "romanised": "khsirad"
+      },
+      {
+        "georgian": "ყოველდღიურად",
+        "english": "daily",
+        "romanised": "khoveldghiurad"
+      },
+      {
+        "georgian": "ყოველთვიურად",
+        "english": "monthly",
+        "romanised": "khoveltviurad"
+      },
+      {
+        "georgian": "წლიურად",
+        "english": "annually",
+        "romanised": "tsliurad"
+      },
+      {
+        "georgian": "სრულად",
+        "english": "completely",
+        "romanised": "srulad"
+      },
+      {
+        "georgian": "სავსებით",
+        "english": "totally",
+        "romanised": "savsebit"
+      },
+      {
+        "georgian": "განსაკუთრებით",
+        "english": "especially",
+        "romanised": "gansakutrebid"
+      },
+      {
+        "georgian": "განსაკუთრებით",
+        "english": "particularly",
+        "romanised": "gansakutrebid"
+      },
+      {
+        "georgian": "ჩვეულებრივად",
+        "english": "normally",
+        "romanised": "chveulebrivad"
+      },
+      {
+        "georgian": "ზოგადად",
+        "english": "generally",
+        "romanised": "zogadad"
+      },
+      {
+        "georgian": "ჩვეულებრივად",
+        "english": "usually",
+        "romanised": "chveulebrivad"
+      },
+      {
+        "georgian": "ძირითადად",
+        "english": "mainly",
+        "romanised": "dziritadad"
+      },
+      {
+        "georgian": "საბედნიეროდ",
+        "english": "fortunately",
+        "romanised": "sabednierod"
+      },
+      {
+        "georgian": "საბედისწეროდ",
+        "english": "unfortunately",
+        "romanised": "sabedistserod"
+      },
+      {
+        "georgian": "მიუხედავად",
+        "english": "immediately",
+        "romanised": "miukhedavad"
+      },
+      {
+        "georgian": "საბოლოდ",
+        "english": "eventually",
+        "romanised": "sabolo"
+      },
+      {
+        "georgian": "ძირითადად",
+        "english": "basically",
+        "romanised": "dziritadad"
+      },
+      {
+        "georgian": "ზუსტად",
+        "english": "exactly",
+        "romanised": "zustad"
+      },
+      {
+        "georgian": "შედარებით",
+        "english": "relatively",
+        "romanised": "shedarebit"
+      },
+      {
+        "georgian": "მეცნიერულად",
+        "english": "scientifically",
+        "romanised": "metsniereulad"
+      },
+      {
+        "georgian": "შესაბამისად",
+        "english": "adequately",
+        "romanised": "shesabamisad"
+      },
+      {
+        "georgian": "ჩვეულებრივად",
+        "english": "commonly",
+        "romanised": "chveulebrivad"
+      },
+      {
+        "georgian": "ერთდროულად",
+        "english": "simultaneously",
+        "romanised": "ertdroulad"
+      },
+      {
+        "georgian": "თუნდაც",
+        "english": "even",
+        "romanised": "tundats"
+      },
+      {
+        "georgian": "მხოლოდ",
+        "english": "only",
+        "romanised": "mkholod"
+      },
+      {
+        "georgian": "სწორად",
+        "english": "equally",
+        "romanised": "stsorad"
+      },
+      {
+        "georgian": "სწრაფად",
+        "english": "quickly",
+        "romanised": "stsrapad"
+      },
+      {
+        "georgian": "ნელა",
+        "english": "slowly",
+        "romanised": "nela"
+      },
+      {
+        "georgian": "მუდმივად",
+        "english": "constantly",
+        "romanised": "mudmivad"
+      },
+      {
+        "georgian": "სრულად",
+        "english": "completely",
+        "romanised": "srulad"
+      },
+      {
+        "georgian": "სავსებით",
+        "english": "totally",
+        "romanised": "savsebit"
+      },
+      {
+        "georgian": "არსებითად",
+        "english": "essentially",
+        "romanised": "arsebitad"
+      },
+      {
+        "georgian": "ბოლოსდაბოლოს",
+        "english": "finally",
+        "romanised": "bolosdabolos"
+      },
+      {
+        "georgian": "მართლა",
+        "english": "really",
+        "romanised": "martla"
+      },
+      {
+        "georgian": "საბედნიეროდ",
+        "english": "fortunately",
+        "romanised": "sabednierod"
+      },
+      {
+        "georgian": "დაუსაბუთოდ",
+        "english": "unfortunately",
+        "romanised": "dausabutod"
+      },
+      {
+        "georgian": "ალბათ",
+        "english": "probably",
+        "romanised": "albat"
+      },
+      {
+        "georgian": "დადასტურებით",
+        "english": "definitely",
+        "romanised": "dadasturebit"
+      },
+      {
+        "georgian": "საბოლოდ",
+        "english": "eventually",
+        "romanised": "sabolo"
+      },
+      {
+        "georgian": "მხოლოდ",
+        "english": "only",
+        "romanised": "mkholod"
+      },
+      {
+        "georgian": "განსაკუთრებით",
+        "english": "particularly",
+        "romanised": "gansakutrebid"
+      },
+      {
+        "georgian": "მალე",
+        "english": "soon",
+        "romanised": "male"
+      },
+      {
+        "georgian": "ძირითადად",
+        "english": "basically",
+        "romanised": "dziritadad"
+      },
+      {
+        "georgian": "ყოველდღიურად",
+        "english": "daily",
+        "romanised": "khoveldghiurad"
+      },
+      {
+        "georgian": "ჩვეულებრივად",
+        "english": "usually",
+        "romanised": "chveulebrivad"
+      },
+      {
+        "georgian": "ზოგადად",
+        "english": "generally",
+        "romanised": "zogadad"
+      },
+      {
+        "georgian": "ჩვეულებრივად",
+        "english": "normally",
+        "romanised": "chveulebrivad"
+      },
+      {
+        "georgian": "დადებითად",
+        "english": "positively",
+        "romanised": "dadebitad"
+      },
+      {
+        "georgian": "უარყოფითად",
+        "english": "negatively",
+        "romanised": "uarqopitad"
+      },
+      {
+        "georgian": "გაგრძელებით",
+        "english": "continuously",
+        "romanised": "gagrdzlebid"
+      },
+      {
+        "georgian": "ბოლოსდაბოლოს",
+        "english": "finally",
+        "romanised": "bolosdabolos"
+      },
+      {
+        "georgian": "ფიზიკურად",
+        "english": "physically",
+        "romanised": "pizikurad"
+      },
+      {
+        "georgian": "მენტალურად",
+        "english": "mentally",
+        "romanised": "mentalurad"
+      },
+      {
+        "georgian": "ემოციურად",
+        "english": "emotionally",
+        "romanised": "emotsiurad"
+      },
+      {
+        "georgian": "შემოქმედებითად",
+        "english": "creatively",
+        "romanised": "shemokhvedrebitad"
+      },
+      {
+        "georgian": "აქ",
+        "english": "here",
+        "romanised": "ak"
+      },
+      {
+        "georgian": "იქ",
+        "english": "there",
+        "romanised": "ik"
+      },
+      {
+        "georgian": "ყველგან",
+        "english": "everywhere",
+        "romanised": "q'velgan"
+      },
+      {
+        "georgian": "არსად",
+        "english": "nowhere",
+        "romanised": "arsad"
+      },
+      {
+        "georgian": "წინ",
+        "english": "forward/ahead",
+        "romanised": "ts'in"
+      },
+      {
+        "georgian": "უკან",
+        "english": "back/behind",
+        "romanised": "uk'an"
+      },
+      {
+        "georgian": "ზემოთ",
+        "english": "up/above",
+        "romanised": "zemot"
+      },
+      {
+        "georgian": "ქვემოთ",
+        "english": "down/below",
+        "romanised": "kvemot"
+      },
+      {
+        "georgian": "შიგნით",
+        "english": "inside",
+        "romanised": "shignit"
+      },
+      {
+        "georgian": "გარეთ",
+        "english": "outside",
+        "romanised": "garet"
+      },
+      {
+        "georgian": "მარჯვნივ",
+        "english": "to the right",
+        "romanised": "marjvniv"
+      },
+      {
+        "georgian": "მარცხნივ",
+        "english": "to the left",
+        "romanised": "martsxniv"
+      },
+      {
+        "georgian": "იშვიათად",
+        "english": "rarely",
+        "romanised": "ishviatad"
+      },
+      {
+        "georgian": "ზოგჯერ",
+        "english": "sometimes",
+        "romanised": "zogjer"
+      },
+      {
+        "georgian": "ხანდახან",
+        "english": "occasionally",
+        "romanised": "khandakhan"
+      },
+      {
+        "georgian": "ხელახლა",
+        "english": "again/anew",
+        "romanised": "khelakhla"
+      },
+      {
+        "georgian": "კიდევ ერთხელ",
+        "english": "once more",
+        "romanised": "kidev ertkhel"
+      },
+      {
+        "georgian": "თავიდან",
+        "english": "from the beginning",
+        "romanised": "tavidan"
+      },
+      {
+        "georgian": "დროულად",
+        "english": "on time",
+        "romanised": "droulad"
+      },
+      {
+        "georgian": "ამჟამად",
+        "english": "currently",
+        "romanised": "amjamad"
+      },
+      {
+        "georgian": "მოულოდნელად",
+        "english": "suddenly",
+        "romanised": "moulodnelad"
+      },
+      {
+        "georgian": "ნამდვილად",
+        "english": "truly/indeed",
+        "romanised": "namdvilad"
+      },
+      {
+        "georgian": "ხმამაღლა",
+        "english": "loudly",
+        "romanised": "khmamaghla"
+      },
+      {
+        "georgian": "ჩუმად",
+        "english": "silently",
+        "romanised": "chumad"
+      },
+      {
+        "georgian": "მკაცრად",
+        "english": "strictly",
+        "romanised": "mk'atsrad"
+      },
+      {
+        "georgian": "რბილად",
+        "english": "softly",
+        "romanised": "rbilad"
+      },
+      {
+        "georgian": "სიფრთხილით",
+        "english": "carefully",
+        "romanised": "siprtkhilit"
+      },
+      {
+        "georgian": "თამამად",
+        "english": "boldly",
+        "romanised": "tamamad"
+      },
+      {
+        "georgian": "პატიოსნად",
+        "english": "honestly",
+        "romanised": "p'atiosnad"
+      },
+      {
+        "georgian": "საერთოდ",
+        "english": "at all/altogether",
+        "romanised": "saertod"
+      },
+      {
+        "georgian": "ნაწილობრივ",
+        "english": "partially",
+        "romanised": "nats'ilobriv"
+      },
+      {
+        "georgian": "საკმაოდ",
+        "english": "quite/rather",
+        "romanised": "sak'maod"
+      },
+      {
+        "georgian": "ოდნავ",
+        "english": "slightly",
+        "romanised": "odnav"
+      },
+      {
+        "georgian": "თითქმის",
+        "english": "almost",
+        "romanised": "titkmis"
+      },
+      {
+        "georgian": "მეტწილად",
+        "english": "mostly",
+        "romanised": "metts'ilad"
+      },
+      {
+        "georgian": "პირიქით",
+        "english": "on the contrary",
+        "romanised": "p'irik'it"
+      },
+      {
+        "georgian": "შესაძლებლად",
+        "english": "possibly",
+        "romanised": "shesadzleblad"
+      },
+      {
+        "georgian": "უნებურად",
+        "english": "unintentionally",
+        "romanised": "uneburad"
+      },
+      {
+        "georgian": "განზრახ",
+        "english": "on purpose",
+        "romanised": "ganzrakh"
+      },
+      {
+        "georgian": "მარტო",
+        "english": "alone",
+        "romanised": "mart'o"
+      },
+      {
+        "georgian": "ერთად",
+        "english": "together",
+        "romanised": "ertad"
+      },
+      {
+        "georgian": "ცალკე",
+        "english": "separately",
+        "romanised": "tsalke"
+      },
+      {
+        "georgian": "პირდაპირ",
+        "english": "directly",
+        "romanised": "p'irdap'ir"
+      },
+      {
+        "georgian": "ირიბად",
+        "english": "indirectly",
+        "romanised": "iribad"
+      },
+      {
+        "georgian": "უფასოდ",
+        "english": "for free",
+        "romanised": "upasod"
+      },
+      {
+        "georgian": "საჯაროდ",
+        "english": "publicly",
+        "romanised": "sajarod"
+      },
+      {
+        "georgian": "პირადად",
+        "english": "personally",
+        "romanised": "p'iradad"
+      },
+      {
+        "georgian": "საიდუმლოდ",
+        "english": "secretly",
+        "romanised": "saidumlod"
+      },
+      {
+        "georgian": "აუცილებლად",
+        "english": "necessarily/without fail",
+        "romanised": "autsileblad"
+      }
+    ]
+  },
+  "pronouns": {
+    "name": "Pronouns",
+    "words": [
+      {
+        "georgian": "მე",
+        "english": "I",
+        "romanised": "me"
+      },
+      {
+        "georgian": "ეს",
+        "english": "the",
+        "romanised": "es"
+      },
+      {
+        "georgian": "შენ",
+        "english": "you (informal)",
+        "romanised": "shen"
+      },
+      {
+        "georgian": "ის",
+        "english": "he",
+        "romanised": "is"
+      },
+      {
+        "georgian": "ის",
+        "english": "she",
+        "romanised": "is"
+      },
+      {
+        "georgian": "თქვენ",
+        "english": "you (formal)",
+        "romanised": "tkven"
+      },
+      {
+        "georgian": "ჩვენ",
+        "english": "we (masculine)",
+        "romanised": "chven"
+      },
+      {
+        "georgian": "ჩვენ",
+        "english": "we (feminine)",
+        "romanised": "chven"
+      },
+      {
+        "georgian": "თქვენ",
+        "english": "you all (masculine, informal, used in Spain)",
+        "romanised": "tkven"
+      },
+      {
+        "georgian": "თქვენ",
+        "english": "you all (feminine, informal, used in Spain)",
+        "romanised": "tkven"
+      },
+      {
+        "georgian": "ისინი",
+        "english": "they (masculine)",
+        "romanised": "isini"
+      },
+      {
+        "georgian": "ისინი",
+        "english": "they (feminine)",
+        "romanised": "isini"
+      },
+      {
+        "georgian": "მე",
+        "english": "me",
+        "romanised": "me"
+      },
+      {
+        "georgian": "შენ",
+        "english": "you (informal object)",
+        "romanised": "shen"
+      },
+      {
+        "georgian": "ის",
+        "english": "him/it (masculine)",
+        "romanised": "is"
+      },
+      {
+        "georgian": "ის",
+        "english": "her/it (feminine)",
+        "romanised": "is"
+      },
+      {
+        "georgian": "ჩვენ",
+        "english": "us",
+        "romanised": "chven"
+      },
+      {
+        "georgian": "თქვენ",
+        "english": "you all (informal object)",
+        "romanised": "tkven"
+      },
+      {
+        "georgian": "ისინი",
+        "english": "them (masculine)",
+        "romanised": "isini"
+      },
+      {
+        "georgian": "ისინი",
+        "english": "them (feminine)",
+        "romanised": "isini"
+      },
+      {
+        "georgian": "ჩემი",
+        "english": "my",
+        "romanised": "chemi"
+      },
+      {
+        "georgian": "შენი",
+        "english": "your (informal)",
+        "romanised": "sheni"
+      },
+      {
+        "georgian": "მისი",
+        "english": "his/her/its/their",
+        "romanised": "misi"
+      },
+      {
+        "georgian": "ჩვენი",
+        "english": "our (masculine)",
+        "romanised": "chveni"
+      },
+      {
+        "georgian": "ჩვენი",
+        "english": "our (feminine)",
+        "romanised": "chveni"
+      },
+      {
+        "georgian": "თქვენი",
+        "english": "your (informal, masculine, used in Spain)",
+        "romanised": "tkveni"
+      },
+      {
+        "georgian": "თქვენი",
+        "english": "your (informal, feminine, used in Spain)",
+        "romanised": "tkveni"
+      },
+      {
+        "georgian": "მათი",
+        "english": "your (formal), their",
+        "romanised": "mati"
+      },
+      {
+        "georgian": "ჩემი",
+        "english": "mine (masculine)",
+        "romanised": "chemi"
+      },
+      {
+        "georgian": "ჩემი",
+        "english": "mine (feminine)",
+        "romanised": "chemi"
+      },
+      {
+        "georgian": "შენი",
+        "english": "yours (informal, masculine)",
+        "romanised": "sheni"
+      },
+      {
+        "georgian": "შენი",
+        "english": "yours (informal, feminine)",
+        "romanised": "sheni"
+      },
+      {
+        "georgian": "მისი",
+        "english": "his/hers/its/theirs (masculine)",
+        "romanised": "misi"
+      },
+      {
+        "georgian": "მისი",
+        "english": "his/hers/its/theirs (feminine)",
+        "romanised": "misi"
+      },
+      {
+        "georgian": "ჩვენი",
+        "english": "ours (masculine)",
+        "romanised": "chveni"
+      },
+      {
+        "georgian": "ჩვენი",
+        "english": "ours (feminine)",
+        "romanised": "chveni"
+      },
+      {
+        "georgian": "თქვენი",
+        "english": "yours (informal, plural, masculine, used in Spain)",
+        "romanised": "tkveni"
+      },
+      {
+        "georgian": "თქვენი",
+        "english": "yours (informal, plural, feminine, used in Spain)",
+        "romanised": "tkveni"
+      },
+      {
+        "georgian": "ისინი თავიანთით",
+        "english": "themselves (masculine)",
+        "romanised": "isini taviantit"
+      },
+      {
+        "georgian": "ისინი თავიანთით",
+        "english": "themselves (feminine)",
+        "romanised": "isini taviantit"
+      },
+      {
+        "georgian": "ის",
+        "english": "that (masculine)",
+        "romanised": "is"
+      },
+      {
+        "georgian": "ის",
+        "english": "that (feminine)",
+        "romanised": "is"
+      },
+      {
+        "georgian": "ისინი",
+        "english": "those (masculine)",
+        "romanised": "isini"
+      },
+      {
+        "georgian": "ისინი",
+        "english": "those (feminine)",
+        "romanised": "isini"
+      },
+      {
+        "georgian": "ეს",
+        "english": "this (masculine)",
+        "romanised": "es"
+      },
+      {
+        "georgian": "ეს",
+        "english": "this (feminine)",
+        "romanised": "es"
+      },
+      {
+        "georgian": "ესენი",
+        "english": "these (masculine)",
+        "romanised": "eseni"
+      },
+      {
+        "georgian": "ესენი",
+        "english": "these (feminine)",
+        "romanised": "eseni"
+      },
+      {
+        "georgian": "ის",
+        "english": "it (neuter)",
+        "romanised": "is"
+      },
+      {
+        "georgian": "ჩვენ თვითონ",
+        "english": "ourselves (masculine)",
+        "romanised": "chven tʰviton"
+      },
+      {
+        "georgian": "ეგ",
+        "english": "that (near you)",
+        "romanised": "eg"
+      },
+      {
+        "georgian": "ეგენი",
+        "english": "those (near you)",
+        "romanised": "egeni"
+      },
+      {
+        "georgian": "ვინ",
+        "english": "who",
+        "romanised": "vin"
+      },
+      {
+        "georgian": "რა",
+        "english": "what",
+        "romanised": "ra"
+      },
+      {
+        "georgian": "რომელი",
+        "english": "which",
+        "romanised": "romeli"
+      },
+      {
+        "georgian": "ვიღაც",
+        "english": "someone",
+        "romanised": "vighats"
+      },
+      {
+        "georgian": "რაღაც",
+        "english": "something",
+        "romanised": "raghats"
+      },
+      {
+        "georgian": "არავინ",
+        "english": "no one",
+        "romanised": "aravin"
+      },
+      {
+        "georgian": "არაფერი",
+        "english": "nothing",
+        "romanised": "araperi"
+      },
+      {
+        "georgian": "ყველა",
+        "english": "everyone",
+        "romanised": "qvela"
+      },
+      {
+        "georgian": "ყველაფერი",
+        "english": "everything",
+        "romanised": "qvelaperi"
+      },
+      {
+        "georgian": "თვითონ",
+        "english": "himself/herself/itself",
+        "romanised": "tviton"
+      },
+      {
+        "georgian": "თავი",
+        "english": "self (reflexive)",
+        "romanised": "tavi"
+      },
+      {
+        "georgian": "სხვა",
+        "english": "another/other",
+        "romanised": "skhva"
+      },
+      {
+        "georgian": "ზოგი",
+        "english": "some",
+        "romanised": "zogi"
+      },
+      {
+        "georgian": "რამდენიმე",
+        "english": "several/a few",
+        "romanised": "ramdenime"
+      },
+      {
+        "georgian": "ვიღაცა",
+        "english": "somebody (informal)",
+        "romanised": "vighatsa"
+      },
+      {
+        "georgian": "ჩემით",
+        "english": "by myself",
+        "romanised": "chemit"
+      },
+      {
+        "georgian": "შენით",
+        "english": "by yourself",
+        "romanised": "shenit"
+      },
+      {
+        "georgian": "თავისით",
+        "english": "by itself/automatically",
+        "romanised": "tavisit"
+      }
+    ]
+  },
+  "prepositions": {
+    "name": "Prepositions",
+    "words": [
+      {
+        "georgian": "დან",
+        "english": "of/from",
+        "romanised": "dan"
+      },
+      {
+        "georgian": "კენ",
+        "english": "to",
+        "romanised": "ken"
+      },
+      {
+        "georgian": "ში",
+        "english": "in/on",
+        "romanised": "shi"
+      },
+      {
+        "georgian": "თან",
+        "english": "with",
+        "romanised": "tan"
+      },
+      {
+        "georgian": "გარეშე",
+        "english": "without",
+        "romanised": "gaɾeʃe"
+      },
+      {
+        "georgian": "მიერ",
+        "english": "for/by",
+        "romanised": "mier"
+      },
+      {
+        "georgian": "თვის",
+        "english": "for/to",
+        "romanised": "tʰvis"
+      },
+      {
+        "georgian": "ზედა/შესახებ",
+        "english": "on/about",
+        "romanised": "zeda/ʃesaxeb"
+      },
+      {
+        "georgian": "შორის",
+        "english": "between/among",
+        "romanised": "ʃoris"
+      },
+      {
+        "georgian": "მიმართულებით",
+        "english": "towards",
+        "romanised": "mimaɾtulebit"
+      },
+      {
+        "georgian": "დროს",
+        "english": "during",
+        "romanised": "dɾos"
+      },
+      {
+        "georgian": "შემდეგ",
+        "english": "after",
+        "romanised": "ʃemdeg"
+      },
+      {
+        "georgian": "ადრე",
+        "english": "before",
+        "romanised": "adɾe"
+      },
+      {
+        "georgian": "მდე",
+        "english": "until",
+        "romanised": "mde"
+      },
+      {
+        "georgian": "ქვეშ",
+        "english": "under",
+        "romanised": "kʰeʃ"
+      },
+      {
+        "georgian": "ზედა",
+        "english": "over",
+        "romanised": "zeda"
+      },
+      {
+        "georgian": "წინააღმდეგ",
+        "english": "against",
+        "romanised": "tsinaagmdeg"
+      },
+      {
+        "georgian": "შემო",
+        "english": "around",
+        "romanised": "ʃemo"
+      },
+      {
+        "georgian": "გვერდით",
+        "english": "next to",
+        "romanised": "gveɾdit"
+      },
+      {
+        "georgian": "წინ",
+        "english": "in front of",
+        "romanised": "tsin"
+      },
+      {
+        "georgian": "შიგნით",
+        "english": "inside of",
+        "romanised": "ʃiɡnit"
+      },
+      {
+        "georgian": "გარე",
+        "english": "outside of",
+        "romanised": "gaɾe"
+      },
+      {
+        "georgian": "შორის",
+        "english": "among",
+        "romanised": "ʃoɾis"
+      },
+      {
+        "georgian": "ახლოს",
+        "english": "near",
+        "romanised": "aχlos"
+      },
+      {
+        "georgian": "შორს",
+        "english": "far from",
+        "romanised": "ʃoɾs"
+      },
+      {
+        "georgian": "როგორც",
+        "english": "like/as",
+        "romanised": "ɾoɡoʦ"
+      },
+      {
+        "georgian": "მიხედვით",
+        "english": "according to",
+        "romanised": "miχedvit"
+      },
+      {
+        "georgian": "მდე",
+        "english": "up to",
+        "romanised": "mde"
+      },
+      {
+        "georgian": "გაყოლებით",
+        "english": "next to",
+        "romanised": "gaɣolebit"
+      },
+      {
+        "georgian": "მეშვეობით",
+        "english": "through",
+        "romanised": "meʃveobit"
+      },
+      {
+        "georgian": "შუაში",
+        "english": "in the middle of",
+        "romanised": "ʃuaʃi"
+      },
+      {
+        "georgian": "ქვეშ",
+        "english": "underneath",
+        "romanised": "kʰeʃ"
+      },
+      {
+        "georgian": "ზედა",
+        "english": "on top of",
+        "romanised": "zeda"
+      },
+      {
+        "georgian": "წინ",
+        "english": "in front of",
+        "romanised": "tsin"
+      },
+      {
+        "georgian": "უკან",
+        "english": "behind",
+        "romanised": "ukan"
+      },
+      {
+        "georgian": "ერთად",
+        "english": "together with",
+        "romanised": "eɾtad"
+      },
+      {
+        "georgian": "მეშვეობით",
+        "english": "via",
+        "romanised": "meʃveobit"
+      },
+      {
+        "georgian": "შუალედით",
+        "english": "by means of",
+        "romanised": "ʃualedit"
+      },
+      {
+        "georgian": "გამო",
+        "english": "because of",
+        "romanised": "ɡamo"
+      },
+      {
+        "georgian": "ზემოდან",
+        "english": "above",
+        "romanised": "zemodan"
+      },
+      {
+        "georgian": "გამო",
+        "english": "due to",
+        "romanised": "ɡamo"
+      },
+      {
+        "georgian": "მარცხნივ",
+        "english": "to the left of",
+        "romanised": "maɾtsχniv"
+      },
+      {
+        "georgian": "მარჯვნივ",
+        "english": "to the right of",
+        "romanised": "maɾʤvniv"
+      },
+      {
+        "georgian": "მიუხედავად",
+        "english": "despite",
+        "romanised": "miuɣleʃvad"
+      },
+      {
+        "georgian": "ქვემოთ",
+        "english": "below",
+        "romanised": "kʰvemot"
+      },
+      {
+        "georgian": "ზემოდან",
+        "english": "above",
+        "romanised": "zemodan"
+      },
+      {
+        "georgian": "ერთად",
+        "english": "along with",
+        "romanised": "eɾtad"
+      },
+      {
+        "georgian": "შესახებ",
+        "english": "regarding",
+        "romanised": "ʃesaxeb"
+      },
+      {
+        "georgian": "შესახებ",
+        "english": "about",
+        "romanised": "ʃesaxeb"
+      },
+      {
+        "georgian": "რაც შეეხება",
+        "english": "with regard to",
+        "romanised": "ɾaʦ ʃeʦeba"
+      },
+      {
+        "georgian": "სარგებლობაში",
+        "english": "in favor of",
+        "romanised": "saɾɡeɫobaʃi"
+      },
+      {
+        "georgian": "წინააღმდეგ",
+        "english": "against",
+        "romanised": "ʦinaɑɡmdeɡ"
+      },
+      {
+        "georgian": "შესაბამისად",
+        "english": "in accordance with",
+        "romanised": "ʃesabamisad"
+      },
+      {
+        "georgian": "ნაცვლად",
+        "english": "instead of",
+        "romanised": "naʦvlad"
+      },
+      {
+        "georgian": "ისედაც გარშემო",
+        "english": "around",
+        "romanised": "isedaʦ ɡaɾʃemo"
+      },
+      {
+        "georgian": "წინ",
+        "english": "ahead of",
+        "romanised": "tsin"
+      },
+      {
+        "georgian": "უკან",
+        "english": "behind",
+        "romanised": "ukan"
+      },
+      {
+        "georgian": "გარშემო",
+        "english": "around",
+        "romanised": "ɡaɾʃemo"
+      },
+      {
+        "georgian": "გზაში",
+        "english": "on the way to",
+        "romanised": "ɡzaʃi"
+      },
+      {
+        "georgian": "სარგებლობისთვის",
+        "english": "for the benefit of",
+        "romanised": "saɾɡeɫobisʦvis"
+      },
+      {
+        "georgian": "წინაშე",
+        "english": "before/in the face of",
+        "romanised": "tsinashe"
+      },
+      {
+        "georgian": "გასწვრივ",
+        "english": "along",
+        "romanised": "gastsqvriv"
+      },
+      {
+        "georgian": "მიღმა",
+        "english": "beyond",
+        "romanised": "mighma"
+      },
+      {
+        "georgian": "ნაცვლად",
+        "english": "instead of",
+        "romanised": "natsvlad"
+      },
+      {
+        "georgian": "ნაცვლად",
+        "english": "in place of",
+        "romanised": "natsvlad"
+      },
+      {
+        "georgian": "გარდა",
+        "english": "except/besides",
+        "romanised": "garda"
+      },
+      {
+        "georgian": "მიუხედავად",
+        "english": "notwithstanding",
+        "romanised": "miukhedavad"
+      },
+      {
+        "georgian": "გასწვრივ",
+        "english": "alongside",
+        "romanised": "gastsqvriv"
+      },
+      {
+        "georgian": "სანაცვლოდ",
+        "english": "in exchange for",
+        "romanised": "sanatsvlod"
+      },
+      {
+        "georgian": "საპირისპიროდ",
+        "english": "contrary to",
+        "romanised": "sapirispispirod"
+      },
+      {
+        "georgian": "კვალდაკვალ",
+        "english": "on the heels of",
+        "romanised": "kvaldakval"
+      },
+      {
+        "georgian": "საფუძველზე",
+        "english": "on the basis of",
+        "romanised": "sapudzvelze"
+      },
+      {
+        "georgian": "დახმარებით",
+        "english": "with the help of",
+        "romanised": "dakhmarebit"
+      },
+      {
+        "georgian": "საშუალებით",
+        "english": "by means of",
+        "romanised": "sashualebit"
+      },
+      {
+        "georgian": "თანახმად",
+        "english": "in accordance with",
+        "romanised": "tanakhmad"
+      },
+      {
+        "georgian": "ხარჯზე",
+        "english": "at the expense of",
+        "romanised": "kharjze"
+      },
+      {
+        "georgian": "ჩათვლით",
+        "english": "including",
+        "romanised": "chatvlit"
+      },
+      {
+        "georgian": "შედეგად",
+        "english": "as a result of",
+        "romanised": "shedegad"
+      },
+      {
+        "georgian": "წილად",
+        "english": "in proportion to",
+        "romanised": "tsilad"
+      },
+      {
+        "georgian": "ირგვლივ",
+        "english": "all around",
+        "romanised": "irglviv"
+      }
+    ]
+  },
+  "conjunctions": {
+    "name": "Conjunctions",
+    "words": [
+      {
+        "georgian": "და",
+        "english": "and",
+        "romanised": "da"
+      },
+      {
+        "georgian": "და",
+        "english": "and (before 'i' sound)",
+        "romanised": "da"
+      },
+      {
+        "georgian": "ან",
+        "english": "or",
+        "romanised": "an"
+      },
+      {
+        "georgian": "ან",
+        "english": "or (before 'o' sound)",
+        "romanised": "an"
+      },
+      {
+        "georgian": "მაგრამ",
+        "english": "but",
+        "romanised": "maɡɾam"
+      },
+      {
+        "georgian": "არამედ",
+        "english": "but rather",
+        "romanised": "aɾamed"
+      },
+      {
+        "georgian": "მიუხედავად იმისა",
+        "english": "although",
+        "romanised": "miuxedavad imisa"
+      },
+      {
+        "georgian": "რადგან",
+        "english": "because",
+        "romanised": "ɾaɡan"
+      },
+      {
+        "georgian": "ნუ",
+        "english": "since/then",
+        "romanised": "nu"
+      },
+      {
+        "georgian": "იმიტომ, რომ",
+        "english": "since",
+        "romanised": "imito̞m ɾom"
+      },
+      {
+        "georgian": "რადგან",
+        "english": "as",
+        "romanised": "ɾaɡan"
+      },
+      {
+        "georgian": "ასე რომ",
+        "english": "so",
+        "romanised": "ase ɾom"
+      },
+      {
+        "georgian": "ამიტომ",
+        "english": "therefore",
+        "romanised": "amito̞m"
+      },
+      {
+        "georgian": "ამ მიზეზით",
+        "english": "for that reason",
+        "romanised": "am mizɛzit"
+      },
+      {
+        "georgian": "მაშინ",
+        "english": "then",
+        "romanised": "maʃin"
+      },
+      {
+        "georgian": "შემდეგ",
+        "english": "then",
+        "romanised": "ʃemdeɡ"
+      },
+      {
+        "georgian": "მაშინ როცა",
+        "english": "while",
+        "romanised": "maʃin ɾoʦa"
+      },
+      {
+        "georgian": "როცა",
+        "english": "when",
+        "romanised": "ɾoʦa"
+      },
+      {
+        "georgian": "თუ",
+        "english": "if",
+        "romanised": "tu"
+      },
+      {
+        "georgian": "თუ შემთხვევით",
+        "english": "in case",
+        "romanised": "tu ʃemtxvevit"
+      },
+      {
+        "georgian": "თუ არა",
+        "english": "unless",
+        "romanised": "tu aɾa"
+      },
+      {
+        "georgian": "მიუხედავად იმისა",
+        "english": "even though",
+        "romanised": "miuxedavad imisa"
+      },
+      {
+        "georgian": "თითქოს",
+        "english": "as if",
+        "romanised": "titʰkʰos"
+      },
+      {
+        "georgian": "ზუსტად ისე, როგორც",
+        "english": "just as",
+        "romanised": "zustaɖ ise ɡoɾts"
+      },
+      {
+        "georgian": "ისევე, როგორც",
+        "english": "as well as",
+        "romanised": "iseve ɡoɾts"
+      },
+      {
+        "georgian": "იმისათვის, რომ",
+        "english": "so that",
+        "romanised": "imisatvis ɾom"
+      },
+      {
+        "georgian": "იმ მიზნით, რომ",
+        "english": "in order that",
+        "romanised": "im miznit ɾom"
+      },
+      {
+        "georgian": "თუნდაც",
+        "english": "even if",
+        "romanised": "tʰundats"
+      },
+      {
+        "georgian": "არც",
+        "english": "nor",
+        "romanised": "arts"
+      },
+      {
+        "georgian": "თუ",
+        "english": "whether",
+        "romanised": "tu"
+      },
+      {
+        "georgian": "ან",
+        "english": "or else",
+        "romanised": "an"
+      },
+      {
+        "georgian": "იქნება",
+        "english": "whether",
+        "romanised": "ikʰneba"
+      },
+      {
+        "georgian": "იქნებ რომ",
+        "english": "whether",
+        "romanised": "ikʰneb ɾom"
+      },
+      {
+        "georgian": "გარდა ამისა",
+        "english": "besides",
+        "romanised": "ɡaɾda amisɑ"
+      },
+      {
+        "georgian": "უფრო მეტიც",
+        "english": "even more",
+        "romanised": "upʰɾo metits"
+      },
+      {
+        "georgian": "არამარტო",
+        "english": "not only",
+        "romanised": "aɾamaɾto"
+      },
+      {
+        "georgian": "არამედ ასევე",
+        "english": "but also",
+        "romanised": "aɾamed aseve"
+      },
+      {
+        "georgian": "არც კი",
+        "english": "not even",
+        "romanised": "arts kʰi"
+      },
+      {
+        "georgian": "იმდენივე, რამდენიც",
+        "english": "as much as",
+        "romanised": "imdenive ɾamdenits"
+      },
+      {
+        "georgian": "თუმცა",
+        "english": "however",
+        "romanised": "tʰutʰsa"
+      },
+      {
+        "georgian": "მიუხედავად იმისა, რომ",
+        "english": "no matter how much",
+        "romanised": "miuxedavad imisa ɾom"
+      },
+      {
+        "georgian": "მიუხედავად იმისა, რომ",
+        "english": "despite the fact that",
+        "romanised": "miuxedavad imisa ɾom"
+      },
+      {
+        "georgian": "ამრიგად",
+        "english": "thus",
+        "romanised": "amrigad"
+      },
+      {
+        "georgian": "ასე რომ",
+        "english": "so that",
+        "romanised": "ase ɾom"
+      },
+      {
+        "georgian": "ასე რომ",
+        "english": "in such a way that",
+        "romanised": "ase ɾom"
+      },
+      {
+        "georgian": "შესაბამისად",
+        "english": "therefore",
+        "romanised": "ʃesabamisad"
+      },
+      {
+        "georgian": "შედეგად",
+        "english": "as a consequence",
+        "romanised": "ʃedeɡad"
+      },
+      {
+        "georgian": "რადგან",
+        "english": "since",
+        "romanised": "ɾaɡan"
+      },
+      {
+        "georgian": "იმის გამო, რომ",
+        "english": "due to the fact that",
+        "romanised": "imis ɡamo ɾom"
+      },
+      {
+        "georgian": "იმ შემთხვევაში, თუ",
+        "english": "provided that",
+        "romanised": "im ʃemtʰxvevaʃi tu"
+      },
+      {
+        "georgian": "ვიდრე",
+        "english": "than/before (comparison)",
+        "romanised": "vidre"
+      },
+      {
+        "georgian": "სანამ",
+        "english": "until/while",
+        "romanised": "sanam"
+      },
+      {
+        "georgian": "ხოლო",
+        "english": "whereas/but (formal)",
+        "romanised": "kholo"
+      },
+      {
+        "georgian": "ვინაიდან",
+        "english": "inasmuch as/since",
+        "romanised": "vinaidan"
+      },
+      {
+        "georgian": "თორემ",
+        "english": "otherwise/or else",
+        "romanised": "torem"
+      },
+      {
+        "georgian": "რომ",
+        "english": "that (complementizer)",
+        "romanised": "rom"
+      },
+      {
+        "georgian": "რამეთუ",
+        "english": "for/because (archaic/formal)",
+        "romanised": "rametu"
+      },
+      {
+        "georgian": "მიუხედავად ამისა",
+        "english": "nevertheless",
+        "romanised": "miukhedavad amisa"
+      },
+      {
+        "georgian": "პირიქით",
+        "english": "on the contrary",
+        "romanised": "p'irik'it"
+      },
+      {
+        "georgian": "ესე იგი",
+        "english": "that is to say/i.e.",
+        "romanised": "ese igi"
+      },
+      {
+        "georgian": "კერძოდ",
+        "english": "specifically/namely",
+        "romanised": "k'erdzod"
+      },
+      {
+        "georgian": "ანუ",
+        "english": "or/in other words",
+        "romanised": "anu"
+      },
+      {
+        "georgian": "მაინც",
+        "english": "still/anyway",
+        "romanised": "maints"
+      },
+      {
+        "georgian": "თითქოს",
+        "english": "as though",
+        "romanised": "titkos"
+      },
+      {
+        "georgian": "ნაცვლად იმისა, რომ",
+        "english": "instead of (doing)",
+        "romanised": "natsvlad imisa rom"
+      },
+      {
+        "georgian": "იმ პირობით, რომ",
+        "english": "on the condition that",
+        "romanised": "im p'irobit rom"
+      },
+      {
+        "georgian": "როგორც კი",
+        "english": "as soon as",
+        "romanised": "rogorts k'i"
+      },
+      {
+        "georgian": "იმის მაგივრად, რომ",
+        "english": "instead of",
+        "romanised": "imis magivrad rom"
+      },
+      {
+        "georgian": "იმისთვის, რომ",
+        "english": "for the purpose of",
+        "romanised": "imistvis rom"
+      },
+      {
+        "georgian": "მას შემდეგ, რაც",
+        "english": "after (the point when)",
+        "romanised": "mas shemdeg rats"
+      }
+    ]
+  },
+  "others": {
+    "name": "Phrases",
+    "words": [
+      {
+        "georgian": "გამარჯობა, როგორ ხარ?",
+        "english": "hello, how are you?",
+        "romanised": "gamarjoba, rogor khar"
+      },
+      {
+        "georgian": "დილა მშვიდობისა",
+        "english": "good morning",
+        "romanised": "dila mshvidobisa"
+      },
+      {
+        "georgian": "სასიამოვნო შუადღე",
+        "english": "good afternoon",
+        "romanised": "sasiamovno shuadge"
+      },
+      {
+        "georgian": "ღამე მშვიდობისა",
+        "english": "good night",
+        "romanised": "ghame mshvidobisa"
+      },
+      {
+        "georgian": "როგორ მიდის?",
+        "english": "how's it going?",
+        "romanised": "rogor midis"
+      },
+      {
+        "georgian": "რა ხდება?",
+        "english": "what's up?",
+        "romanised": "ra khdeba"
+      },
+      {
+        "georgian": "სასიამოვნოა",
+        "english": "nice to meet you",
+        "romanised": "sasiamovnoa"
+      },
+      {
+        "georgian": "მოგვიანებით გნახავ",
+        "english": "see you later",
+        "romanised": "mogvianebit gnakhav"
+      },
+      {
+        "georgian": "ხვალამდე",
+        "english": "see you tomorrow",
+        "romanised": "khvalamde"
+      },
+      {
+        "georgian": "შევხვდებით",
+        "english": "see you",
+        "romanised": "shevkhdzebit"
+      },
+      {
+        "georgian": "მშვიდობით",
+        "english": "goodbye",
+        "romanised": "mshvidobit"
+      },
+      {
+        "georgian": "გმადლობ",
+        "english": "thank you",
+        "romanised": "gmadlob"
+      },
+      {
+        "georgian": "დიდი მადლობა",
+        "english": "thank you very much",
+        "romanised": "didi madloba"
+      },
+      {
+        "georgian": "არაფრის",
+        "english": "you're welcome",
+        "romanised": "arapris"
+      },
+      {
+        "georgian": "გთხოვთ",
+        "english": "please",
+        "romanised": "gtkhovt"
+      },
+      {
+        "georgian": "ბოდიში",
+        "english": "I'm sorry",
+        "romanised": "bodishi"
+      },
+      {
+        "georgian": "მაპატიე",
+        "english": "excuse me",
+        "romanised": "mapatie"
+      },
+      {
+        "georgian": "ნებართვით",
+        "english": "excuse me (to pass)",
+        "romanised": "nebartvit"
+      },
+      {
+        "georgian": "რამდენი ღირს?",
+        "english": "how much does it cost?",
+        "romanised": "ramdeni ghirs"
+      },
+      {
+        "georgian": "სად არის?",
+        "english": "where is it?",
+        "romanised": "sad aris"
+      },
+      {
+        "georgian": "არ მესმის",
+        "english": "I don't understand",
+        "romanised": "ar mesmis"
+      },
+      {
+        "georgian": "შეგიძლია დამეხმარო?",
+        "english": "can you help me?",
+        "romanised": "shegidzlia damekhmaro"
+      },
+      {
+        "georgian": "რომელი საათია?",
+        "english": "what time is it?",
+        "romanised": "romeli saatia"
+      },
+      {
+        "georgian": "არ ვიცი",
+        "english": "I don't know",
+        "romanised": "ar vitsi"
+      },
+      {
+        "georgian": "მშია",
+        "english": "I'm hungry",
+        "romanised": "mshia"
+      },
+      {
+        "georgian": "მწყურია",
+        "english": "I'm thirsty",
+        "romanised": "mtsquria"
+      },
+      {
+        "georgian": "მეძინება",
+        "english": "I'm sleepy",
+        "romanised": "medzineba"
+      },
+      {
+        "georgian": "დაღლილი ვარ",
+        "english": "I'm tired",
+        "romanised": "daghlili var"
+      },
+      {
+        "georgian": "მომწონს",
+        "english": "I like it",
+        "romanised": "momts’ons"
+      },
+      {
+        "georgian": "არ მომწონს",
+        "english": "I don't like it",
+        "romanised": "ar momts’ons"
+      },
+      {
+        "georgian": "რას აკეთებ?",
+        "english": "what are you doing?",
+        "romanised": "ras aketeb"
+      },
+      {
+        "georgian": "სახლში მივდივარ",
+        "english": "I'm going home",
+        "romanised": "sakhshi mivdivar"
+      },
+      {
+        "georgian": "რას თქვი?",
+        "english": "what did you say?",
+        "romanised": "ras tkvi"
+      },
+      {
+        "georgian": "როგორ ითქმის?",
+        "english": "how do you say?",
+        "romanised": "rogor itkmis"
+      },
+      {
+        "georgian": "კარგია",
+        "english": "it's okay",
+        "romanised": "kargia"
+      },
+      {
+        "georgian": "არ აქვს მნიშვნელობა",
+        "english": "it doesn't matter",
+        "romanised": "ar akvs mnishvneloba"
+      },
+      {
+        "georgian": "წამოდი",
+        "english": "let's go",
+        "romanised": "ts'amodi"
+      },
+      {
+        "georgian": "მენატრები",
+        "english": "I miss you",
+        "romanised": "menatrebi"
+      },
+      {
+        "georgian": "მიყვარხარ",
+        "english": "I love you",
+        "romanised": "miqvarxar"
+      },
+      {
+        "georgian": "მოუარე საკუთარ თავს",
+        "english": "take care",
+        "romanised": "mouare sakutar tavs"
+      },
+      {
+        "georgian": "გილოცავ",
+        "english": "congratulations",
+        "romanised": "gilotsav"
+      },
+      {
+        "georgian": "მოგესალმები",
+        "english": "welcome",
+        "romanised": "mogesalmebi"
+      },
+      {
+        "georgian": "შეიძლება დაგეხმარო?",
+        "english": "can I help you?",
+        "romanised": "sheidzleba dagekhmaro"
+      },
+      {
+        "georgian": "ცხელა",
+        "english": "it's hot",
+        "romanised": "tskhela"
+      },
+      {
+        "georgian": "ცივა",
+        "english": "it's cold",
+        "romanised": "tsiva"
+      },
+      {
+        "georgian": "გილოცავ დაბადების დღეს",
+        "english": "happy birthday",
+        "romanised": "gilotsav dabadebis dghes"
+      },
+      {
+        "georgian": "წარმატებებს გისურვებ",
+        "english": "good luck",
+        "romanised": "tsarmatebebs gisurveb"
+      },
+      {
+        "georgian": "მალე შევხვდებით",
+        "english": "see you soon",
+        "romanised": "male shevkhvdebit"
+      },
+      {
+        "georgian": "ვეთანხმები",
+        "english": "I agree",
+        "romanised": "vetankhmebi"
+      },
+      {
+        "georgian": "არ ვარ დარწმუნებული",
+        "english": "I'm not sure",
+        "romanised": "ar var darmac'munebuli"
+      },
+      {
+        "georgian": "რა თქმა უნდა",
+        "english": "of course",
+        "romanised": "ra t’qma unda"
+      },
+      {
+        "georgian": "თავისთავად",
+        "english": "of course",
+        "romanised": "tavistavad"
+      },
+      {
+        "georgian": "არანაირი იდეა",
+        "english": "no idea",
+        "romanised": "aranairi idea"
+      },
+      {
+        "georgian": "ეს ხუმრობაა",
+        "english": "it's a joke",
+        "romanised": "es khumrobaa"
+      },
+      {
+        "georgian": "მეჩქარება",
+        "english": "I'm in a hurry",
+        "romanised": "mechkareba"
+      },
+      {
+        "georgian": "ფრთხილად",
+        "english": "be careful",
+        "romanised": "prtkhilad"
+      },
+      {
+        "georgian": "დაკავებულია",
+        "english": "he/she is busy",
+        "romanised": "dakavebulia"
+      },
+      {
+        "georgian": "არ იდარდო",
+        "english": "don't worry",
+        "romanised": "ar idardo"
+      },
+      {
+        "georgian": "როგორი იყო?",
+        "english": "how was it?",
+        "romanised": "rogori iko"
+      },
+      {
+        "georgian": "რას ფიქრობ?",
+        "english": "what do you think?",
+        "romanised": "ras fikrob"
+      },
+      {
+        "georgian": "მითხარი მეტი",
+        "english": "tell me more",
+        "romanised": "mitkhari meti"
+      },
+      {
+        "georgian": "ეს არ შეიძლება იყოს",
+        "english": "it can't be",
+        "romanised": "es ar sheidzleba ikhos"
+      },
+      {
+        "georgian": "დიდი ხნის წინ",
+        "english": "a long time ago",
+        "romanised": "didi khnis tsin"
+      },
+      {
+        "georgian": "მოგვიანებით შევხვდებით",
+        "english": "see you later",
+        "romanised": "mogvianebit shevkhvdebit"
+      },
+      {
+        "georgian": "მართლა?",
+        "english": "you don’t say!",
+        "romanised": "martla?"
+      },
+      {
+        "georgian": "რა სიურპრიზია",
+        "english": "what a surprise",
+        "romanised": "ra siurprizia"
+      },
+      {
+        "georgian": "დაველოდოთ",
+        "english": "we’ll see",
+        "romanised": "davelodot"
+      },
+      {
+        "georgian": "არ არის პრობლემა",
+        "english": "no problem",
+        "romanised": "ar aris problema"
+      },
+      {
+        "georgian": "არ mindi",
+        "english": "I don't mind",
+        "romanised": "ar mindi"
+      },
+      {
+        "georgian": "იმედია",
+        "english": "hopefully",
+        "romanised": "imedia"
+      },
+      {
+        "georgian": "არც კი იფიქრო",
+        "english": "not a chance",
+        "romanised": "arts ki ipikro"
+      },
+      {
+        "georgian": "რა ახალია?",
+        "english": "what's new?",
+        "romanised": "ra akhaliya"
+      },
+      {
+        "georgian": "როგორც გინდა",
+        "english": "as you wish",
+        "romanised": "rogorts ginda"
+      },
+      {
+        "georgian": "ს დამოკიდებულია",
+        "english": "it depends",
+        "romanised": "damokidebulia"
+      },
+      {
+        "georgian": "რა სირცხვილია",
+        "english": "what a shame",
+        "romanised": "ra sirtskhvilia"
+      },
+      {
+        "georgian": "რა უიღბლობა",
+        "english": "what a pity",
+        "romanised": "ra uighbloba"
+      },
+      {
+        "georgian": "ეს დაუჯერებელია",
+        "english": "it's incredible",
+        "romanised": "es daujerebelia"
+      },
+      {
+        "georgian": "ვერ ვითმენ",
+        "english": "I can't wait",
+        "romanised": "ver vitmen"
+      },
+      {
+        "georgian": "სიცილით ვკვდები",
+        "english": "I'm dying of laughter",
+        "romanised": "sitsilit vkvdebi"
+      },
+      {
+        "georgian": "რა კარგი იდეაა",
+        "english": "what a good idea",
+        "romanised": "ra kargi ideaa"
+      },
+      {
+        "georgian": "რა გემრიელია",
+        "english": "how delicious",
+        "romanised": "ra gemrielia"
+      },
+      {
+        "georgian": "ეს აუცილებელია",
+        "english": "it's necessary",
+        "romanised": "es autsilebelia"
+      },
+      {
+        "georgian": "ასეთია ცხოვრება",
+        "english": "that's life",
+        "romanised": "asetia tskhovreba"
+      },
+      {
+        "georgian": "რა კარგია",
+        "english": "how beautiful",
+        "romanised": "ra kargia"
+      },
+      {
+        "georgian": "რა იღბლიანი ხარ",
+        "english": "what luck",
+        "romanised": "ra ighbliani khar"
+      },
+      {
+        "georgian": "რა უიღბლობა",
+        "english": "what bad luck",
+        "romanised": "ra uighbloba"
+      },
+      {
+        "georgian": "არ მინდა",
+        "english": "I don't feel like it",
+        "romanised": "ar minda"
+      },
+      {
+        "georgian": "კმარა უკვე",
+        "english": "enough already",
+        "romanised": "kmara ukve"
+      },
+      {
+        "georgian": "მშვიდად მოიქეცი",
+        "english": "take it easy",
+        "romanised": "mshvidad moiketsi"
+      },
+      {
+        "georgian": "რა სირცხვილია!",
+        "english": "how embarrassing!",
+        "romanised": "ra sirtskhvilia"
+      },
+      {
+        "georgian": "შეშლას მაწყობ",
+        "english": "you drive me crazy",
+        "romanised": "sheshlas matskob"
+      },
+      {
+        "georgian": "არ მაწუხებს",
+        "english": "it doesn’t bother me",
+        "romanised": "ar matsukhebs"
+      },
+      {
+        "georgian": "მპირდები?",
+        "english": "do you promise me?",
+        "romanised": "mpirdebi"
+      },
+      {
+        "georgian": "ყოველი შემთხვევისთვის",
+        "english": "just in case",
+        "romanised": "qoveli shemtkhevistvis"
+      },
+      {
+        "georgian": "წვიმს",
+        "english": "it's raining",
+        "romanised": "ts'vims"
+      },
+      {
+        "georgian": "მზეა",
+        "english": "it's sunny",
+        "romanised": "mzea"
+      },
+      {
+        "georgian": "მოდით ვნახოთ",
+        "english": "let’s see",
+        "romanised": "modit vnakhot"
+      },
+      {
+        "georgian": "კითხვა მაქვს",
+        "english": "I have a question",
+        "romanised": "kitkhva makvs"
+      },
+      {
+        "georgian": "რა მოსაწყენია",
+        "english": "how boring",
+        "romanised": "ra mosatsqhenia"
+      },
+      {
+        "georgian": "რა ამაღელვებელია",
+        "english": "how exciting",
+        "romanised": "ra amaghelvbelia"
+      }
+    ]
+  }
+}

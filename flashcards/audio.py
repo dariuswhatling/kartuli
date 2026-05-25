@@ -10,10 +10,11 @@ from typing import TYPE_CHECKING
 from django.conf import settings
 
 if TYPE_CHECKING:
-    from .models import Card
+    from .models import Card, CommonWordCard
 
 
 ALPHABET_DIR = "audio/alphabet"
+COMMON_WORDS_DIR = "audio/common_words"
 
 
 def _slugify_for_filename(value: str) -> str:
@@ -25,6 +26,11 @@ def card_filename(card: "Card") -> str:
     """Stable, content-aware filename so edited text never reuses old audio."""
     digest = hashlib.sha1((card.georgian or "").encode("utf-8")).hexdigest()[:10]
     return f"card_{card.id}_ka_{digest}.mp3"
+
+
+def common_word_filename(card: "CommonWordCard") -> str:
+    digest = hashlib.sha1((card.georgian or "").encode("utf-8")).hexdigest()[:10]
+    return f"common_{card.id}_ka_{digest}.mp3"
 
 
 def alphabet_filename(letter: str) -> str:

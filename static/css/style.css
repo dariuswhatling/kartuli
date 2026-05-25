@@ -1153,6 +1153,111 @@ input.is-georgian {
     padding: 2rem 0;
 }
 
+/* ---- 1000 words (browse-only) ---- */
+.cw-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.cw-search {
+    flex: 1;
+    min-width: min(100%, 220px);
+    padding: 0.65rem 0.85rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+}
+
+.cw-search:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+.cw-chapter-toggle {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    background: rgba(148, 163, 184, 0.03);
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.cw-chapter-toggle:hover {
+    background: rgba(148, 163, 184, 0.07);
+}
+
+.cw-chapter-name {
+    flex: 1;
+    min-width: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.chapter.is-collapsed .card-list {
+    display: none;
+}
+
+.cw-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.35rem 0.25rem;
+    border-radius: 10px;
+}
+
+.cw-cell {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    word-break: break-word;
+}
+
+.cw-georgian {
+    font-family: var(--font-ge);
+    font-size: 1.05rem;
+}
+
+.cw-romanised {
+    color: var(--fg-muted);
+}
+
+.cw-english {
+    color: var(--fg);
+}
+
+@media (max-width: 640px) {
+    .cw-row {
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .cw-row .row-audio {
+        grid-row: 1 / -1;
+    }
+
+    .cw-georgian {
+        grid-column: 2;
+    }
+
+    .cw-romanised,
+    .cw-english {
+        grid-column: 2;
+        font-size: 0.88rem;
+    }
+}
+
 /* ---- Quiz setup page ---- */
 .setup {
     display: flex;

@@ -17,6 +17,10 @@ done
 echo "Database ready."
 
 python manage.py migrate --noinput
+
+# Load the 1000-word vocabulary once (skips if chapters already exist).
+python manage.py import_1000_words
+
 python manage.py collectstatic --noinput
 
 # Kick off the audio backfill in the background so the deploy doesn't wait

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}1000 words – Kartuli{% endblock %}
+{% block nav_1000 %}is-active{% endblock %}
+
+{% block content %}
+<section class="dict cw">
+    <header class="dict-header">
+        <h1>1000 words</h1>
+        <p>Most common Georgian vocabulary by category. Tap the speaker to hear each word.</p>
+    </header>
+
+    <div class="cw-toolbar">
+        <input
+            type="search"
+            id="cw-search"
+            class="cw-search"
+            placeholder="Search Georgian, romanised, or English…"
+            autocomplete="off"
+            spellcheck="false"
+        />
+        <span class="dict-count" id="cw-count">Loading…</span>
+    </div>
+
+    <div class="banner-host" id="cw-banner" aria-live="polite"></div>
+
+    <div class="chapters" id="cw-chapters" aria-live="polite">
+        <p class="dict-empty">Loading…</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/common-words.js' %}" defer></script>
+{% endblock %}

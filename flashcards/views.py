@@ -13,7 +13,7 @@ from django.views.decorators.http import require_GET, require_http_methods, requ
 
 from .alphabet import ALPHABET
 from .audio import alphabet_audio_url
-from .models import Card, Chapter
+from .models import Card, Chapter, CommonWordCard, CommonWordChapter
 from .tts_sync import schedule_card_audio_if_needed, schedule_cards_audio
 
 
@@ -69,6 +69,11 @@ def dictionary_page(request: HttpRequest) -> HttpResponse:
     return render(request, "dictionary.html")
 
 
+@ensure_csrf_cookie
+def common_words_page(request: HttpRequest) -> HttpResponse:
+    return render(request, "common_words.html")
+
+
 # --- Serialisers --------------------------------------------------------------
 
 
@@ -96,6 +101,30 @@ def _card_audio_for_field(card: Card, field: str) -> str | None:
         return None
     f = getattr(card, attr)
     return f.url if f else None
+
+
+def _common_word_card_to_dict(card: CommonWordCard) -> dict:
+    return {
+        "id": card.id,
+        "chapter_id": card.chapter_id,
+        "georgian": card.georgian,
+        "english": card.english,
+        "romanised": card.romanised,
+        "audio_georgian_url": card.audio_georgian.url if card.audio_georgian else None,
+    }
+
+
+def _common_word_chapter_to_dict(
+    chapter: CommonWordChapter, cards: list[CommonWordCard] | None = None
+) -> dict:
+    if cards is None:
+        cards = list(chapter.cards.all())
+    return {
+        "id": chapter.id,
+        "name": chapter.name,
+        "slug": chapter.slug,
+        "cards": [_common_word_card_to_dict(c) for c in cards],
+    }
 
 
 def _chapter_to_dict(chapter: Chapter, cards: list[Card] | None = None) -> dict:
@@ -307,6 +336,36 @@ def api_alphabet(request: HttpRequest) -> JsonResponse:
                 }
                 for g, s in ALPHABET
             ]
+        }
+    )
+
+
+# --- 1000 words (read-only) ---------------------------------------------------
+
+
+@require_GET
+def api_common_words(request: HttpRequest) -> JsonResponse:
+    chapters = list(
+        CommonWordChapter.objects.prefetch_related("cards").all()
+    )
+    if not chapters:
+        return JsonResponse(
+            {
+                "error": "not_imported",
+                "message": (
+                    "The 1000-word list has not been imported yet. "
+                    "Run: python manage.py import_1000_words"
+                ),
+            },
+            status=404,
+        )
+    return JsonResponse(
+        {
+            "chapters": [
+                _common_word_chapter_to_dict(c, list(c.cards.all()))
+                for c in chapters
+            ],
+            "total_words": sum(len(c.cards.all()) for c in chapters),
         }
     )
 
