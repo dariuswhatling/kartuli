@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="mode-toggle" role="tablist" aria-label="Quiz direction">
+    <div class="mode-toggle mode-toggle-3" role="tablist" aria-label="Practice mode">
         <button
             type="button"
             class="mode-toggle-option"
@@ -36,6 +36,13 @@
             role="tab"
             aria-selected="true"
         >Letter&nbsp;→&nbsp;Sound</button>
+        <button
+            type="button"
+            class="mode-toggle-option"
+            data-direction="draw_to_geo"
+            role="tab"
+            aria-selected="false"
+        >Draw&nbsp;letter</button>
     </div>
 
     <div class="card" id="card">
@@ -45,6 +52,17 @@
 
     <div class="kb-grid" id="kb-grid" aria-label="On-screen keyboard">
         <p class="kb-empty">Loading…</p>
+    </div>
+
+    <div class="kb-draw" id="kb-draw" hidden>
+        <p class="kb-draw-hint">Draw the Georgian letter that matches the sound.</p>
+        <div class="draw-canvas-wrap">
+            <canvas id="draw-canvas" aria-label="Drawing area"></canvas>
+        </div>
+        <div class="kb-draw-actions">
+            <button type="button" class="btn btn-ghost" id="draw-clear">Clear</button>
+            <button type="button" class="btn btn-primary" id="draw-check">Check</button>
+        </div>
     </div>
 
     <div class="feedback" id="feedback" aria-live="polite"></div>

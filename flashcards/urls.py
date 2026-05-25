@@ -9,6 +9,11 @@ urlpatterns = [
     path("dictionary/", views.dictionary_page, name="dictionary"),
     path("api/quiz/next/", views.api_next, name="api_quiz_next"),
     path("api/alphabet/", views.api_alphabet, name="api_alphabet"),
+    path(
+        "api/keyboard/recognize/",
+        views.api_keyboard_recognize,
+        name="api_keyboard_recognize",
+    ),
     path("api/chapters/", views.api_chapters, name="api_chapters"),
     path(
         "api/chapters/<int:chapter_id>/",
