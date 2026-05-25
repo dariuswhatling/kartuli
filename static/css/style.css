@@ -688,18 +688,6 @@ a:hover { text-decoration: underline; }
     touch-action: none;
 }
 
-.kb-draw-toolbar {
-    display: flex;
-    gap: 0.45rem;
-    justify-content: center;
-}
-
-.kb-draw-toolbar .btn-sm {
-    min-width: 5.5rem;
-    padding: 0.45rem 0.75rem;
-    font-size: 0.9rem;
-}
-
 .draw-reveal {
     text-align: center;
     padding: 0.15rem 0;
@@ -713,13 +701,22 @@ a:hover { text-decoration: underline; }
     color: var(--fg);
 }
 
-.draw-grade {
+/* One fixed slot: Check/Clear ↔ Wrong/Correct swap in place */
+.draw-actions {
+    min-height: 3.1rem;
+}
+
+.draw-actions-set {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.45rem;
 }
 
-.draw-grade-btn {
+.draw-actions-set[hidden] {
+    display: none !important;
+}
+
+.draw-action-btn {
     appearance: none;
     border: none;
     border-radius: 12px;
@@ -731,25 +728,43 @@ a:hover { text-decoration: underline; }
     touch-action: manipulation;
 }
 
-.draw-grade-wrong {
+.draw-action-btn:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.draw-action-clear {
+    background: var(--bg-soft);
+    color: var(--fg);
+    border: 1px solid var(--border-strong);
+}
+
+.draw-action-clear:active {
+    background: var(--border);
+}
+
+.draw-action-check {
+    background: var(--accent, #3d5afe);
+}
+
+.draw-action-check:active {
+    filter: brightness(0.92);
+}
+
+.draw-action-wrong {
     background: #c62828;
 }
 
-.draw-grade-wrong:active {
+.draw-action-wrong:active {
     background: #b71c1c;
 }
 
-.draw-grade-right {
+.draw-action-right {
     background: #2e7d32;
 }
 
-.draw-grade-right:active {
+.draw-action-right:active {
     background: #1b5e20;
-}
-
-.draw-grade-btn:disabled {
-    opacity: 0.45;
-    cursor: default;
 }
 
 .kb-draw-feedback.kb-panel-hidden {

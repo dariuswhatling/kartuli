@@ -58,16 +58,18 @@
         <div class="draw-canvas-wrap">
             <canvas id="draw-canvas" aria-label="Drawing area"></canvas>
         </div>
-        <div class="kb-draw-toolbar" id="draw-toolbar">
-            <button type="button" class="btn btn-ghost btn-sm" id="draw-clear">Clear</button>
-            <button type="button" class="btn btn-primary btn-sm" id="draw-check">Check</button>
-        </div>
         <div class="draw-reveal" id="draw-reveal" hidden>
             <div class="draw-reveal-letter is-georgian" id="draw-reveal-letter" aria-hidden="true"></div>
         </div>
-        <div class="draw-grade" id="draw-grade" hidden>
-            <button type="button" class="draw-grade-btn draw-grade-wrong" id="draw-wrong">Wrong</button>
-            <button type="button" class="draw-grade-btn draw-grade-right" id="draw-right">Correct</button>
+        <div class="draw-actions">
+            <div class="draw-actions-set" id="draw-toolbar">
+                <button type="button" class="draw-action-btn draw-action-clear" id="draw-clear">Clear</button>
+                <button type="button" class="draw-action-btn draw-action-check" id="draw-check">Check</button>
+            </div>
+            <div class="draw-actions-set" id="draw-grade" hidden>
+                <button type="button" class="draw-action-btn draw-action-wrong" id="draw-wrong">Wrong</button>
+                <button type="button" class="draw-action-btn draw-action-right" id="draw-right">Correct</button>
+            </div>
         </div>
     </div>
 
