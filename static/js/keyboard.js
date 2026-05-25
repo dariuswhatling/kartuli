@@ -515,17 +515,15 @@
         tapped.classList.add("is-wrong");
         els.card.classList.add("is-wrong");
 
-        setTimeout(() => {
-            const correctKey = state.keys[answer];
-            if (correctKey) {
-                correctKey.classList.remove("is-dimmed");
-                correctKey.classList.add("is-correct");
-            }
-            els.feedback.textContent = `Answer: ${answer}`;
-            els.feedback.classList.add("is-wrong");
-        }, 500);
+        const correctKey = state.keys[answer];
+        if (correctKey) {
+            correctKey.classList.remove("is-dimmed");
+            correctKey.classList.add("is-correct");
+        }
+        els.feedback.textContent = `Answer: ${answer}`;
+        els.feedback.classList.add("is-wrong");
 
-        setTimeout(loadNext, 1500);
+        setTimeout(loadNext, 500);
     }
 
     function onDrawCheck() {
