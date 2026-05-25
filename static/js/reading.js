@@ -181,7 +181,7 @@
     }
 
     els.card.addEventListener("click", () => {
-        if (!state.current || state.answered) return;
+        if (!state.current) return;
         playAudio(state.current.prompt_audio_url);
     });
 
