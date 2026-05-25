@@ -3,8 +3,9 @@
 
     const STORAGE_FONT_MODE = "kartuli.kbLetterFontMode";
 
-    /** Top Georgian typefaces used locally (web-loadable + system). */
+    /** Twenty common Georgian typefaces (preloaded on keyboard page). */
     const GEORGIA_RANDOM_FONTS = [
+        { label: "Noto Sans Georgian", family: '"Noto Sans Georgian", sans-serif' },
         { label: "Noto Serif Georgian", family: '"Noto Serif Georgian", serif' },
         { label: "BPG Glaho", family: '"BPG Glaho", sans-serif' },
         { label: "BPG Nino Mtavruli", family: '"BPG Nino Mtavruli", sans-serif' },
@@ -15,7 +16,18 @@
         { label: "BPG Ingiri Arial", family: '"BPG Ingiri Arial", sans-serif' },
         { label: "BPG Ucnobi", family: '"BPG Ucnobi", sans-serif' },
         { label: "BPG Nino Medium", family: '"BPG Nino Medium", sans-serif' },
+        { label: "BPG Algeti", family: '"BPG Algeti", sans-serif' },
+        { label: "BPG Arial Caps", family: '"BPG Arial Caps", sans-serif' },
+        { label: "BPG Nino Mkhedruli", family: '"BPG Nino Mkhedruli", sans-serif' },
+        { label: "BPG Nino Mtavruli Bold", family: '"BPG Nino Mtavruli Bold", sans-serif' },
+        { label: "BPG Glaho Bold", family: '"BPG Glaho Bold", sans-serif' },
+        { label: "BPG Rioni Arial", family: '"BPG Rioni Arial", sans-serif' },
+        { label: "BPG Nino Elite", family: '"BPG Nino Elite", sans-serif' },
+        { label: "BPG Glaho Arial", family: '"BPG Glaho Arial", sans-serif' },
+        { label: "BPG Nuskha Modern", family: '"BPG Nuskha Modern", sans-serif' },
     ];
+
+    let fontsPreloadPromise = null;
 
     const els = {
         kb: document.getElementById("kb"),
@@ -139,6 +151,18 @@
         else if (len > 10) el.classList.add("len-medium");
     }
 
+    function preloadRandomFonts() {
+        if (!document.fonts?.load) return Promise.resolve();
+        if (!fontsPreloadPromise) {
+            fontsPreloadPromise = Promise.all(
+                GEORGIA_RANDOM_FONTS.map((f) =>
+                    document.fonts.load(`700 4rem ${f.family}`).catch(() => {})
+                )
+            );
+        }
+        return fontsPreloadPromise;
+    }
+
     function pickRandomGeorgiaFont() {
         const font = GEORGIA_RANDOM_FONTS[
             Math.floor(Math.random() * GEORGIA_RANDOM_FONTS.length)
@@ -198,6 +222,7 @@
     function setFontMode(mode, { skipSave = false } = {}) {
         state.fontMode = mode;
         if (mode === "random") {
+            preloadRandomFonts();
             pickRandomGeorgiaFont();
         } else {
             state.randomFontFamily = "";
@@ -443,7 +468,7 @@
         els.drawWrong.disabled = true;
         els.drawRight.disabled = true;
 
-        const delay = correct ? 500 : 900;
+        const delay = isDrawMode() ? (correct ? 500 : 900) : correct ? 220 : 380;
         setTimeout(loadNext, delay);
     }
 
@@ -536,6 +561,7 @@
 
     (async () => {
         try {
+            preloadRandomFonts();
             state.pairs = await fetchAlphabet();
             if (!state.pairs.length) {
                 els.grid.innerHTML =
