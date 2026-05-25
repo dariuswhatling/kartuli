@@ -243,7 +243,7 @@
 
     function clearKeyHighlights() {
         Object.values(state.keys).forEach((btn) => {
-            btn.classList.remove("is-correct", "is-wrong");
+            btn.classList.remove("is-correct", "is-wrong", "is-dimmed");
         });
         els.card.classList.remove("is-correct", "is-wrong");
         els.feedback.textContent = "";
@@ -486,12 +486,46 @@
         setKeysEnabled(false);
 
         const tapped = state.keys[value];
-        const correct = value === state.current.answer;
+        const answer = state.current.answer;
+        const correct = value === answer;
 
-        if (correct) tapped.classList.add("is-correct");
-        else tapped.classList.add("is-wrong");
+        Object.values(state.keys).forEach((btn) => {
+            btn.disabled = true;
+            if (btn !== tapped) btn.classList.add("is-dimmed");
+        });
 
-        finishRound(correct);
+        state.total += 1;
+        els.total.textContent = state.total;
+        state.lastPrompt = state.current.prompt;
+        els.correct.textContent = state.correct;
+        els.streak.textContent = state.streak;
+
+        if (correct) {
+            state.correct += 1;
+            state.streak += 1;
+            tapped.classList.add("is-correct");
+            els.card.classList.add("is-correct");
+            els.feedback.textContent = "Correct";
+            els.feedback.classList.add("is-correct");
+            setTimeout(loadNext, 220);
+            return;
+        }
+
+        state.streak = 0;
+        tapped.classList.add("is-wrong");
+        els.card.classList.add("is-wrong");
+
+        setTimeout(() => {
+            const correctKey = state.keys[answer];
+            if (correctKey) {
+                correctKey.classList.remove("is-dimmed");
+                correctKey.classList.add("is-correct");
+            }
+            els.feedback.textContent = `Answer: ${answer}`;
+            els.feedback.classList.add("is-wrong");
+        }, 500);
+
+        setTimeout(loadNext, 1500);
     }
 
     function onDrawCheck() {

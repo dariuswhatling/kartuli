@@ -692,6 +692,10 @@ a:hover { text-decoration: underline; }
     color: #fee2e2;
 }
 
+.kb-key.is-dimmed {
+    opacity: 0.35;
+}
+
 .kb-empty {
     grid-column: 1 / -1;
     text-align: center;
