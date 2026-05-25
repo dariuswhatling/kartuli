@@ -18,12 +18,33 @@
             <span class="brand-mark">ქ</span>
             <span class="brand-text">Kartuli</span>
         </a>
-        <nav class="nav">
-            <a href="{% url 'quiz' %}" class="nav-link {% block nav_quiz %}{% endblock %}">Multiple choice</a>
-            <a href="{% url 'flashcard' %}" class="nav-link {% block nav_fc %}{% endblock %}">Flashcard</a>
-            <a href="{% url 'keyboard' %}" class="nav-link {% block nav_kb %}{% endblock %}">Keyboard</a>
-            <a href="{% url 'dictionary' %}" class="nav-link {% block nav_dict %}{% endblock %}">Dictionary</a>
-            <a href="{% url 'common_words' %}" class="nav-link {% block nav_1000 %}{% endblock %}">1000 words</a>
+        <button
+            type="button"
+            class="nav-toggle"
+            id="nav-toggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="site-nav"
+        >
+            <svg class="nav-toggle-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                <path fill="currentColor" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+            </svg>
+        </button>
+        <div class="nav-backdrop" id="nav-backdrop" hidden></div>
+        <nav class="nav" id="site-nav" aria-label="Main">
+            <div class="nav-drawer-head">
+                <span class="nav-drawer-title">Menu</span>
+                <button type="button" class="nav-close" id="nav-close" aria-label="Close menu">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="nav-links">
+                <a href="{% url 'quiz' %}" class="nav-link {% block nav_quiz %}{% endblock %}">Multiple choice</a>
+                <a href="{% url 'flashcard' %}" class="nav-link {% block nav_fc %}{% endblock %}">Flashcard</a>
+                <a href="{% url 'keyboard' %}" class="nav-link {% block nav_kb %}{% endblock %}">Keyboard</a>
+                <a href="{% url 'dictionary' %}" class="nav-link {% block nav_dict %}{% endblock %}">Dictionary</a>
+                <a href="{% url 'common_words' %}" class="nav-link {% block nav_1000 %}{% endblock %}">1000 words</a>
+            </div>
         </nav>
     </header>
 
@@ -32,6 +53,7 @@
     </main>
 
     <script src="{% static 'js/audio-player.js' %}" defer></script>
+    <script src="{% static 'js/nav.js' %}" defer></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>
